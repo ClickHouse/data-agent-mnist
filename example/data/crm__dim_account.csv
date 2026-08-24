@@ -1,0 +1,9 @@
+account_key,tenant_id,account_name,owner,signed_on
+acct-001,t001,Vance Group,analyst-1,2025-09-24
+acct-002,t002,Hull-Hart,analyst-2,2025-06-15
+acct-003,t003,Bates-Robbins,analyst-3,2025-01-04
+acct-004,t004,Sharp-Thompson,analyst-4,2024-04-22
+acct-005,t005,Holder-Henderson,analyst-1,2024-11-14
+acct-006,t006,Lynch-Wise,analyst-2,2025-02-05
+acct-007,t007,"Moon, Ford and Hanson",analyst-3,2024-10-12
+acct-008,t008,Hughes Ltd,analyst-4,2024-09-22

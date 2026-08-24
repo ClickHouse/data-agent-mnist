@@ -1,0 +1,16 @@
+opportunity_id,account_key,stage,amount,opened_on,closed_on
+opp-001-1,acct-001,negotiation,1542.4,2026-04-05,\N
+opp-002-1,acct-002,closed_lost,3550.69,2026-03-04,2026-03-13
+opp-002-2,acct-002,closed_won,9325.65,2026-05-17,2026-05-24
+opp-003-1,acct-003,evaluation,60996.59,2026-01-12,\N
+opp-003-2,acct-003,evaluation,11979.24,2025-12-18,\N
+opp-004-1,acct-004,evaluation,1124.27,2026-01-16,\N
+opp-004-2,acct-004,evaluation,2699.5,2026-05-03,\N
+opp-005-1,acct-005,closed_lost,12644.01,2026-05-11,2026-05-24
+opp-006-1,acct-006,closed_lost,27678.3,2025-10-18,2025-12-10
+opp-006-2,acct-006,discovery,39302.9,2026-01-25,\N
+opp-006-3,acct-006,closed_lost,22470.01,2025-12-07,2026-01-24
+opp-006-4,acct-006,closed_won,56519.36,2026-01-06,2026-01-30
+opp-007-1,acct-007,evaluation,2846.42,2026-04-12,\N
+opp-008-1,acct-008,closed_won,10556.23,2026-04-07,2026-04-28
+opp-008-2,acct-008,closed_won,4220.68,2025-10-06,2025-10-18
