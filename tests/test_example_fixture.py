@@ -94,14 +94,33 @@ def seeded(inst, tmp_path_factory) -> Path:
     return db
 
 
-def _session(db, inst):
-    from chdb import session as chdb_session
-    s = chdb_session.Session(str(db))
-    if inst.timezone:
-        # A DateTime grain is rendered in the session zone, so a test that does
-        # not pin it measures the runner's locale.
-        s.query(f"SET session_timezone = '{inst.timezone}'")
-    return s
+def _query(db, inst, sql, fmt="CSV") -> str:
+    """Run one query against a seeded warehouse, in a subprocess.
+
+    A subprocess per query rather than a Session held open, because chDB allows
+    ONE session path per process. Opening a second one, even after closing the
+    first, fails on Linux with "recursive_mutex lock failed" while working fine
+    on macOS. Parametrising these tests over two instances put two paths in one
+    pytest process, so it passed locally and failed in CI.
+
+    The seeding fixture already shells out for the same reason; this makes the
+    reads agree with it.
+
+    A DateTime grain is rendered in the session zone, so an instance that has one
+    pins it here, or the test measures the runner's locale.
+    """
+    tz = (f's.query("SET session_timezone = \'{inst.timezone}\'")\n'
+          if inst.timezone else "")
+    code = ("import sys\n"
+            "from chdb import session as cs\n"
+            f"s = cs.Session({str(db)!r})\n"
+            f"{tz}"
+            f"sys.stdout.write(s.query({sql!r}, {fmt!r}).bytes().decode())\n"
+            "s.close()\n")
+    proc = subprocess.run([sys.executable, "-c", code],
+                          capture_output=True, text=True, cwd=DAM)
+    assert proc.returncode == 0, f"query failed:\n{sql}\n{proc.stderr}"
+    return proc.stdout
 
 
 def test_csvs_are_committed(inst):
@@ -129,27 +148,18 @@ def test_nulls_are_unquoted(inst):
 
 def test_seed_loads_every_table_completely(seeded, inst):
     """Every table, not just the first: a parse error mid-run is the failure mode."""
-    sess = _session(seeded, inst)
-    try:
-        for table, expected in inst.tables.items():
-            got = int(sess.query(f"SELECT count() FROM {table}",
-                                 "CSV").bytes().decode().strip())
-            assert got == expected, f"{table}: {got} rows, expected {expected}"
-    finally:
-        sess.close()
+    for table, expected in inst.tables.items():
+        got = int(_query(seeded, inst, f"SELECT count() FROM {table}").strip())
+        assert got == expected, f"{inst}/{table}: {got} rows, expected {expected}"
 
 
 def test_nulls_round_trip_as_nulls(seeded, inst):
     """An open opportunity or case is the only thing NULL encodes here."""
-    sess = _session(seeded, inst)
-    try:
-        for table, col in inst.nullable:
-            n = int(sess.query(f"SELECT count() FROM {table} WHERE {col} IS NULL",
-                               "CSV").bytes().decode().strip())
-            assert n > 0, (f"{inst}/{table}: no NULL {col}, so either the fixture "
-                           f"lost its open rows or \\N was read as a string")
-    finally:
-        sess.close()
+    for table, col in inst.nullable:
+        n = int(_query(seeded, inst,
+                       f"SELECT count() FROM {table} WHERE {col} IS NULL").strip())
+        assert n > 0, (f"{inst}/{table}: no NULL {col}, so either the fixture "
+                       f"lost its open rows or \\N was read as a string")
 
 
 def test_questions_reference_entities_that_exist(seeded, inst):
@@ -160,13 +170,9 @@ def test_questions_reference_entities_that_exist(seeded, inst):
     exactly the sort of thing a quoting change breaks).
     """
     table, column = inst.question_key
-    sess = _session(seeded, inst)
-    try:
-        rows = sess.query(f"SELECT DISTINCT {column} FROM {table}",
-                          "JSONCompactEachRow").bytes().decode()
-        names = {json.loads(line)[0] for line in rows.splitlines() if line.strip()}
-    finally:
-        sess.close()
+    rows = _query(seeded, inst, f"SELECT DISTINCT {column} FROM {table}",
+                  "JSONCompactEachRow")
+    names = {json.loads(line)[0] for line in rows.splitlines() if line.strip()}
 
     questions = [json.loads(line)["nl_question"]
                  for line in (inst.dir / "questions.jsonl").read_text().splitlines()

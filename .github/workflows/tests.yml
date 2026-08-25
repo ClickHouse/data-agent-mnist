@@ -17,6 +17,11 @@ on:
   push:
     branches: [main]
   pull_request:
+  # So this can be run from the Actions tab without inventing a commit. A green
+  # run proves the tree works today rather than when it last changed, which
+  # matters for a fixture: committed CSVs do not rot, but a dependency
+  # resolving to a new version can break the seeder underneath them.
+  workflow_dispatch:
 
 permissions:
   contents: read

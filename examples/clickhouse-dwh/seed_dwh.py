@@ -46,13 +46,35 @@ CREATE TABLE IF NOT EXISTS dbt_marts_general.usage_history (
     organization__cloud_provider LowCardinality(String),
     organization__region         LowCardinality(String),
     organization__country        LowCardinality(String),
+    -- Float64 for money, which is NOT the recommendation: Decimal is exact to
+    -- the cent and Float cannot represent most decimal fractions. It stays
+    -- because this instance mirrors the real column types of the warehouse the
+    -- harness was built against, and that warehouse uses Float64. The sibling
+    -- instance under examples/saas uses Decimal64(2), so the pair shows both the
+    -- recommended type and what a real warehouse often has.
     organization__dollar_usage   Float64,
     organization__MRR            Float64,
     organization__MRR_PAYG       Float64,
     organization__MRR_Committed  Float64,
+    -- UInt64 is wider than these values need (a daily count peaks around a
+    -- million here), and narrower is the general advice. Kept for the same
+    -- reason as the Float64 above: it is the real column type.
     organization__query_count    UInt64,
     organization__error_count    UInt64
-) ENGINE = MergeTree ORDER BY (organization__id, timestamp_hour);
+-- ORDER BY (timestamp_hour, organization__id), not the other way round. A sparse
+-- primary index only helps a query filtering on a PREFIX of the sort key, and
+-- half the questions here filter a time window without naming an organization,
+-- so leading with organization__id would make those full scans. Caught in review
+-- of this file, and it was wrong in the sibling instance too.
+--
+-- Which order is right depends on the query mix, and a production warehouse
+-- serving mostly per-organization lookups would reasonably invert this. The
+-- point for an example is that the choice follows the documented questions
+-- rather than being inherited by accident.
+--
+-- 900 rows, so nothing here is measurable. It is written this way because a
+-- published ClickHouse example gets copied.
+) ENGINE = MergeTree ORDER BY (timestamp_hour, organization__id);
 
 -- the CRM mirror. Reaching a case from an organization name is two hops:
 -- name -> account__key (via the org dim) -> case__account_key.
@@ -88,9 +110,24 @@ CREATE TABLE IF NOT EXISTS dbt_dds.fct_case (
     case__origin      LowCardinality(String),
     case__owner_name  String,
     case__created_date Date,
+    -- Nullable against the general advice to prefer a DEFAULT: here NULL is the
+    -- fact, that the case has not closed, and the questions ask exactly that.
     case__closed_date  Nullable(Date)
 ) ENGINE = MergeTree ORDER BY (case__account_key, case__created_date);
 """
+
+def _statements(ddl: str):
+    """Split DDL into statements, ignoring punctuation inside comments.
+
+    A naive ddl.split(";") breaks on a semicolon in a `--` comment, cutting a
+    CREATE TABLE in half and reporting "Unmatched parentheses" from a line that
+    looks fine. That happened while documenting a column choice. The comments are
+    for the reader of this file, not for the server, so they are stripped before
+    splitting rather than being a hazard for whoever edits the DDL next.
+    """
+    stripped = "\n".join(
+        line for line in ddl.splitlines() if not line.lstrip().startswith("--"))
+    return [s for s in stripped.split(";") if s.strip()]
 
 TABLES = ["dbt_marts_general.usage_history",
           "dbt_dds.dim_organization_current",
@@ -116,7 +153,7 @@ def main() -> None:
     # See the module docstring: DateTime is rendered in the session zone, so this
     # is what keeps a fixture built anywhere answering the same everywhere.
     sess.query("SET session_timezone = 'UTC'")
-    for stmt in filter(str.strip, DDL.split(";")):
+    for stmt in _statements(DDL):
         sess.query(stmt)
     for t in TABLES:
         csv = CSV_DIR / (t.replace(".", "__") + ".csv")

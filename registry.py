@@ -149,8 +149,7 @@ def _default_linker() -> str:
 # directly, which quietly made a SCORING component require an AWS account: with
 # no credentials the call raised, the fallback matched identical column names
 # only, and equivalent answers written with different column names scored wrong.
-# Nothing reported it. On the runnable example that was 24 of 56 compared pairs
-#.
+# Nothing reported it. On the runnable example that was 24 of 56 compared pairs.
 #
 # One cached call per distinct pair of differing column sets, so this wants the
 # cheapest capable model rather than the panel flagship. Set `judges.linker` to

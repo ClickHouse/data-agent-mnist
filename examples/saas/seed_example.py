@@ -49,44 +49,79 @@ CREATE DATABASE IF NOT EXISTS marts;
 CREATE DATABASE IF NOT EXISTS crm;
 
 -- flat mart: one row per tenant per day, joins already done
+--
+-- ORDER BY (day, tenant_id), not (tenant_id, day). A sparse primary index only
+-- helps a query that filters on a PREFIX of the sort key, and five of the eight
+-- questions here filter a time window without naming a tenant, so leading with
+-- tenant_id would make those full scans. Leading with day keeps them index-served
+-- and still prunes the per-tenant questions once the range narrows.
+--
+-- The fixture is 960 rows, so nothing here is measurable. It is written this way
+-- because a published ClickHouse example gets copied, and a sort key that
+-- defeats its own query pattern teaches the wrong habit.
 CREATE TABLE IF NOT EXISTS marts.usage_daily (
     day             Date,
     tenant_id       String,
     tenant_name     String,
-    plan            String,
-    region          String,
+    -- LowCardinality for the columns with a handful of distinct values (3 plans,
+    -- 5 regions). Dictionary-encoded rather than storing the string per row.
+    plan            LowCardinality(String),
+    region          LowCardinality(String),
     queries         UInt32,
     storage_gb      Float64,
     compute_minutes Float64,
-    daily_spend     Float64
-) ENGINE = MergeTree ORDER BY (tenant_id, day);
+    -- Money is Decimal, not Float64. Float cannot represent most decimal
+    -- fractions exactly, so sums drift and equality is unreliable; Decimal64(2)
+    -- is exact to the cent. Measures that are genuinely continuous
+    -- (storage, compute minutes) stay Float64.
+    daily_spend     Decimal64(2)
+) ENGINE = MergeTree ORDER BY (day, tenant_id);
 
 -- dimensional layer: answering from here needs a name -> account -> fact hop
 CREATE TABLE IF NOT EXISTS crm.dim_account (
     account_key  String,
     tenant_id    String,
     account_name String,
-    owner        String,
+    owner        LowCardinality(String),
     signed_on    Date
 ) ENGINE = MergeTree ORDER BY account_key;
 
+-- The fact tables keep account_key first: every question reaching them resolves
+-- a name to an account before filtering, so the account IS the prefix.
 CREATE TABLE IF NOT EXISTS crm.fct_opportunity (
     opportunity_id String,
     account_key    String,
-    stage          String,
-    amount         Float64,
+    stage          LowCardinality(String),
+    amount         Decimal64(2),
     opened_on      Date,
+    -- Nullable, deliberately, against the general advice to prefer a DEFAULT.
+    -- Here NULL is the fact being recorded: the opportunity has not closed. A
+    -- sentinel date would need every reader to know the sentinel, and the
+    -- questions ask "still open", which is exactly IS NULL.
     closed_on      Nullable(Date)
 ) ENGINE = MergeTree ORDER BY (account_key, opened_on);
 
 CREATE TABLE IF NOT EXISTS crm.fct_support_case (
     case_id     String,
     account_key String,
-    priority    String,
+    priority    LowCardinality(String),
     opened_on   Date,
     closed_on   Nullable(Date)
 ) ENGINE = MergeTree ORDER BY (account_key, opened_on);
 """
+
+def _statements(ddl: str):
+    """Split DDL into statements, ignoring punctuation inside comments.
+
+    A naive ddl.split(";") breaks on a semicolon in a `--` comment, cutting a
+    CREATE TABLE in half and reporting "Unmatched parentheses" from a line that
+    looks fine. That happened while documenting a column choice. The comments are
+    for the reader of this file, not for the server, so they are stripped before
+    splitting rather than being a hazard for whoever edits the DDL next.
+    """
+    stripped = "\n".join(
+        line for line in ddl.splitlines() if not line.lstrip().startswith("--"))
+    return [s for s in stripped.split(";") if s.strip()]
 
 TABLES = ["marts.usage_daily", "crm.dim_account",
           "crm.fct_opportunity", "crm.fct_support_case"]
@@ -107,7 +142,7 @@ def main() -> None:
     args.db_path.parent.mkdir(parents=True, exist_ok=True)
 
     sess = chdb_session.Session(str(args.db_path))
-    for stmt in filter(str.strip, DDL.split(";")):
+    for stmt in _statements(DDL):
         sess.query(stmt)
     for t in TABLES:
         csv = CSV_DIR / (t.replace(".", "__") + ".csv")
