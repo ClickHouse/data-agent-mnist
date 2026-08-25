@@ -55,8 +55,8 @@ ENTITY_NAME   = "organization__name"
 ENTITY_ID     = "organization__id"
 
 # NOTE: the entity prompt said "contains an organization named" and "that
-# organization's" before the table became configurable. Runs recorded prior to
-# earlier runs used that wording, so a re-run is not strictly comparable to them.
+# organization's" before the table became configurable. Earlier runs used that
+# wording, so a re-run is not strictly comparable to them.
 ENTITY_PROMPT = (
     'In the "<<DATASET>>" text-to-SQL benchmark, the synthetic warehouse table '
     '<<TABLE>> contains a record named "<<NAME>>". '
@@ -159,10 +159,25 @@ def similarity(a: str, b: str) -> float:
                                    " ".join(b.split()).lower().split()).ratio()
 
 
-def load_our_items(sample: int):
+def load_our_items(sample: int, annot: Path | None = None):
+    """Question prefixes to probe for memorisation.
+
+    Returns nothing without reading anything when sample is 0. It used to read
+    the annotation file unconditionally, so `--sample 0` still needed the board's
+    corpus and the probe could not run at all outside this repository, even with
+    the completion half switched off.
+    """
+    if sample <= 0:
+        return []
+    path = annot or (SYNTH / "annotated.jsonl")
+    if not path.exists():
+        raise SystemExit(
+            f"no annotated questions at {path}.\n"
+            f"  The default is the board's. Pass --annot for your own, or "
+            f"--sample 0 --no-control to run the entity probe alone.")
     rng = random.Random(SEED)
     rows = []
-    for line in (SYNTH / "annotated.jsonl").read_text().splitlines():
+    for line in path.read_text().splitlines():
         if line.strip():
             r = json.loads(line)
             if not r.get("excluded") and r.get("gt_results") and len(r["nl_question"].split()) >= 24:
@@ -179,9 +194,21 @@ def load_our_items(sample: int):
 
 
 def load_entities(n: int, table: str = ENTITY_TABLE, name_col: str = ENTITY_NAME,
-                  id_col: str = ENTITY_ID):
+                  id_col: str = ENTITY_ID, db_path: Path | None = None,
+                  session_timezone: str | None = None):
+    """Sample (name, id) pairs to probe for.
+
+    db_path matters as much as the table name: making the table configurable
+    while still opening the board store meant a foreign table name was queried
+    against our warehouse, so the probe could not run against either example
+    instance and would fail with UNKNOWN_TABLE rather than saying why.
+    """
+    if n <= 0:
+        return []
     import chdb.session as chs
-    s = chs.Session(str(SYNTH / "chdb"))
+    s = chs.Session(str(db_path or (SYNTH / "chdb")))
+    if session_timezone:
+        s.query(f"SET session_timezone = '{session_timezone}'")
     out = s.query(
         f"SELECT {name_col}, {id_col} FROM {table} "
         f"ORDER BY cityHash64({id_col}) LIMIT {n}", "JSONEachRow")
@@ -200,6 +227,13 @@ def load_spider(sample: int, split: str = "train"):
     (with gold SQL) since 2018 — dev the more heavily quoted in papers and eval
     harnesses — and the official 2,147-question TEST split, held private for the
     leaderboard and public only since ~2024, i.e. a much shorter crawl window."""
+    # Nothing, and no import, for zero items. `datasets` is an optional
+    # dependency and load_dataset DOWNLOADS, so importing before checking the
+    # count meant --sample 0 still pulled three corpora to produce nothing, and
+    # failed outright without the dependency. The other two loaders short-circuit
+    # the same way.
+    if sample <= 0:
+        return []
     from datasets import load_dataset
     rng = random.Random(SEED)
     if split == "test":
@@ -233,13 +267,21 @@ def main():
                     help="table holding a name and a stable id for the entity probe")
     ap.add_argument("--entity-name-column", default=ENTITY_NAME)
     ap.add_argument("--entity-id-column", default=ENTITY_ID)
+    ap.add_argument("--annot", type=Path, default=None,
+                    help="annotated questions for the completion probe "
+                         "(default: the board's; unused when --sample 0)")
+    ap.add_argument("--db-path", type=Path, default=None,
+                    help="warehouse to sample entities from (default: the board's)")
+    ap.add_argument("--session-timezone", default=None,
+                    help="pin the chDB session timezone, for a DateTime grain")
     ap.add_argument("--no-control", action="store_true")
     ap.add_argument("--out", type=Path, default=OUT)
     args = ap.parse_args()
     models = [m.strip() for m in args.models.split(",") if m.strip()]
 
-    items = load_our_items(args.sample) + load_entities(
-        args.entities, args.entity_table, args.entity_name_column, args.entity_id_column)
+    items = load_our_items(args.sample, args.annot) + load_entities(
+        args.entities, args.entity_table, args.entity_name_column,
+        args.entity_id_column, args.db_path, args.session_timezone)
     if not args.no_control:
         items += (load_spider(args.sample, "train") + load_spider(args.sample, "validation")
                   + load_spider(args.sample, "test"))
