@@ -1,0 +1,146 @@
+# Example model registry for the harness.
+#
+# Copy to config/models.yaml, or point DAM_MODELS_CONFIG at your own file.
+#
+# This example is deliberately runnable by someone with no special access: three
+# providers, each a direct API-key signup (OpenAI, Anthropic, Fireworks).
+# Everything requiring a cloud account (Bedrock, Vertex) or a private endpoint is
+# commented out below rather than omitted, so the shape is visible when you do
+# have it.
+#
+# Three is the minimum that makes the methodology work rather than merely run.
+# Ground truth is the result set at least two of three annotators agree on, and
+# the judge panel seats one model per provider so no provider can hold a majority
+# of the votes. With two providers both degrade: every annotator must agree, and
+# a split judge vote scores `tie` instead of resolving.
+#
+# One entry per model. `id` is whatever the provider calls it, `provider` selects
+# the client and the request shape, and the optional flags carry per-model
+# capabilities.
+
+endpoints:
+  # An OpenAI-compatible endpoint. This one entry covers most of the ecosystem:
+  # vLLM, Ollama, Together, Fireworks, OpenRouter, or a gateway of your own.
+  # Overridable at runtime with INFERENCE_GATEWAY_URL. Any gateway fronting
+  # several providers collapses to one entry here.
+  gateway: https://openai-compatible-endpoint.example.com
+  anthropic: https://api.anthropic.com/v1/
+  # Only needed by the commented-out providers below.
+  fireworks: https://api.fireworks.ai/inference/v1
+  mantle_chat: https://bedrock-mantle.{region}.api.aws/v1
+  mantle_responses: https://bedrock-mantle.{region}.api.aws/openai/v1
+  vertex: https://aiplatform.googleapis.com/v1beta1/projects/{project}/locations/global/endpoints/openapi
+  vertex_regional: https://{location}-aiplatform.googleapis.com/v1beta1/projects/{project}/locations/{location}/endpoints/openapi
+
+models:
+  # ── provider: openai ── OPENAI_API_KEY, chat.completions ────────────────────
+  gpt-4.1:
+    id: gpt-4.1
+    provider: openai
+  gpt-4.1-mini:
+    id: gpt-4.1-mini
+    provider: openai
+  # api: responses routes through the Responses API instead, for models that
+  # reject function tools alongside reasoning on chat.completions. Forcing such a
+  # model onto chat.completions means benchmarking it with reasoning off, which is
+  # not the same model.
+  o4-mini:
+    id: o4-mini
+    provider: openai
+    api: responses
+
+  # ── provider: anthropic ── ANTHROPIC_API_KEY, native Messages API ───────────
+  claude-sonnet:
+    id: claude-sonnet-4-5
+    provider: anthropic
+  claude-haiku:
+    id: claude-haiku-4-5
+    provider: anthropic
+
+  # ── provider: fireworks ── FIREWORKS_API_KEY, serverless ────────────────────
+  kimi:
+    id: accounts/fireworks/models/kimi-k2p6
+    provider: fireworks
+    reasoning: true          # emits inline reasoning; needs a larger token budget
+  glm:
+    id: accounts/fireworks/models/glm-5p2
+    provider: fireworks
+    reasoning: true
+
+  # ── provider: gateway ── any OpenAI-compatible endpoint (see above) ─────────
+  # A fourth provider, or a substitute for any of the three above if you front
+  # your models with a gateway. Keep the seat count odd.
+  # some-model:
+  #   id: some-model
+  #   provider: gateway
+
+  # ── Everything below needs a cloud account, not just an API key ─────────────
+  #
+  # provider: bedrock -> AWS Bedrock Converse API.
+  #   reasoning: true raises the output-token budget so thinking is not truncated
+  #   mid-generation and then scored as a turn-limited failure.
+  # claude-opus-bedrock:
+  #   id: us.anthropic.claude-opus-4-1-20250805-v1:0
+  #   provider: bedrock
+  #   reasoning: true
+  #
+  # provider: gemini -> Vertex AI's OpenAI-compatible endpoint. Needs a GCP
+  #   project with Vertex enabled and application-default credentials.
+  #   vertex_location: global for models served only on the global location.
+  # gemini-pro:
+  #   id: google/gemini-2.5-pro
+  #   provider: gemini
+  #   vertex_location: global
+  #
+  # provider: fireworks -> Fireworks serverless.
+  # deepseek:
+  #   id: accounts/fireworks/models/deepseek-v3p1
+  #   provider: fireworks
+  #
+  # provider: mantle -> Bedrock's OpenAI-compatible surfaces. api: responses
+  #   selects the /openai/v1 base instead of /v1.
+  # some-mantle-model:
+  #   id: vendor.model-name
+  #   provider: mantle
+  #   api: responses
+  #
+  # adaptive_thinking_only: true for models with no "disabled" thinking mode;
+  # they run in adaptive mode, which is the fair way to benchmark them anyway.
+  #
+  # retired: true keeps a model resolvable without ever running it. Use it when
+  # cached results reference a model you have stopped evaluating: board
+  # verification replays every cached candidate and leak scans use the ids as
+  # forbidden markers, so deleting the entry breaks both.
+
+judges:
+  # One seat per provider, each listed best-first. Scoring a candidate fills every
+  # seat with its top model that is NOT the candidate, so no provider can hold a
+  # majority of the votes and in-group bias cannot swing a verdict.
+  #
+  # Three seats, one per provider, so the panel has a majority and no provider
+  # can swing a verdict on its own. Keep the count odd: an even panel has no
+  # majority, so disagreements degrade to `tie` rather than resolving.
+  seats:
+    openai: [gpt-4.1, gpt-4.1-mini]
+    anthropic: [claude-sonnet, claude-haiku]
+    fireworks: [kimi, glm]
+  # Judges that are not themselves candidates need their ids here; candidate
+  # judges resolve from the models section above.
+  extra_ids: {}
+  # The column linker: one cached call per distinct pair of differing column
+  # sets, deciding whether two result sets name the same quantity differently
+  # (total_dollar_usage vs monthly_spend). It is part of SCORING, not a judge
+  # vote. Unreachable, it falls back to exact name matching and correct answers
+  # start scoring as failures, so it warns loudly rather than degrading quietly.
+  # Pick the cheapest capable model you can reach; the default is the last model
+  # of the first seat.
+  linker: claude-haiku
+  default_id: claude-sonnet-4-5
+
+# Models that build majority-vote ground truth. Each runs the full agentic loop
+# independently and at least two must agree on the result set, otherwise the
+# question is excluded. One per provider, and they are usually also candidates.
+annotators:
+  - gpt-4.1
+  - claude-sonnet
+  - kimi

@@ -1,0 +1,961 @@
+day,tenant_id,tenant_name,plan,region,queries,storage_gb,compute_minutes,daily_spend
+2026-03-03,t001,Vance Group,starter,eu-west-1,493,4.4,12.79,8.39
+2026-03-04,t001,Vance Group,starter,eu-west-1,511,4.59,12.35,8.26
+2026-03-05,t001,Vance Group,starter,eu-west-1,359,4.09,7.94,8.21
+2026-03-06,t001,Vance Group,starter,eu-west-1,307,4.54,7.56,8.41
+2026-03-07,t001,Vance Group,starter,eu-west-1,173,4.48,4.34,8.04
+2026-03-08,t001,Vance Group,starter,eu-west-1,167,4.62,4.01,8.7
+2026-03-09,t001,Vance Group,starter,eu-west-1,342,4.71,7.06,7.97
+2026-03-10,t001,Vance Group,starter,eu-west-1,324,4.27,7.37,7.97
+2026-03-11,t001,Vance Group,starter,eu-west-1,404,4.58,9.1,8.74
+2026-03-12,t001,Vance Group,starter,eu-west-1,494,4.69,10.49,8.25
+2026-03-13,t001,Vance Group,starter,eu-west-1,344,4.02,7.9,8.13
+2026-03-14,t001,Vance Group,starter,eu-west-1,157,4.65,3.99,8.57
+2026-03-15,t001,Vance Group,starter,eu-west-1,242,4.81,4.57,8.15
+2026-03-16,t001,Vance Group,starter,eu-west-1,373,4.44,7.78,8.09
+2026-03-17,t001,Vance Group,starter,eu-west-1,434,4.74,10.15,8.3
+2026-03-18,t001,Vance Group,starter,eu-west-1,401,4.81,9.07,7.93
+2026-03-19,t001,Vance Group,starter,eu-west-1,337,4.4,8.3,8.05
+2026-03-20,t001,Vance Group,starter,eu-west-1,473,4.52,11.95,8.16
+2026-03-21,t001,Vance Group,starter,eu-west-1,278,4.45,5.54,8.24
+2026-03-22,t001,Vance Group,starter,eu-west-1,167,4.09,3.67,8.07
+2026-03-23,t001,Vance Group,starter,eu-west-1,489,4.17,12.09,8.16
+2026-03-24,t001,Vance Group,starter,eu-west-1,326,4.61,7.39,8.47
+2026-03-25,t001,Vance Group,starter,eu-west-1,281,4.12,5.45,8.03
+2026-03-26,t001,Vance Group,starter,eu-west-1,428,4.32,8.03,8.06
+2026-03-27,t001,Vance Group,starter,eu-west-1,294,4.5,6.24,8.3
+2026-03-28,t001,Vance Group,starter,eu-west-1,245,4.38,4.65,8.59
+2026-03-29,t001,Vance Group,starter,eu-west-1,220,4.17,4.41,8.38
+2026-03-30,t001,Vance Group,starter,eu-west-1,360,4.79,8.63,8.69
+2026-03-31,t001,Vance Group,starter,eu-west-1,485,4.71,9.86,8.07
+2026-04-01,t001,Vance Group,starter,eu-west-1,359,4.13,9.26,8.62
+2026-04-02,t001,Vance Group,starter,eu-west-1,519,4.28,12.0,8.28
+2026-04-03,t001,Vance Group,starter,eu-west-1,465,4.13,10.09,8.04
+2026-04-04,t001,Vance Group,starter,eu-west-1,263,4.72,6.83,8.66
+2026-04-05,t001,Vance Group,starter,eu-west-1,236,4.55,4.95,8.72
+2026-04-06,t001,Vance Group,starter,eu-west-1,414,4.23,10.97,8.62
+2026-04-07,t001,Vance Group,starter,eu-west-1,357,4.43,8.7,8.35
+2026-04-08,t001,Vance Group,starter,eu-west-1,379,4.28,7.09,8.57
+2026-04-09,t001,Vance Group,starter,eu-west-1,322,4.24,5.97,8.5
+2026-04-10,t001,Vance Group,starter,eu-west-1,304,4.03,6.53,8.05
+2026-04-11,t001,Vance Group,starter,eu-west-1,174,4.0,4.46,8.02
+2026-04-12,t001,Vance Group,starter,eu-west-1,193,4.06,4.93,8.53
+2026-04-13,t001,Vance Group,starter,eu-west-1,288,4.54,6.43,8.63
+2026-04-14,t001,Vance Group,starter,eu-west-1,283,4.8,5.88,8.38
+2026-04-15,t001,Vance Group,starter,eu-west-1,325,4.72,5.82,8.34
+2026-04-16,t001,Vance Group,starter,eu-west-1,312,4.39,7.37,7.94
+2026-04-17,t001,Vance Group,starter,eu-west-1,487,4.36,11.39,8.15
+2026-04-18,t001,Vance Group,starter,eu-west-1,165,4.09,3.77,8.46
+2026-04-19,t001,Vance Group,starter,eu-west-1,214,4.43,4.97,8.03
+2026-04-20,t001,Vance Group,starter,eu-west-1,358,4.53,8.69,8.56
+2026-04-21,t001,Vance Group,starter,eu-west-1,515,4.74,11.79,8.61
+2026-04-22,t001,Vance Group,starter,eu-west-1,300,4.38,7.72,8.5
+2026-04-23,t001,Vance Group,starter,eu-west-1,372,4.59,6.77,8.7
+2026-04-24,t001,Vance Group,starter,eu-west-1,416,4.07,7.5,8.47
+2026-04-25,t001,Vance Group,starter,eu-west-1,263,4.86,6.39,8.3
+2026-04-26,t001,Vance Group,starter,eu-west-1,154,4.58,3.72,8.04
+2026-04-27,t001,Vance Group,starter,eu-west-1,490,4.81,12.43,7.92
+2026-04-28,t001,Vance Group,starter,eu-west-1,406,4.3,9.5,8.67
+2026-04-29,t001,Vance Group,starter,eu-west-1,405,4.24,9.38,8.07
+2026-04-30,t001,Vance Group,starter,eu-west-1,288,4.03,7.2,8.34
+2026-05-01,t001,Vance Group,starter,eu-west-1,519,4.57,12.38,8.31
+2026-05-02,t001,Vance Group,starter,eu-west-1,168,4.79,3.16,8.4
+2026-05-03,t001,Vance Group,starter,eu-west-1,224,4.5,4.23,7.94
+2026-05-04,t001,Vance Group,starter,eu-west-1,485,4.07,10.67,8.49
+2026-05-05,t001,Vance Group,starter,eu-west-1,334,4.72,6.95,8.07
+2026-05-06,t001,Vance Group,starter,eu-west-1,319,4.15,6.18,8.25
+2026-05-07,t001,Vance Group,starter,eu-west-1,508,4.4,13.0,8.26
+2026-05-08,t001,Vance Group,starter,eu-west-1,297,4.53,5.99,8.7
+2026-05-09,t001,Vance Group,starter,eu-west-1,273,4.08,6.2,8.13
+2026-05-10,t001,Vance Group,starter,eu-west-1,242,4.6,6.08,8.7
+2026-05-11,t001,Vance Group,starter,eu-west-1,432,4.49,7.87,7.92
+2026-05-12,t001,Vance Group,starter,eu-west-1,342,4.47,8.83,7.96
+2026-05-13,t001,Vance Group,starter,eu-west-1,381,4.8,6.86,7.99
+2026-05-14,t001,Vance Group,starter,eu-west-1,454,4.64,8.58,8.74
+2026-05-15,t001,Vance Group,starter,eu-west-1,301,4.09,5.65,8.35
+2026-05-16,t001,Vance Group,starter,eu-west-1,196,4.53,4.93,8.08
+2026-05-17,t001,Vance Group,starter,eu-west-1,225,4.53,5.44,8.69
+2026-05-18,t001,Vance Group,starter,eu-west-1,343,4.34,7.13,8.06
+2026-05-19,t001,Vance Group,starter,eu-west-1,335,4.77,8.31,7.93
+2026-05-20,t001,Vance Group,starter,eu-west-1,297,4.84,6.3,7.96
+2026-05-21,t001,Vance Group,starter,eu-west-1,451,4.69,10.77,8.72
+2026-05-22,t001,Vance Group,starter,eu-west-1,460,4.27,8.66,8.22
+2026-05-23,t001,Vance Group,starter,eu-west-1,224,4.01,5.52,8.16
+2026-05-24,t001,Vance Group,starter,eu-west-1,194,4.06,4.49,8.62
+2026-05-25,t001,Vance Group,starter,eu-west-1,301,4.37,5.67,8.7
+2026-05-26,t001,Vance Group,starter,eu-west-1,493,4.06,9.16,8.2
+2026-05-27,t001,Vance Group,starter,eu-west-1,457,4.15,10.76,8.74
+2026-05-28,t001,Vance Group,starter,eu-west-1,443,4.44,10.54,8.37
+2026-05-29,t001,Vance Group,starter,eu-west-1,346,4.66,6.39,8.28
+2026-05-30,t001,Vance Group,starter,eu-west-1,170,4.42,4.11,8.25
+2026-05-31,t001,Vance Group,starter,eu-west-1,257,4.02,6.56,8.58
+2026-06-01,t001,Vance Group,starter,eu-west-1,364,4.53,8.39,8.54
+2026-06-02,t001,Vance Group,starter,eu-west-1,286,4.1,6.53,8.0
+2026-06-03,t001,Vance Group,starter,eu-west-1,428,4.7,11.19,8.47
+2026-06-04,t001,Vance Group,starter,eu-west-1,440,4.64,8.85,8.25
+2026-06-05,t001,Vance Group,starter,eu-west-1,462,4.2,10.12,8.73
+2026-06-06,t001,Vance Group,starter,eu-west-1,255,4.56,4.96,8.02
+2026-06-07,t001,Vance Group,starter,eu-west-1,158,4.42,2.88,8.13
+2026-06-08,t001,Vance Group,starter,eu-west-1,441,4.15,8.07,8.17
+2026-06-09,t001,Vance Group,starter,eu-west-1,516,4.75,9.41,8.26
+2026-06-10,t001,Vance Group,starter,eu-west-1,320,4.48,5.76,8.23
+2026-06-11,t001,Vance Group,starter,eu-west-1,480,4.37,12.11,8.35
+2026-06-12,t001,Vance Group,starter,eu-west-1,286,4.45,5.91,8.27
+2026-06-13,t001,Vance Group,starter,eu-west-1,269,4.71,6.31,8.48
+2026-06-14,t001,Vance Group,starter,eu-west-1,258,4.47,6.39,8.38
+2026-06-15,t001,Vance Group,starter,eu-west-1,391,4.4,10.23,8.17
+2026-06-16,t001,Vance Group,starter,eu-west-1,511,4.1,9.75,8.46
+2026-06-17,t001,Vance Group,starter,eu-west-1,495,4.35,10.55,8.47
+2026-06-18,t001,Vance Group,starter,eu-west-1,280,4.42,6.93,8.7
+2026-06-19,t001,Vance Group,starter,eu-west-1,364,4.36,6.48,8.61
+2026-06-20,t001,Vance Group,starter,eu-west-1,234,4.43,5.32,8.63
+2026-06-21,t001,Vance Group,starter,eu-west-1,237,4.53,4.42,8.33
+2026-06-22,t001,Vance Group,starter,eu-west-1,382,4.79,8.08,8.59
+2026-06-23,t001,Vance Group,starter,eu-west-1,330,4.3,8.26,8.68
+2026-06-24,t001,Vance Group,starter,eu-west-1,444,4.54,8.57,8.74
+2026-06-25,t001,Vance Group,starter,eu-west-1,411,4.03,7.53,8.47
+2026-06-26,t001,Vance Group,starter,eu-west-1,495,4.81,11.38,8.69
+2026-06-27,t001,Vance Group,starter,eu-west-1,223,4.19,4.44,8.61
+2026-06-28,t001,Vance Group,starter,eu-west-1,155,4.76,3.27,8.18
+2026-06-29,t001,Vance Group,starter,eu-west-1,451,4.53,10.64,7.93
+2026-06-30,t001,Vance Group,starter,eu-west-1,422,4.13,9.14,8.71
+2026-03-03,t002,Hull-Hart,growth,us-east-1,2326,36.54,43.6,40.4
+2026-03-04,t002,Hull-Hart,growth,us-east-1,3292,36.06,60.37,38.18
+2026-03-05,t002,Hull-Hart,growth,us-east-1,3673,33.84,67.45,40.55
+2026-03-06,t002,Hull-Hart,growth,us-east-1,2503,30.16,61.96,39.86
+2026-03-07,t002,Hull-Hart,growth,us-east-1,2014,30.8,51.93,41.7
+2026-03-08,t002,Hull-Hart,growth,us-east-1,2094,30.69,39.95,40.24
+2026-03-09,t002,Hull-Hart,growth,us-east-1,3049,36.12,72.07,41.69
+2026-03-10,t002,Hull-Hart,growth,us-east-1,3454,31.46,67.95,39.41
+2026-03-11,t002,Hull-Hart,growth,us-east-1,2230,30.9,56.35,42.0
+2026-03-12,t002,Hull-Hart,growth,us-east-1,2769,32.86,51.17,41.57
+2026-03-13,t002,Hull-Hart,growth,us-east-1,2776,31.03,54.18,38.12
+2026-03-14,t002,Hull-Hart,growth,us-east-1,1865,30.57,41.63,38.6
+2026-03-15,t002,Hull-Hart,growth,us-east-1,1641,35.44,33.27,38.02
+2026-03-16,t002,Hull-Hart,growth,us-east-1,3559,35.9,94.58,41.53
+2026-03-17,t002,Hull-Hart,growth,us-east-1,3023,31.62,54.13,41.4
+2026-03-18,t002,Hull-Hart,growth,us-east-1,3199,33.43,59.87,38.05
+2026-03-19,t002,Hull-Hart,growth,us-east-1,3060,35.84,56.7,38.87
+2026-03-20,t002,Hull-Hart,growth,us-east-1,3320,31.15,62.37,41.58
+2026-03-21,t002,Hull-Hart,growth,us-east-1,1341,32.03,34.29,41.41
+2026-03-22,t002,Hull-Hart,growth,us-east-1,1402,30.62,32.14,38.72
+2026-03-23,t002,Hull-Hart,growth,us-east-1,3841,35.31,92.84,38.24
+2026-03-24,t002,Hull-Hart,growth,us-east-1,2900,31.57,74.89,41.56
+2026-03-25,t002,Hull-Hart,growth,us-east-1,2827,32.61,60.61,39.57
+2026-03-26,t002,Hull-Hart,growth,us-east-1,2844,31.18,56.49,38.03
+2026-03-27,t002,Hull-Hart,growth,us-east-1,2470,31.42,55.37,40.01
+2026-03-28,t002,Hull-Hart,growth,us-east-1,1723,30.63,31.11,41.12
+2026-03-29,t002,Hull-Hart,growth,us-east-1,1504,36.27,39.63,39.66
+2026-03-30,t002,Hull-Hart,growth,us-east-1,3436,33.78,69.51,39.02
+2026-03-31,t002,Hull-Hart,growth,us-east-1,3000,34.22,75.81,38.58
+2026-04-01,t002,Hull-Hart,growth,us-east-1,3069,30.54,59.8,41.95
+2026-04-02,t002,Hull-Hart,growth,us-east-1,2109,34.39,49.2,39.38
+2026-04-03,t002,Hull-Hart,growth,us-east-1,3046,32.28,60.93,38.48
+2026-04-04,t002,Hull-Hart,growth,us-east-1,1224,30.28,25.48,39.15
+2026-04-05,t002,Hull-Hart,growth,us-east-1,1518,32.27,31.06,41.74
+2026-04-06,t002,Hull-Hart,growth,us-east-1,3176,34.34,73.93,40.82
+2026-04-07,t002,Hull-Hart,growth,us-east-1,3653,31.55,87.2,41.55
+2026-04-08,t002,Hull-Hart,growth,us-east-1,2199,31.55,41.3,41.39
+2026-04-09,t002,Hull-Hart,growth,us-east-1,3294,30.29,66.26,40.18
+2026-04-10,t002,Hull-Hart,growth,us-east-1,2629,35.25,47.02,40.13
+2026-04-11,t002,Hull-Hart,growth,us-east-1,2030,30.49,50.55,38.45
+2026-04-12,t002,Hull-Hart,growth,us-east-1,1635,32.17,40.64,39.62
+2026-04-13,t002,Hull-Hart,growth,us-east-1,3349,36.32,75.42,38.1
+2026-04-14,t002,Hull-Hart,growth,us-east-1,3831,36.44,70.34,38.61
+2026-04-15,t002,Hull-Hart,growth,us-east-1,2117,36.04,39.45,40.25
+2026-04-16,t002,Hull-Hart,growth,us-east-1,2546,32.61,56.47,39.67
+2026-04-17,t002,Hull-Hart,growth,us-east-1,3604,34.78,91.72,40.04
+2026-04-18,t002,Hull-Hart,growth,us-east-1,1495,32.09,35.64,39.81
+2026-04-19,t002,Hull-Hart,growth,us-east-1,1226,35.52,31.16,41.68
+2026-04-20,t002,Hull-Hart,growth,us-east-1,3320,36.31,74.2,39.73
+2026-04-21,t002,Hull-Hart,growth,us-east-1,2778,34.85,62.54,39.15
+2026-04-22,t002,Hull-Hart,growth,us-east-1,2145,31.63,49.54,39.26
+2026-04-23,t002,Hull-Hart,growth,us-east-1,2606,30.94,59.34,39.68
+2026-04-24,t002,Hull-Hart,growth,us-east-1,3006,32.02,58.26,39.44
+2026-04-25,t002,Hull-Hart,growth,us-east-1,1309,34.76,30.19,38.38
+2026-04-26,t002,Hull-Hart,growth,us-east-1,1677,31.97,44.15,39.95
+2026-04-27,t002,Hull-Hart,growth,us-east-1,3789,34.36,81.02,38.16
+2026-04-28,t002,Hull-Hart,growth,us-east-1,3154,33.61,63.51,39.93
+2026-04-29,t002,Hull-Hart,growth,us-east-1,3669,32.56,96.65,38.08
+2026-04-30,t002,Hull-Hart,growth,us-east-1,3398,33.75,86.06,39.83
+2026-05-01,t002,Hull-Hart,growth,us-east-1,3675,31.89,75.22,39.48
+2026-05-02,t002,Hull-Hart,growth,us-east-1,2067,31.29,44.76,38.32
+2026-05-03,t002,Hull-Hart,growth,us-east-1,1425,34.16,26.28,41.28
+2026-05-04,t002,Hull-Hart,growth,us-east-1,2266,34.0,53.07,40.52
+2026-05-05,t002,Hull-Hart,growth,us-east-1,3204,33.1,68.92,41.65
+2026-05-06,t002,Hull-Hart,growth,us-east-1,3060,35.83,60.14,38.75
+2026-05-07,t002,Hull-Hart,growth,us-east-1,3266,36.29,69.59,39.4
+2026-05-08,t002,Hull-Hart,growth,us-east-1,3852,31.74,77.11,40.64
+2026-05-09,t002,Hull-Hart,growth,us-east-1,1573,35.22,28.67,40.14
+2026-05-10,t002,Hull-Hart,growth,us-east-1,1751,31.98,36.58,38.15
+2026-05-11,t002,Hull-Hart,growth,us-east-1,3876,36.24,77.04,38.21
+2026-05-12,t002,Hull-Hart,growth,us-east-1,2425,32.36,58.96,40.58
+2026-05-13,t002,Hull-Hart,growth,us-east-1,2901,32.89,67.34,41.2
+2026-05-14,t002,Hull-Hart,growth,us-east-1,2411,31.96,47.64,40.61
+2026-05-15,t002,Hull-Hart,growth,us-east-1,2616,30.54,65.34,40.92
+2026-05-16,t002,Hull-Hart,growth,us-east-1,1340,35.87,28.83,40.77
+2026-05-17,t002,Hull-Hart,growth,us-east-1,1952,30.59,51.39,38.57
+2026-05-18,t002,Hull-Hart,growth,us-east-1,2412,31.0,54.89,40.84
+2026-05-19,t002,Hull-Hart,growth,us-east-1,3098,31.03,80.85,39.1
+2026-05-20,t002,Hull-Hart,growth,us-east-1,2964,34.81,55.82,39.18
+2026-05-21,t002,Hull-Hart,growth,us-east-1,3429,31.94,83.44,40.52
+2026-05-22,t002,Hull-Hart,growth,us-east-1,2207,33.48,58.41,40.15
+2026-05-23,t002,Hull-Hart,growth,us-east-1,1585,35.75,32.29,41.1
+2026-05-24,t002,Hull-Hart,growth,us-east-1,1258,32.63,31.74,38.91
+2026-05-25,t002,Hull-Hart,growth,us-east-1,2926,33.99,55.91,40.41
+2026-05-26,t002,Hull-Hart,growth,us-east-1,3453,33.5,63.46,38.85
+2026-05-27,t002,Hull-Hart,growth,us-east-1,2856,35.94,53.76,40.93
+2026-05-28,t002,Hull-Hart,growth,us-east-1,2216,34.22,50.98,40.7
+2026-05-29,t002,Hull-Hart,growth,us-east-1,3881,35.23,71.77,40.26
+2026-05-30,t002,Hull-Hart,growth,us-east-1,1753,31.15,43.64,41.74
+2026-05-31,t002,Hull-Hart,growth,us-east-1,2134,33.82,40.53,41.89
+2026-06-01,t002,Hull-Hart,growth,us-east-1,2640,30.32,52.34,41.94
+2026-06-02,t002,Hull-Hart,growth,us-east-1,3259,30.74,61.81,41.24
+2026-06-03,t002,Hull-Hart,growth,us-east-1,3149,33.41,57.68,40.91
+2026-06-04,t002,Hull-Hart,growth,us-east-1,3240,33.39,67.17,39.51
+2026-06-05,t002,Hull-Hart,growth,us-east-1,3830,33.71,98.91,39.74
+2026-06-06,t002,Hull-Hart,growth,us-east-1,1259,32.97,28.63,40.94
+2026-06-07,t002,Hull-Hart,growth,us-east-1,1925,36.53,35.04,40.92
+2026-06-08,t002,Hull-Hart,growth,us-east-1,3354,33.68,79.48,39.23
+2026-06-09,t002,Hull-Hart,growth,us-east-1,3832,30.76,92.17,39.91
+2026-06-10,t002,Hull-Hart,growth,us-east-1,2726,30.07,70.37,38.29
+2026-06-11,t002,Hull-Hart,growth,us-east-1,3125,31.58,67.19,38.32
+2026-06-12,t002,Hull-Hart,growth,us-east-1,3468,32.38,73.11,39.17
+2026-06-13,t002,Hull-Hart,growth,us-east-1,1346,33.61,27.01,39.35
+2026-06-14,t002,Hull-Hart,growth,us-east-1,2119,35.48,54.77,39.78
+2026-06-15,t002,Hull-Hart,growth,us-east-1,3104,32.97,68.16,38.24
+2026-06-16,t002,Hull-Hart,growth,us-east-1,2571,35.47,61.28,40.38
+2026-06-17,t002,Hull-Hart,growth,us-east-1,3030,36.36,69.03,41.03
+2026-06-18,t002,Hull-Hart,growth,us-east-1,3415,33.17,77.37,40.03
+2026-06-19,t002,Hull-Hart,growth,us-east-1,3420,30.97,88.35,40.01
+2026-06-20,t002,Hull-Hart,growth,us-east-1,1778,36.05,40.11,38.99
+2026-06-21,t002,Hull-Hart,growth,us-east-1,1757,34.57,42.82,40.31
+2026-06-22,t002,Hull-Hart,growth,us-east-1,3327,33.61,80.97,38.73
+2026-06-23,t002,Hull-Hart,growth,us-east-1,3662,30.1,87.52,41.42
+2026-06-24,t002,Hull-Hart,growth,us-east-1,3348,33.92,88.6,41.98
+2026-06-25,t002,Hull-Hart,growth,us-east-1,2201,33.41,41.99,40.41
+2026-06-26,t002,Hull-Hart,growth,us-east-1,2452,34.99,54.92,38.91
+2026-06-27,t002,Hull-Hart,growth,us-east-1,1562,30.32,39.76,39.04
+2026-06-28,t002,Hull-Hart,growth,us-east-1,1841,35.94,44.3,40.97
+2026-06-29,t002,Hull-Hart,growth,us-east-1,3342,36.31,87.04,39.91
+2026-06-30,t002,Hull-Hart,growth,us-east-1,3023,33.04,75.97,40.64
+2026-03-03,t003,Bates-Robbins,enterprise,eu-central-1,18218,219.6,324.58,187.33
+2026-03-04,t003,Bates-Robbins,enterprise,eu-central-1,18564,210.92,373.42,171.83
+2026-03-05,t003,Bates-Robbins,enterprise,eu-central-1,18091,219.48,457.78,175.78
+2026-03-06,t003,Bates-Robbins,enterprise,eu-central-1,22052,196.2,415.77,188.12
+2026-03-07,t003,Bates-Robbins,enterprise,eu-central-1,11178,185.73,215.31,175.28
+2026-03-08,t003,Bates-Robbins,enterprise,eu-central-1,10209,199.8,185.59,174.18
+2026-03-09,t003,Bates-Robbins,enterprise,eu-central-1,16064,213.91,423.87,188.35
+2026-03-10,t003,Bates-Robbins,enterprise,eu-central-1,16065,197.82,409.37,172.68
+2026-03-11,t003,Bates-Robbins,enterprise,eu-central-1,17202,193.3,419.15,175.15
+2026-03-12,t003,Bates-Robbins,enterprise,eu-central-1,21796,214.74,485.36,175.45
+2026-03-13,t003,Bates-Robbins,enterprise,eu-central-1,20143,195.69,471.28,175.38
+2026-03-14,t003,Bates-Robbins,enterprise,eu-central-1,12559,197.32,258.52,174.51
+2026-03-15,t003,Bates-Robbins,enterprise,eu-central-1,10339,203.85,224.88,188.22
+2026-03-16,t003,Bates-Robbins,enterprise,eu-central-1,18422,186.98,334.58,184.91
+2026-03-17,t003,Bates-Robbins,enterprise,eu-central-1,18848,193.76,379.14,185.12
+2026-03-18,t003,Bates-Robbins,enterprise,eu-central-1,18604,201.33,437.7,187.74
+2026-03-19,t003,Bates-Robbins,enterprise,eu-central-1,20519,181.21,492.73,178.66
+2026-03-20,t003,Bates-Robbins,enterprise,eu-central-1,21446,218.61,430.25,175.74
+2026-03-21,t003,Bates-Robbins,enterprise,eu-central-1,12342,181.23,265.48,174.7
+2026-03-22,t003,Bates-Robbins,enterprise,eu-central-1,7364,194.14,162.62,187.81
+2026-03-23,t003,Bates-Robbins,enterprise,eu-central-1,20450,190.03,391.14,181.05
+2026-03-24,t003,Bates-Robbins,enterprise,eu-central-1,22133,204.04,493.33,172.1
+2026-03-25,t003,Bates-Robbins,enterprise,eu-central-1,18191,184.74,419.29,181.05
+2026-03-26,t003,Bates-Robbins,enterprise,eu-central-1,21714,206.81,544.66,183.75
+2026-03-27,t003,Bates-Robbins,enterprise,eu-central-1,22871,191.26,492.29,187.19
+2026-03-28,t003,Bates-Robbins,enterprise,eu-central-1,7087,192.17,130.99,178.34
+2026-03-29,t003,Bates-Robbins,enterprise,eu-central-1,9599,185.06,183.54,176.24
+2026-03-30,t003,Bates-Robbins,enterprise,eu-central-1,21662,185.5,507.74,173.13
+2026-03-31,t003,Bates-Robbins,enterprise,eu-central-1,13106,204.22,320.76,177.47
+2026-04-01,t003,Bates-Robbins,enterprise,eu-central-1,13240,192.92,332.21,177.05
+2026-04-02,t003,Bates-Robbins,enterprise,eu-central-1,15673,209.82,407.66,172.86
+2026-04-03,t003,Bates-Robbins,enterprise,eu-central-1,12691,185.88,327.94,187.39
+2026-04-04,t003,Bates-Robbins,enterprise,eu-central-1,12530,180.31,272.61,179.74
+2026-04-05,t003,Bates-Robbins,enterprise,eu-central-1,7175,199.36,190.61,175.96
+2026-04-06,t003,Bates-Robbins,enterprise,eu-central-1,13023,199.93,253.71,181.08
+2026-04-07,t003,Bates-Robbins,enterprise,eu-central-1,20348,203.02,541.55,185.96
+2026-04-08,t003,Bates-Robbins,enterprise,eu-central-1,22775,215.5,520.77,175.65
+2026-04-09,t003,Bates-Robbins,enterprise,eu-central-1,20439,189.64,482.02,176.53
+2026-04-10,t003,Bates-Robbins,enterprise,eu-central-1,14439,189.88,346.45,172.77
+2026-04-11,t003,Bates-Robbins,enterprise,eu-central-1,9127,218.4,168.01,177.79
+2026-04-12,t003,Bates-Robbins,enterprise,eu-central-1,7834,206.52,143.78,181.04
+2026-04-13,t003,Bates-Robbins,enterprise,eu-central-1,16720,204.09,321.98,185.25
+2026-04-14,t003,Bates-Robbins,enterprise,eu-central-1,19031,208.58,445.52,178.43
+2026-04-15,t003,Bates-Robbins,enterprise,eu-central-1,13346,209.63,279.96,174.92
+2026-04-16,t003,Bates-Robbins,enterprise,eu-central-1,14980,188.27,397.41,171.6
+2026-04-17,t003,Bates-Robbins,enterprise,eu-central-1,12904,215.85,337.74,184.83
+2026-04-18,t003,Bates-Robbins,enterprise,eu-central-1,10876,198.54,255.33,180.08
+2026-04-19,t003,Bates-Robbins,enterprise,eu-central-1,10172,183.83,251.34,187.33
+2026-04-20,t003,Bates-Robbins,enterprise,eu-central-1,15708,180.12,330.65,173.27
+2026-04-21,t003,Bates-Robbins,enterprise,eu-central-1,21247,180.6,450.07,178.55
+2026-04-22,t003,Bates-Robbins,enterprise,eu-central-1,16414,206.05,326.31,187.08
+2026-04-23,t003,Bates-Robbins,enterprise,eu-central-1,15235,181.76,382.32,175.44
+2026-04-24,t003,Bates-Robbins,enterprise,eu-central-1,16473,209.58,296.85,171.61
+2026-04-25,t003,Bates-Robbins,enterprise,eu-central-1,8553,194.62,162.79,173.68
+2026-04-26,t003,Bates-Robbins,enterprise,eu-central-1,8955,192.77,220.28,181.14
+2026-04-27,t003,Bates-Robbins,enterprise,eu-central-1,21808,216.5,406.28,175.69
+2026-04-28,t003,Bates-Robbins,enterprise,eu-central-1,14712,201.35,341.12,186.07
+2026-04-29,t003,Bates-Robbins,enterprise,eu-central-1,19064,204.75,372.0,187.61
+2026-04-30,t003,Bates-Robbins,enterprise,eu-central-1,17352,187.64,331.43,180.52
+2026-05-01,t003,Bates-Robbins,enterprise,eu-central-1,19474,190.29,492.47,182.99
+2026-05-02,t003,Bates-Robbins,enterprise,eu-central-1,6986,219.08,172.93,171.05
+2026-05-03,t003,Bates-Robbins,enterprise,eu-central-1,12200,219.04,257.87,184.25
+2026-05-04,t003,Bates-Robbins,enterprise,eu-central-1,21681,192.34,502.7,179.27
+2026-05-05,t003,Bates-Robbins,enterprise,eu-central-1,15375,199.67,382.28,171.42
+2026-05-06,t003,Bates-Robbins,enterprise,eu-central-1,16374,187.95,384.52,176.04
+2026-05-07,t003,Bates-Robbins,enterprise,eu-central-1,13849,187.75,302.68,176.77
+2026-05-08,t003,Bates-Robbins,enterprise,eu-central-1,23150,181.47,429.37,185.99
+2026-05-09,t003,Bates-Robbins,enterprise,eu-central-1,10855,204.68,286.24,180.34
+2026-05-10,t003,Bates-Robbins,enterprise,eu-central-1,8202,201.53,178.52,181.23
+2026-05-11,t003,Bates-Robbins,enterprise,eu-central-1,16819,181.78,430.15,176.57
+2026-05-12,t003,Bates-Robbins,enterprise,eu-central-1,16364,188.85,405.15,174.05
+2026-05-13,t003,Bates-Robbins,enterprise,eu-central-1,17033,215.76,395.09,181.57
+2026-05-14,t003,Bates-Robbins,enterprise,eu-central-1,18522,218.29,337.81,187.35
+2026-05-15,t003,Bates-Robbins,enterprise,eu-central-1,20906,204.27,529.97,171.47
+2026-05-16,t003,Bates-Robbins,enterprise,eu-central-1,8692,214.33,229.88,178.63
+2026-05-17,t003,Bates-Robbins,enterprise,eu-central-1,9005,204.69,217.13,186.34
+2026-05-18,t003,Bates-Robbins,enterprise,eu-central-1,13355,198.97,337.0,183.47
+2026-05-19,t003,Bates-Robbins,enterprise,eu-central-1,16002,187.42,285.38,172.62
+2026-05-20,t003,Bates-Robbins,enterprise,eu-central-1,16887,192.71,319.67,173.12
+2026-05-21,t003,Bates-Robbins,enterprise,eu-central-1,13434,209.78,332.28,171.39
+2026-05-22,t003,Bates-Robbins,enterprise,eu-central-1,14541,200.28,338.16,186.84
+2026-05-23,t003,Bates-Robbins,enterprise,eu-central-1,11908,188.17,299.79,178.94
+2026-05-24,t003,Bates-Robbins,enterprise,eu-central-1,7542,192.96,136.53,186.12
+2026-05-25,t003,Bates-Robbins,enterprise,eu-central-1,16739,184.48,401.59,172.22
+2026-05-26,t003,Bates-Robbins,enterprise,eu-central-1,20927,187.62,488.46,184.32
+2026-05-27,t003,Bates-Robbins,enterprise,eu-central-1,19246,180.57,468.14,188.6
+2026-05-28,t003,Bates-Robbins,enterprise,eu-central-1,13547,198.77,279.05,185.35
+2026-05-29,t003,Bates-Robbins,enterprise,eu-central-1,22297,195.28,579.83,175.9
+2026-05-30,t003,Bates-Robbins,enterprise,eu-central-1,9860,182.9,196.66,187.49
+2026-05-31,t003,Bates-Robbins,enterprise,eu-central-1,9678,183.68,232.63,180.05
+2026-06-01,t003,Bates-Robbins,enterprise,eu-central-1,14253,196.3,298.6,185.92
+2026-06-02,t003,Bates-Robbins,enterprise,eu-central-1,20148,213.58,420.01,180.82
+2026-06-03,t003,Bates-Robbins,enterprise,eu-central-1,15615,190.87,280.09,187.63
+2026-06-04,t003,Bates-Robbins,enterprise,eu-central-1,15564,212.54,341.07,182.96
+2026-06-05,t003,Bates-Robbins,enterprise,eu-central-1,16437,195.58,306.78,185.53
+2026-06-06,t003,Bates-Robbins,enterprise,eu-central-1,7126,216.12,155.81,180.2
+2026-06-07,t003,Bates-Robbins,enterprise,eu-central-1,12200,182.28,304.84,175.28
+2026-06-08,t003,Bates-Robbins,enterprise,eu-central-1,15839,205.15,414.34,183.76
+2026-06-09,t003,Bates-Robbins,enterprise,eu-central-1,17029,194.49,349.93,182.01
+2026-06-10,t003,Bates-Robbins,enterprise,eu-central-1,15409,217.97,313.16,186.3
+2026-06-11,t003,Bates-Robbins,enterprise,eu-central-1,17885,188.95,374.69,174.48
+2026-06-12,t003,Bates-Robbins,enterprise,eu-central-1,21274,186.92,542.32,172.33
+2026-06-13,t003,Bates-Robbins,enterprise,eu-central-1,7011,201.78,157.71,176.81
+2026-06-14,t003,Bates-Robbins,enterprise,eu-central-1,11357,193.64,232.5,186.77
+2026-06-15,t003,Bates-Robbins,enterprise,eu-central-1,23195,203.64,530.4,171.39
+2026-06-16,t003,Bates-Robbins,enterprise,eu-central-1,16977,199.77,394.94,185.66
+2026-06-17,t003,Bates-Robbins,enterprise,eu-central-1,18564,193.98,345.19,182.36
+2026-06-18,t003,Bates-Robbins,enterprise,eu-central-1,15215,185.1,391.39,187.81
+2026-06-19,t003,Bates-Robbins,enterprise,eu-central-1,16755,202.91,324.16,176.62
+2026-06-20,t003,Bates-Robbins,enterprise,eu-central-1,8618,211.47,157.94,187.23
+2026-06-21,t003,Bates-Robbins,enterprise,eu-central-1,11710,189.28,266.29,171.2
+2026-06-22,t003,Bates-Robbins,enterprise,eu-central-1,18767,212.31,496.35,174.95
+2026-06-23,t003,Bates-Robbins,enterprise,eu-central-1,23377,190.52,431.34,185.26
+2026-06-24,t003,Bates-Robbins,enterprise,eu-central-1,17718,187.28,336.18,172.29
+2026-06-25,t003,Bates-Robbins,enterprise,eu-central-1,18114,204.98,355.08,175.42
+2026-06-26,t003,Bates-Robbins,enterprise,eu-central-1,15032,182.31,386.59,185.04
+2026-06-27,t003,Bates-Robbins,enterprise,eu-central-1,12176,189.98,272.23,185.19
+2026-06-28,t003,Bates-Robbins,enterprise,eu-central-1,7051,183.55,176.08,186.39
+2026-06-29,t003,Bates-Robbins,enterprise,eu-central-1,21380,205.11,458.86,171.15
+2026-06-30,t003,Bates-Robbins,enterprise,eu-central-1,21813,186.05,548.91,174.22
+2026-03-03,t004,Sharp-Thompson,starter,ap-south-1,390,4.4,9.95,8.13
+2026-03-04,t004,Sharp-Thompson,starter,ap-south-1,444,4.26,9.52,8.48
+2026-03-05,t004,Sharp-Thompson,starter,ap-south-1,486,4.34,9.39,8.15
+2026-03-06,t004,Sharp-Thompson,starter,ap-south-1,460,4.01,10.09,8.72
+2026-03-07,t004,Sharp-Thompson,starter,ap-south-1,216,4.04,4.13,8.21
+2026-03-08,t004,Sharp-Thompson,starter,ap-south-1,238,4.23,5.67,8.39
+2026-03-09,t004,Sharp-Thompson,starter,ap-south-1,477,4.21,10.19,7.98
+2026-03-10,t004,Sharp-Thompson,starter,ap-south-1,299,4.32,6.78,8.03
+2026-03-11,t004,Sharp-Thompson,starter,ap-south-1,355,4.17,7.71,8.43
+2026-03-12,t004,Sharp-Thompson,starter,ap-south-1,369,4.48,9.68,8.41
+2026-03-13,t004,Sharp-Thompson,starter,ap-south-1,372,4.04,9.01,8.56
+2026-03-14,t004,Sharp-Thompson,starter,ap-south-1,171,4.72,3.38,8.54
+2026-03-15,t004,Sharp-Thompson,starter,ap-south-1,274,4.4,6.95,8.33
+2026-03-16,t004,Sharp-Thompson,starter,ap-south-1,298,4.87,7.03,8.35
+2026-03-17,t004,Sharp-Thompson,starter,ap-south-1,393,4.74,7.17,8.44
+2026-03-18,t004,Sharp-Thompson,starter,ap-south-1,424,4.3,8.77,8.44
+2026-03-19,t004,Sharp-Thompson,starter,ap-south-1,488,4.38,9.46,8.06
+2026-03-20,t004,Sharp-Thompson,starter,ap-south-1,428,4.61,9.07,8.56
+2026-03-21,t004,Sharp-Thompson,starter,ap-south-1,209,4.46,5.0,8.37
+2026-03-22,t004,Sharp-Thompson,starter,ap-south-1,165,4.17,3.83,8.01
+2026-03-23,t004,Sharp-Thompson,starter,ap-south-1,406,4.06,9.76,8.37
+2026-03-24,t004,Sharp-Thompson,starter,ap-south-1,491,4.08,9.89,8.51
+2026-03-25,t004,Sharp-Thompson,starter,ap-south-1,468,4.62,8.92,8.48
+2026-03-26,t004,Sharp-Thompson,starter,ap-south-1,385,4.32,7.85,8.16
+2026-03-27,t004,Sharp-Thompson,starter,ap-south-1,472,4.42,10.69,8.26
+2026-03-28,t004,Sharp-Thompson,starter,ap-south-1,158,4.78,3.07,8.31
+2026-03-29,t004,Sharp-Thompson,starter,ap-south-1,170,4.24,4.52,8.64
+2026-03-30,t004,Sharp-Thompson,starter,ap-south-1,498,4.69,12.31,8.26
+2026-03-31,t004,Sharp-Thompson,starter,ap-south-1,394,4.13,9.39,8.55
+2026-04-01,t004,Sharp-Thompson,starter,ap-south-1,392,4.19,10.25,8.31
+2026-04-02,t004,Sharp-Thompson,starter,ap-south-1,435,4.63,11.0,7.95
+2026-04-03,t004,Sharp-Thompson,starter,ap-south-1,330,4.87,6.75,8.52
+2026-04-04,t004,Sharp-Thompson,starter,ap-south-1,159,4.72,3.7,8.73
+2026-04-05,t004,Sharp-Thompson,starter,ap-south-1,170,4.63,3.59,8.5
+2026-04-06,t004,Sharp-Thompson,starter,ap-south-1,312,4.78,7.54,8.5
+2026-04-07,t004,Sharp-Thompson,starter,ap-south-1,504,4.02,13.35,8.04
+2026-04-08,t004,Sharp-Thompson,starter,ap-south-1,281,4.65,5.97,8.37
+2026-04-09,t004,Sharp-Thompson,starter,ap-south-1,441,4.81,9.74,7.98
+2026-04-10,t004,Sharp-Thompson,starter,ap-south-1,515,4.52,12.5,8.65
+2026-04-11,t004,Sharp-Thompson,starter,ap-south-1,179,4.12,3.61,7.95
+2026-04-12,t004,Sharp-Thompson,starter,ap-south-1,234,4.37,5.27,8.38
+2026-04-13,t004,Sharp-Thompson,starter,ap-south-1,516,4.05,11.71,8.4
+2026-04-14,t004,Sharp-Thompson,starter,ap-south-1,504,4.27,10.15,8.41
+2026-04-15,t004,Sharp-Thompson,starter,ap-south-1,428,4.27,10.78,7.95
+2026-04-16,t004,Sharp-Thompson,starter,ap-south-1,483,4.17,11.5,8.01
+2026-04-17,t004,Sharp-Thompson,starter,ap-south-1,330,4.53,6.92,7.94
+2026-04-18,t004,Sharp-Thompson,starter,ap-south-1,163,4.48,3.11,8.47
+2026-04-19,t004,Sharp-Thompson,starter,ap-south-1,211,4.2,4.97,8.41
+2026-04-20,t004,Sharp-Thompson,starter,ap-south-1,449,4.22,11.19,8.37
+2026-04-21,t004,Sharp-Thompson,starter,ap-south-1,423,4.06,10.19,8.38
+2026-04-22,t004,Sharp-Thompson,starter,ap-south-1,502,4.06,13.2,8.17
+2026-04-23,t004,Sharp-Thompson,starter,ap-south-1,365,4.38,8.79,8.22
+2026-04-24,t004,Sharp-Thompson,starter,ap-south-1,361,4.45,8.76,8.61
+2026-04-25,t004,Sharp-Thompson,starter,ap-south-1,187,4.06,4.75,7.94
+2026-04-26,t004,Sharp-Thompson,starter,ap-south-1,206,4.82,5.46,8.66
+2026-04-27,t004,Sharp-Thompson,starter,ap-south-1,436,4.25,7.96,8.07
+2026-04-28,t004,Sharp-Thompson,starter,ap-south-1,339,4.24,6.29,8.68
+2026-04-29,t004,Sharp-Thompson,starter,ap-south-1,444,4.14,10.36,7.92
+2026-04-30,t004,Sharp-Thompson,starter,ap-south-1,465,4.25,9.84,8.38
+2026-05-01,t004,Sharp-Thompson,starter,ap-south-1,351,4.18,8.14,8.3
+2026-05-02,t004,Sharp-Thompson,starter,ap-south-1,178,4.89,3.29,8.37
+2026-05-03,t004,Sharp-Thompson,starter,ap-south-1,233,4.33,5.69,8.63
+2026-05-04,t004,Sharp-Thompson,starter,ap-south-1,394,4.61,7.19,8.3
+2026-05-05,t004,Sharp-Thompson,starter,ap-south-1,328,4.75,7.58,8.21
+2026-05-06,t004,Sharp-Thompson,starter,ap-south-1,465,4.64,9.49,8.44
+2026-05-07,t004,Sharp-Thompson,starter,ap-south-1,494,4.45,10.12,8.34
+2026-05-08,t004,Sharp-Thompson,starter,ap-south-1,370,4.12,9.67,8.14
+2026-05-09,t004,Sharp-Thompson,starter,ap-south-1,213,4.81,4.52,8.26
+2026-05-10,t004,Sharp-Thompson,starter,ap-south-1,243,4.26,5.57,8.03
+2026-05-11,t004,Sharp-Thompson,starter,ap-south-1,456,4.11,10.49,8.49
+2026-05-12,t004,Sharp-Thompson,starter,ap-south-1,341,4.76,8.18,8.18
+2026-05-13,t004,Sharp-Thompson,starter,ap-south-1,517,4.81,11.1,8.59
+2026-05-14,t004,Sharp-Thompson,starter,ap-south-1,313,4.72,5.72,8.63
+2026-05-15,t004,Sharp-Thompson,starter,ap-south-1,289,4.35,5.39,8.62
+2026-05-16,t004,Sharp-Thompson,starter,ap-south-1,169,4.6,4.32,8.65
+2026-05-17,t004,Sharp-Thompson,starter,ap-south-1,241,4.67,4.36,7.96
+2026-05-18,t004,Sharp-Thompson,starter,ap-south-1,437,4.49,10.68,7.93
+2026-05-19,t004,Sharp-Thompson,starter,ap-south-1,435,4.45,9.03,8.52
+2026-05-20,t004,Sharp-Thompson,starter,ap-south-1,356,4.22,6.68,8.51
+2026-05-21,t004,Sharp-Thompson,starter,ap-south-1,428,4.78,9.57,7.98
+2026-05-22,t004,Sharp-Thompson,starter,ap-south-1,485,4.71,10.04,8.08
+2026-05-23,t004,Sharp-Thompson,starter,ap-south-1,258,4.79,4.99,8.01
+2026-05-24,t004,Sharp-Thompson,starter,ap-south-1,196,4.82,4.4,8.46
+2026-05-25,t004,Sharp-Thompson,starter,ap-south-1,379,4.3,8.9,8.41
+2026-05-26,t004,Sharp-Thompson,starter,ap-south-1,438,4.61,10.05,8.07
+2026-05-27,t004,Sharp-Thompson,starter,ap-south-1,465,4.1,11.62,8.53
+2026-05-28,t004,Sharp-Thompson,starter,ap-south-1,435,4.46,7.93,8.38
+2026-05-29,t004,Sharp-Thompson,starter,ap-south-1,385,4.34,7.03,8.59
+2026-05-30,t004,Sharp-Thompson,starter,ap-south-1,223,4.29,5.43,8.71
+2026-05-31,t004,Sharp-Thompson,starter,ap-south-1,259,4.73,6.45,7.95
+2026-06-01,t004,Sharp-Thompson,starter,ap-south-1,394,4.54,9.75,7.99
+2026-06-02,t004,Sharp-Thompson,starter,ap-south-1,292,4.22,7.56,8.13
+2026-06-03,t004,Sharp-Thompson,starter,ap-south-1,519,4.62,9.57,8.45
+2026-06-04,t004,Sharp-Thompson,starter,ap-south-1,501,4.57,12.24,8.07
+2026-06-05,t004,Sharp-Thompson,starter,ap-south-1,396,4.26,10.49,8.16
+2026-06-06,t004,Sharp-Thompson,starter,ap-south-1,236,4.81,5.07,8.4
+2026-06-07,t004,Sharp-Thompson,starter,ap-south-1,207,4.32,5.28,8.73
+2026-06-08,t004,Sharp-Thompson,starter,ap-south-1,393,4.16,10.38,8.02
+2026-06-09,t004,Sharp-Thompson,starter,ap-south-1,483,4.86,12.35,8.22
+2026-06-10,t004,Sharp-Thompson,starter,ap-south-1,313,4.44,7.47,8.19
+2026-06-11,t004,Sharp-Thompson,starter,ap-south-1,473,4.57,12.18,8.36
+2026-06-12,t004,Sharp-Thompson,starter,ap-south-1,423,4.12,8.45,8.25
+2026-06-13,t004,Sharp-Thompson,starter,ap-south-1,155,4.78,2.89,8.43
+2026-06-14,t004,Sharp-Thompson,starter,ap-south-1,285,4.28,6.09,8.42
+2026-06-15,t004,Sharp-Thompson,starter,ap-south-1,390,4.23,7.48,8.29
+2026-06-16,t004,Sharp-Thompson,starter,ap-south-1,282,4.2,5.79,8.65
+2026-06-17,t004,Sharp-Thompson,starter,ap-south-1,469,4.14,11.11,8.28
+2026-06-18,t004,Sharp-Thompson,starter,ap-south-1,368,4.44,6.71,8.36
+2026-06-19,t004,Sharp-Thompson,starter,ap-south-1,476,4.46,12.03,8.43
+2026-06-20,t004,Sharp-Thompson,starter,ap-south-1,182,4.39,4.33,7.93
+2026-06-21,t004,Sharp-Thompson,starter,ap-south-1,195,4.34,3.47,8.68
+2026-06-22,t004,Sharp-Thompson,starter,ap-south-1,353,4.31,7.99,8.66
+2026-06-23,t004,Sharp-Thompson,starter,ap-south-1,507,4.85,9.55,8.72
+2026-06-24,t004,Sharp-Thompson,starter,ap-south-1,318,4.0,7.64,8.66
+2026-06-25,t004,Sharp-Thompson,starter,ap-south-1,443,4.69,10.66,8.07
+2026-06-26,t004,Sharp-Thompson,starter,ap-south-1,376,4.68,7.43,8.1
+2026-06-27,t004,Sharp-Thompson,starter,ap-south-1,215,4.42,4.91,8.74
+2026-06-28,t004,Sharp-Thompson,starter,ap-south-1,176,4.81,3.62,8.59
+2026-06-29,t004,Sharp-Thompson,starter,ap-south-1,462,4.39,9.03,7.97
+2026-06-30,t004,Sharp-Thompson,starter,ap-south-1,403,4.88,10.57,8.21
+2026-03-03,t005,Holder-Henderson,growth,us-west-2,3389,31.61,80.41,41.89
+2026-03-04,t005,Holder-Henderson,growth,us-west-2,3034,33.06,75.71,39.52
+2026-03-05,t005,Holder-Henderson,growth,us-west-2,3252,36.37,80.31,38.68
+2026-03-06,t005,Holder-Henderson,growth,us-west-2,3628,35.67,66.11,38.64
+2026-03-07,t005,Holder-Henderson,growth,us-west-2,1973,36.27,50.56,39.82
+2026-03-08,t005,Holder-Henderson,growth,us-west-2,1308,33.55,32.51,40.57
+2026-03-09,t005,Holder-Henderson,growth,us-west-2,3831,32.99,95.69,38.59
+2026-03-10,t005,Holder-Henderson,growth,us-west-2,2704,30.54,52.49,40.93
+2026-03-11,t005,Holder-Henderson,growth,us-west-2,2318,32.63,54.41,38.2
+2026-03-12,t005,Holder-Henderson,growth,us-west-2,3697,33.57,91.93,39.11
+2026-03-13,t005,Holder-Henderson,growth,us-west-2,3544,33.27,88.19,40.41
+2026-03-14,t005,Holder-Henderson,growth,us-west-2,2045,34.39,54.03,41.97
+2026-03-15,t005,Holder-Henderson,growth,us-west-2,1236,33.44,27.16,40.64
+2026-03-16,t005,Holder-Henderson,growth,us-west-2,3490,32.19,77.89,40.05
+2026-03-17,t005,Holder-Henderson,growth,us-west-2,2754,35.38,57.89,38.61
+2026-03-18,t005,Holder-Henderson,growth,us-west-2,3419,31.04,88.45,38.08
+2026-03-19,t005,Holder-Henderson,growth,us-west-2,2450,30.0,62.11,39.17
+2026-03-20,t005,Holder-Henderson,growth,us-west-2,2298,32.36,48.51,41.92
+2026-03-21,t005,Holder-Henderson,growth,us-west-2,1516,33.07,30.21,39.38
+2026-03-22,t005,Holder-Henderson,growth,us-west-2,1703,30.86,38.36,38.07
+2026-03-23,t005,Holder-Henderson,growth,us-west-2,3478,30.39,84.01,40.67
+2026-03-24,t005,Holder-Henderson,growth,us-west-2,2256,31.56,56.76,41.57
+2026-03-25,t005,Holder-Henderson,growth,us-west-2,3144,32.48,82.47,41.69
+2026-03-26,t005,Holder-Henderson,growth,us-west-2,3437,30.66,70.08,39.68
+2026-03-27,t005,Holder-Henderson,growth,us-west-2,3022,34.47,75.83,40.48
+2026-03-28,t005,Holder-Henderson,growth,us-west-2,1784,30.83,34.15,41.97
+2026-03-29,t005,Holder-Henderson,growth,us-west-2,1222,30.56,30.39,38.74
+2026-03-30,t005,Holder-Henderson,growth,us-west-2,3649,31.52,94.09,40.93
+2026-03-31,t005,Holder-Henderson,growth,us-west-2,3885,30.81,100.94,41.5
+2026-04-01,t005,Holder-Henderson,growth,us-west-2,3703,34.94,70.2,40.3
+2026-04-02,t005,Holder-Henderson,growth,us-west-2,3047,35.87,63.93,40.06
+2026-04-03,t005,Holder-Henderson,growth,us-west-2,2301,31.74,47.78,38.4
+2026-04-04,t005,Holder-Henderson,growth,us-west-2,1770,31.34,37.24,39.91
+2026-04-05,t005,Holder-Henderson,growth,us-west-2,1803,36.5,45.85,39.67
+2026-04-06,t005,Holder-Henderson,growth,us-west-2,3715,36.42,70.09,40.59
+2026-04-07,t005,Holder-Henderson,growth,us-west-2,2833,30.93,73.38,40.16
+2026-04-08,t005,Holder-Henderson,growth,us-west-2,2257,36.31,47.54,40.39
+2026-04-09,t005,Holder-Henderson,growth,us-west-2,2169,33.38,55.83,40.89
+2026-04-10,t005,Holder-Henderson,growth,us-west-2,3620,33.65,86.43,40.74
+2026-04-11,t005,Holder-Henderson,growth,us-west-2,1551,30.9,29.66,40.12
+2026-04-12,t005,Holder-Henderson,growth,us-west-2,1389,33.45,36.72,41.63
+2026-04-13,t005,Holder-Henderson,growth,us-west-2,3398,34.01,74.55,41.96
+2026-04-14,t005,Holder-Henderson,growth,us-west-2,3411,30.78,68.57,41.71
+2026-04-15,t005,Holder-Henderson,growth,us-west-2,3389,33.31,62.59,39.9
+2026-04-16,t005,Holder-Henderson,growth,us-west-2,3375,34.88,61.72,38.2
+2026-04-17,t005,Holder-Henderson,growth,us-west-2,3293,36.64,86.41,39.75
+2026-04-18,t005,Holder-Henderson,growth,us-west-2,1583,31.81,33.78,40.4
+2026-04-19,t005,Holder-Henderson,growth,us-west-2,1387,35.75,31.16,40.96
+2026-04-20,t005,Holder-Henderson,growth,us-west-2,3778,31.31,98.96,39.84
+2026-04-21,t005,Holder-Henderson,growth,us-west-2,2559,35.2,62.89,39.5
+2026-04-22,t005,Holder-Henderson,growth,us-west-2,2456,32.28,63.43,38.79
+2026-04-23,t005,Holder-Henderson,growth,us-west-2,3499,31.47,70.93,39.04
+2026-04-24,t005,Holder-Henderson,growth,us-west-2,2891,30.17,53.14,38.83
+2026-04-25,t005,Holder-Henderson,growth,us-west-2,1680,32.38,39.74,41.71
+2026-04-26,t005,Holder-Henderson,growth,us-west-2,2031,32.94,40.63,39.07
+2026-04-27,t005,Holder-Henderson,growth,us-west-2,2548,31.11,62.6,40.6
+2026-04-28,t005,Holder-Henderson,growth,us-west-2,3544,31.87,76.65,40.06
+2026-04-29,t005,Holder-Henderson,growth,us-west-2,3761,32.64,84.66,41.43
+2026-04-30,t005,Holder-Henderson,growth,us-west-2,2255,36.62,54.73,39.59
+2026-05-01,t005,Holder-Henderson,growth,us-west-2,3841,30.75,96.67,39.24
+2026-05-02,t005,Holder-Henderson,growth,us-west-2,1226,31.45,30.24,39.21
+2026-05-03,t005,Holder-Henderson,growth,us-west-2,1224,30.61,23.76,41.17
+2026-05-04,t005,Holder-Henderson,growth,us-west-2,2934,35.12,72.4,41.98
+2026-05-05,t005,Holder-Henderson,growth,us-west-2,2416,34.4,47.03,38.63
+2026-05-06,t005,Holder-Henderson,growth,us-west-2,3403,33.93,82.57,41.44
+2026-05-07,t005,Holder-Henderson,growth,us-west-2,3354,30.44,79.4,40.62
+2026-05-08,t005,Holder-Henderson,growth,us-west-2,2199,34.12,41.73,38.34
+2026-05-09,t005,Holder-Henderson,growth,us-west-2,1986,35.05,47.26,38.22
+2026-05-10,t005,Holder-Henderson,growth,us-west-2,1818,30.26,47.77,39.76
+2026-05-11,t005,Holder-Henderson,growth,us-west-2,2430,31.96,47.34,39.72
+2026-05-12,t005,Holder-Henderson,growth,us-west-2,2350,32.86,58.82,41.45
+2026-05-13,t005,Holder-Henderson,growth,us-west-2,2424,35.99,50.38,41.79
+2026-05-14,t005,Holder-Henderson,growth,us-west-2,2161,36.1,46.51,40.89
+2026-05-15,t005,Holder-Henderson,growth,us-west-2,2136,31.78,43.56,41.05
+2026-05-16,t005,Holder-Henderson,growth,us-west-2,1210,33.32,28.55,38.64
+2026-05-17,t005,Holder-Henderson,growth,us-west-2,2022,33.69,50.31,40.37
+2026-05-18,t005,Holder-Henderson,growth,us-west-2,3533,36.19,88.89,39.01
+2026-05-19,t005,Holder-Henderson,growth,us-west-2,3270,31.76,87.09,38.01
+2026-05-20,t005,Holder-Henderson,growth,us-west-2,3686,31.92,71.03,40.23
+2026-05-21,t005,Holder-Henderson,growth,us-west-2,2493,36.67,61.15,38.2
+2026-05-22,t005,Holder-Henderson,growth,us-west-2,2109,34.56,46.19,41.72
+2026-05-23,t005,Holder-Henderson,growth,us-west-2,1916,30.33,45.74,40.32
+2026-05-24,t005,Holder-Henderson,growth,us-west-2,2041,35.45,37.1,40.06
+2026-05-25,t005,Holder-Henderson,growth,us-west-2,2226,33.56,54.57,38.65
+2026-05-26,t005,Holder-Henderson,growth,us-west-2,3620,30.78,85.97,38.08
+2026-05-27,t005,Holder-Henderson,growth,us-west-2,2769,33.02,54.95,41.22
+2026-05-28,t005,Holder-Henderson,growth,us-west-2,3776,32.5,90.4,39.01
+2026-05-29,t005,Holder-Henderson,growth,us-west-2,2275,32.07,46.25,38.27
+2026-05-30,t005,Holder-Henderson,growth,us-west-2,2007,33.2,46.51,39.55
+2026-05-31,t005,Holder-Henderson,growth,us-west-2,1205,32.46,26.76,39.46
+2026-06-01,t005,Holder-Henderson,growth,us-west-2,2226,31.6,45.51,40.68
+2026-06-02,t005,Holder-Henderson,growth,us-west-2,2223,31.51,45.54,39.64
+2026-06-03,t005,Holder-Henderson,growth,us-west-2,2651,36.04,52.07,39.93
+2026-06-04,t005,Holder-Henderson,growth,us-west-2,2163,31.93,46.12,38.08
+2026-06-05,t005,Holder-Henderson,growth,us-west-2,2846,35.56,56.22,39.56
+2026-06-06,t005,Holder-Henderson,growth,us-west-2,1675,32.83,38.62,38.74
+2026-06-07,t005,Holder-Henderson,growth,us-west-2,1836,30.29,46.59,41.63
+2026-06-08,t005,Holder-Henderson,growth,us-west-2,3217,32.38,70.33,40.87
+2026-06-09,t005,Holder-Henderson,growth,us-west-2,2909,30.31,76.42,39.23
+2026-06-10,t005,Holder-Henderson,growth,us-west-2,3050,32.4,54.73,39.7
+2026-06-11,t005,Holder-Henderson,growth,us-west-2,3398,33.0,77.0,38.57
+2026-06-12,t005,Holder-Henderson,growth,us-west-2,2686,31.01,52.5,38.58
+2026-06-13,t005,Holder-Henderson,growth,us-west-2,1968,30.13,37.06,40.81
+2026-06-14,t005,Holder-Henderson,growth,us-west-2,1828,32.6,38.23,38.84
+2026-06-15,t005,Holder-Henderson,growth,us-west-2,3417,33.37,66.01,38.13
+2026-06-16,t005,Holder-Henderson,growth,us-west-2,2341,35.75,57.11,39.69
+2026-06-17,t005,Holder-Henderson,growth,us-west-2,2483,32.04,44.61,40.95
+2026-06-18,t005,Holder-Henderson,growth,us-west-2,3608,34.57,75.33,38.09
+2026-06-19,t005,Holder-Henderson,growth,us-west-2,3272,33.04,72.34,41.16
+2026-06-20,t005,Holder-Henderson,growth,us-west-2,1714,34.57,39.98,38.52
+2026-06-21,t005,Holder-Henderson,growth,us-west-2,1831,33.2,40.66,41.96
+2026-06-22,t005,Holder-Henderson,growth,us-west-2,2339,31.91,43.98,41.86
+2026-06-23,t005,Holder-Henderson,growth,us-west-2,2653,36.56,53.21,39.93
+2026-06-24,t005,Holder-Henderson,growth,us-west-2,2132,35.47,41.12,38.51
+2026-06-25,t005,Holder-Henderson,growth,us-west-2,2296,32.96,45.66,38.35
+2026-06-26,t005,Holder-Henderson,growth,us-west-2,2166,33.4,42.65,38.96
+2026-06-27,t005,Holder-Henderson,growth,us-west-2,2055,33.83,49.91,38.75
+2026-06-28,t005,Holder-Henderson,growth,us-west-2,1522,32.84,40.49,38.39
+2026-06-29,t005,Holder-Henderson,growth,us-west-2,2141,33.74,46.95,38.16
+2026-06-30,t005,Holder-Henderson,growth,us-west-2,3247,35.56,85.98,40.93
+2026-03-03,t006,Lynch-Wise,enterprise,eu-west-1,16609,192.37,437.05,180.63
+2026-03-04,t006,Lynch-Wise,enterprise,eu-west-1,17376,183.92,375.84,171.41
+2026-03-05,t006,Lynch-Wise,enterprise,eu-west-1,16844,190.01,414.37,179.04
+2026-03-06,t006,Lynch-Wise,enterprise,eu-west-1,13415,194.87,280.42,175.52
+2026-03-07,t006,Lynch-Wise,enterprise,eu-west-1,9908,204.06,193.11,180.52
+2026-03-08,t006,Lynch-Wise,enterprise,eu-west-1,7105,189.43,182.98,185.72
+2026-03-09,t006,Lynch-Wise,enterprise,eu-west-1,21005,193.9,479.34,180.63
+2026-03-10,t006,Lynch-Wise,enterprise,eu-west-1,16865,189.22,444.32,176.15
+2026-03-11,t006,Lynch-Wise,enterprise,eu-west-1,15014,215.72,316.42,174.86
+2026-03-12,t006,Lynch-Wise,enterprise,eu-west-1,21431,199.14,465.5,179.63
+2026-03-13,t006,Lynch-Wise,enterprise,eu-west-1,23380,183.62,478.75,175.67
+2026-03-14,t006,Lynch-Wise,enterprise,eu-west-1,9352,209.68,246.84,172.39
+2026-03-15,t006,Lynch-Wise,enterprise,eu-west-1,8824,189.33,221.9,171.89
+2026-03-16,t006,Lynch-Wise,enterprise,eu-west-1,19271,213.98,388.23,177.05
+2026-03-17,t006,Lynch-Wise,enterprise,eu-west-1,16815,194.55,325.45,171.23
+2026-03-18,t006,Lynch-Wise,enterprise,eu-west-1,18815,216.8,498.97,179.48
+2026-03-19,t006,Lynch-Wise,enterprise,eu-west-1,13216,190.23,279.04,182.83
+2026-03-20,t006,Lynch-Wise,enterprise,eu-west-1,16435,209.97,436.32,174.57
+2026-03-21,t006,Lynch-Wise,enterprise,eu-west-1,12846,186.72,265.46,176.48
+2026-03-22,t006,Lynch-Wise,enterprise,eu-west-1,12505,216.69,287.35,188.36
+2026-03-23,t006,Lynch-Wise,enterprise,eu-west-1,13249,197.61,265.49,180.73
+2026-03-24,t006,Lynch-Wise,enterprise,eu-west-1,20879,189.29,411.18,172.56
+2026-03-25,t006,Lynch-Wise,enterprise,eu-west-1,20445,198.25,440.85,179.92
+2026-03-26,t006,Lynch-Wise,enterprise,eu-west-1,13493,203.9,311.99,179.3
+2026-03-27,t006,Lynch-Wise,enterprise,eu-west-1,16662,211.65,326.43,172.76
+2026-03-28,t006,Lynch-Wise,enterprise,eu-west-1,10585,186.09,211.85,175.28
+2026-03-29,t006,Lynch-Wise,enterprise,eu-west-1,8397,201.3,210.44,182.59
+2026-03-30,t006,Lynch-Wise,enterprise,eu-west-1,15546,215.8,348.28,172.2
+2026-03-31,t006,Lynch-Wise,enterprise,eu-west-1,17817,182.24,441.89,177.32
+2026-04-01,t006,Lynch-Wise,enterprise,eu-west-1,19154,185.07,436.43,181.39
+2026-04-02,t006,Lynch-Wise,enterprise,eu-west-1,12627,194.04,239.1,181.51
+2026-04-03,t006,Lynch-Wise,enterprise,eu-west-1,16600,204.58,385.2,181.15
+2026-04-04,t006,Lynch-Wise,enterprise,eu-west-1,12168,194.16,280.4,174.69
+2026-04-05,t006,Lynch-Wise,enterprise,eu-west-1,10897,212.38,209.09,175.01
+2026-04-06,t006,Lynch-Wise,enterprise,eu-west-1,21185,181.83,476.29,176.84
+2026-04-07,t006,Lynch-Wise,enterprise,eu-west-1,15218,215.58,330.2,183.83
+2026-04-08,t006,Lynch-Wise,enterprise,eu-west-1,21393,182.15,504.1,186.94
+2026-04-09,t006,Lynch-Wise,enterprise,eu-west-1,22627,211.85,500.29,184.84
+2026-04-10,t006,Lynch-Wise,enterprise,eu-west-1,14499,193.6,290.09,180.47
+2026-04-11,t006,Lynch-Wise,enterprise,eu-west-1,10519,211.63,257.64,184.15
+2026-04-12,t006,Lynch-Wise,enterprise,eu-west-1,8972,197.79,170.1,174.85
+2026-04-13,t006,Lynch-Wise,enterprise,eu-west-1,22952,212.07,455.99,179.33
+2026-04-14,t006,Lynch-Wise,enterprise,eu-west-1,13217,185.48,311.1,183.01
+2026-04-15,t006,Lynch-Wise,enterprise,eu-west-1,16450,215.18,434.38,186.27
+2026-04-16,t006,Lynch-Wise,enterprise,eu-west-1,13947,192.63,298.54,176.81
+2026-04-17,t006,Lynch-Wise,enterprise,eu-west-1,22131,218.86,464.15,186.1
+2026-04-18,t006,Lynch-Wise,enterprise,eu-west-1,7284,206.64,192.08,173.58
+2026-04-19,t006,Lynch-Wise,enterprise,eu-west-1,9772,209.63,241.58,185.49
+2026-04-20,t006,Lynch-Wise,enterprise,eu-west-1,22078,200.05,514.47,183.11
+2026-04-21,t006,Lynch-Wise,enterprise,eu-west-1,15792,213.87,307.56,187.01
+2026-04-22,t006,Lynch-Wise,enterprise,eu-west-1,15366,199.52,385.79,175.43
+2026-04-23,t006,Lynch-Wise,enterprise,eu-west-1,21929,215.1,412.89,176.76
+2026-04-24,t006,Lynch-Wise,enterprise,eu-west-1,20988,190.78,427.31,182.36
+2026-04-25,t006,Lynch-Wise,enterprise,eu-west-1,8534,190.71,186.24,180.08
+2026-04-26,t006,Lynch-Wise,enterprise,eu-west-1,10711,185.21,250.44,178.13
+2026-04-27,t006,Lynch-Wise,enterprise,eu-west-1,17795,180.88,468.21,177.76
+2026-04-28,t006,Lynch-Wise,enterprise,eu-west-1,22818,181.79,576.65,181.11
+2026-04-29,t006,Lynch-Wise,enterprise,eu-west-1,22127,196.05,408.62,179.16
+2026-04-30,t006,Lynch-Wise,enterprise,eu-west-1,20247,189.44,523.99,172.15
+2026-05-01,t006,Lynch-Wise,enterprise,eu-west-1,15939,191.91,360.09,178.25
+2026-05-02,t006,Lynch-Wise,enterprise,eu-west-1,10229,209.91,184.63,176.49
+2026-05-03,t006,Lynch-Wise,enterprise,eu-west-1,11772,192.79,257.91,174.9
+2026-05-04,t006,Lynch-Wise,enterprise,eu-west-1,23025,197.11,471.7,178.55
+2026-05-05,t006,Lynch-Wise,enterprise,eu-west-1,22481,183.56,447.18,187.31
+2026-05-06,t006,Lynch-Wise,enterprise,eu-west-1,14404,211.09,371.03,178.98
+2026-05-07,t006,Lynch-Wise,enterprise,eu-west-1,15157,200.83,368.03,174.76
+2026-05-08,t006,Lynch-Wise,enterprise,eu-west-1,15306,187.41,276.78,188.96
+2026-05-09,t006,Lynch-Wise,enterprise,eu-west-1,9539,191.61,184.7,184.5
+2026-05-10,t006,Lynch-Wise,enterprise,eu-west-1,8994,194.49,239.08,173.32
+2026-05-11,t006,Lynch-Wise,enterprise,eu-west-1,16675,205.25,348.97,172.35
+2026-05-12,t006,Lynch-Wise,enterprise,eu-west-1,13469,202.71,256.81,174.71
+2026-05-13,t006,Lynch-Wise,enterprise,eu-west-1,17341,197.74,377.23,183.97
+2026-05-14,t006,Lynch-Wise,enterprise,eu-west-1,13842,213.99,260.13,185.58
+2026-05-15,t006,Lynch-Wise,enterprise,eu-west-1,20281,216.02,530.92,179.73
+2026-05-16,t006,Lynch-Wise,enterprise,eu-west-1,10328,213.08,241.32,178.27
+2026-05-17,t006,Lynch-Wise,enterprise,eu-west-1,9530,190.15,240.0,173.99
+2026-05-18,t006,Lynch-Wise,enterprise,eu-west-1,13557,186.81,293.25,174.18
+2026-05-19,t006,Lynch-Wise,enterprise,eu-west-1,20179,194.24,379.29,187.48
+2026-05-20,t006,Lynch-Wise,enterprise,eu-west-1,15638,186.59,360.68,177.39
+2026-05-21,t006,Lynch-Wise,enterprise,eu-west-1,21206,217.66,396.66,176.32
+2026-05-22,t006,Lynch-Wise,enterprise,eu-west-1,18758,184.92,497.81,175.91
+2026-05-23,t006,Lynch-Wise,enterprise,eu-west-1,9177,194.77,176.02,188.25
+2026-05-24,t006,Lynch-Wise,enterprise,eu-west-1,9358,184.7,171.82,185.53
+2026-05-25,t006,Lynch-Wise,enterprise,eu-west-1,13614,210.36,277.81,177.0
+2026-05-26,t006,Lynch-Wise,enterprise,eu-west-1,21475,197.37,544.24,171.42
+2026-05-27,t006,Lynch-Wise,enterprise,eu-west-1,20506,193.02,535.56,179.76
+2026-05-28,t006,Lynch-Wise,enterprise,eu-west-1,15565,219.04,314.19,187.9
+2026-05-29,t006,Lynch-Wise,enterprise,eu-west-1,14006,199.63,370.33,174.25
+2026-05-30,t006,Lynch-Wise,enterprise,eu-west-1,11644,206.36,289.03,185.71
+2026-05-31,t006,Lynch-Wise,enterprise,eu-west-1,8118,199.3,163.05,185.08
+2026-06-01,t006,Lynch-Wise,enterprise,eu-west-1,17231,187.94,334.87,174.6
+2026-06-02,t006,Lynch-Wise,enterprise,eu-west-1,14983,189.63,296.51,180.33
+2026-06-03,t006,Lynch-Wise,enterprise,eu-west-1,22720,191.88,577.78,172.45
+2026-06-04,t006,Lynch-Wise,enterprise,eu-west-1,13918,213.46,335.24,178.0
+2026-06-05,t006,Lynch-Wise,enterprise,eu-west-1,19772,199.55,430.13,183.51
+2026-06-06,t006,Lynch-Wise,enterprise,eu-west-1,7913,188.8,187.99,176.56
+2026-06-07,t006,Lynch-Wise,enterprise,eu-west-1,8033,210.43,166.12,188.96
+2026-06-08,t006,Lynch-Wise,enterprise,eu-west-1,14555,181.25,351.58,175.67
+2026-06-09,t006,Lynch-Wise,enterprise,eu-west-1,19019,194.08,344.44,181.54
+2026-06-10,t006,Lynch-Wise,enterprise,eu-west-1,21119,214.85,441.79,183.83
+2026-06-11,t006,Lynch-Wise,enterprise,eu-west-1,19683,216.35,493.99,183.12
+2026-06-12,t006,Lynch-Wise,enterprise,eu-west-1,21528,216.44,565.79,178.49
+2026-06-13,t006,Lynch-Wise,enterprise,eu-west-1,11537,180.18,261.22,188.46
+2026-06-14,t006,Lynch-Wise,enterprise,eu-west-1,9365,209.02,184.76,175.1
+2026-06-15,t006,Lynch-Wise,enterprise,eu-west-1,21250,209.29,531.7,175.08
+2026-06-16,t006,Lynch-Wise,enterprise,eu-west-1,13619,194.52,304.99,178.1
+2026-06-17,t006,Lynch-Wise,enterprise,eu-west-1,15525,183.85,319.97,187.14
+2026-06-18,t006,Lynch-Wise,enterprise,eu-west-1,21525,187.13,481.02,180.85
+2026-06-19,t006,Lynch-Wise,enterprise,eu-west-1,14594,213.98,325.1,173.27
+2026-06-20,t006,Lynch-Wise,enterprise,eu-west-1,9051,199.39,201.8,177.76
+2026-06-21,t006,Lynch-Wise,enterprise,eu-west-1,10145,190.97,237.84,183.26
+2026-06-22,t006,Lynch-Wise,enterprise,eu-west-1,21446,194.55,475.1,178.07
+2026-06-23,t006,Lynch-Wise,enterprise,eu-west-1,15057,212.31,388.44,176.64
+2026-06-24,t006,Lynch-Wise,enterprise,eu-west-1,13501,216.23,320.54,173.49
+2026-06-25,t006,Lynch-Wise,enterprise,eu-west-1,13011,194.14,267.42,177.83
+2026-06-26,t006,Lynch-Wise,enterprise,eu-west-1,16218,214.18,383.26,177.85
+2026-06-27,t006,Lynch-Wise,enterprise,eu-west-1,9190,214.12,209.12,181.7
+2026-06-28,t006,Lynch-Wise,enterprise,eu-west-1,10466,209.88,213.47,186.31
+2026-06-29,t006,Lynch-Wise,enterprise,eu-west-1,19689,208.83,472.67,183.92
+2026-06-30,t006,Lynch-Wise,enterprise,eu-west-1,22380,207.61,578.84,182.21
+2026-03-03,t007,"Moon, Ford and Hanson",starter,us-east-1,471,4.77,12.0,8.64
+2026-03-04,t007,"Moon, Ford and Hanson",starter,us-east-1,435,4.56,10.59,8.11
+2026-03-05,t007,"Moon, Ford and Hanson",starter,us-east-1,280,4.74,6.32,8.48
+2026-03-06,t007,"Moon, Ford and Hanson",starter,us-east-1,357,4.17,7.56,8.03
+2026-03-07,t007,"Moon, Ford and Hanson",starter,us-east-1,244,4.51,6.19,7.96
+2026-03-08,t007,"Moon, Ford and Hanson",starter,us-east-1,179,4.78,4.48,8.72
+2026-03-09,t007,"Moon, Ford and Hanson",starter,us-east-1,387,4.24,10.18,8.2
+2026-03-10,t007,"Moon, Ford and Hanson",starter,us-east-1,344,4.09,6.44,8.07
+2026-03-11,t007,"Moon, Ford and Hanson",starter,us-east-1,478,4.41,9.44,8.08
+2026-03-12,t007,"Moon, Ford and Hanson",starter,us-east-1,303,4.5,7.25,8.39
+2026-03-13,t007,"Moon, Ford and Hanson",starter,us-east-1,493,4.36,11.42,8.6
+2026-03-14,t007,"Moon, Ford and Hanson",starter,us-east-1,192,4.13,4.33,8.2
+2026-03-15,t007,"Moon, Ford and Hanson",starter,us-east-1,186,4.63,4.31,8.67
+2026-03-16,t007,"Moon, Ford and Hanson",starter,us-east-1,429,4.72,9.86,8.7
+2026-03-17,t007,"Moon, Ford and Hanson",starter,us-east-1,330,4.11,6.41,7.93
+2026-03-18,t007,"Moon, Ford and Hanson",starter,us-east-1,443,4.74,10.82,8.03
+2026-03-19,t007,"Moon, Ford and Hanson",starter,us-east-1,373,4.1,8.98,8.7
+2026-03-20,t007,"Moon, Ford and Hanson",starter,us-east-1,475,4.07,10.38,7.97
+2026-03-21,t007,"Moon, Ford and Hanson",starter,us-east-1,189,4.49,4.44,8.34
+2026-03-22,t007,"Moon, Ford and Hanson",starter,us-east-1,258,4.11,6.45,8.57
+2026-03-23,t007,"Moon, Ford and Hanson",starter,us-east-1,317,4.85,7.98,8.58
+2026-03-24,t007,"Moon, Ford and Hanson",starter,us-east-1,418,4.71,7.49,8.45
+2026-03-25,t007,"Moon, Ford and Hanson",starter,us-east-1,282,4.56,5.86,8.11
+2026-03-26,t007,"Moon, Ford and Hanson",starter,us-east-1,410,4.65,10.88,8.44
+2026-03-27,t007,"Moon, Ford and Hanson",starter,us-east-1,346,4.8,8.34,8.65
+2026-03-28,t007,"Moon, Ford and Hanson",starter,us-east-1,162,4.05,4.32,8.3
+2026-03-29,t007,"Moon, Ford and Hanson",starter,us-east-1,164,4.55,3.97,8.07
+2026-03-30,t007,"Moon, Ford and Hanson",starter,us-east-1,431,4.29,10.72,8.46
+2026-03-31,t007,"Moon, Ford and Hanson",starter,us-east-1,309,4.13,7.48,8.15
+2026-04-01,t007,"Moon, Ford and Hanson",starter,us-east-1,439,4.51,9.85,8.56
+2026-04-02,t007,"Moon, Ford and Hanson",starter,us-east-1,419,4.74,11.06,8.25
+2026-04-03,t007,"Moon, Ford and Hanson",starter,us-east-1,448,4.34,10.97,8.43
+2026-04-04,t007,"Moon, Ford and Hanson",starter,us-east-1,155,4.78,3.86,8.63
+2026-04-05,t007,"Moon, Ford and Hanson",starter,us-east-1,232,4.01,6.04,8.21
+2026-04-06,t007,"Moon, Ford and Hanson",starter,us-east-1,499,4.52,12.96,8.11
+2026-04-07,t007,"Moon, Ford and Hanson",starter,us-east-1,309,4.26,6.49,8.09
+2026-04-08,t007,"Moon, Ford and Hanson",starter,us-east-1,364,4.59,9.19,8.74
+2026-04-09,t007,"Moon, Ford and Hanson",starter,us-east-1,473,4.85,9.19,7.92
+2026-04-10,t007,"Moon, Ford and Hanson",starter,us-east-1,452,4.62,10.33,7.95
+2026-04-11,t007,"Moon, Ford and Hanson",starter,us-east-1,243,4.44,4.93,8.42
+2026-04-12,t007,"Moon, Ford and Hanson",starter,us-east-1,186,4.73,3.76,8.5
+2026-04-13,t007,"Moon, Ford and Hanson",starter,us-east-1,288,4.85,5.17,8.07
+2026-04-14,t007,"Moon, Ford and Hanson",starter,us-east-1,464,4.84,12.26,8.61
+2026-04-15,t007,"Moon, Ford and Hanson",starter,us-east-1,457,4.7,11.69,8.72
+2026-04-16,t007,"Moon, Ford and Hanson",starter,us-east-1,288,4.42,5.45,8.17
+2026-04-17,t007,"Moon, Ford and Hanson",starter,us-east-1,322,4.84,6.16,8.52
+2026-04-18,t007,"Moon, Ford and Hanson",starter,us-east-1,226,4.87,4.06,8.43
+2026-04-19,t007,"Moon, Ford and Hanson",starter,us-east-1,202,4.27,3.67,8.21
+2026-04-20,t007,"Moon, Ford and Hanson",starter,us-east-1,435,4.79,11.44,8.09
+2026-04-21,t007,"Moon, Ford and Hanson",starter,us-east-1,410,4.47,10.9,8.21
+2026-04-22,t007,"Moon, Ford and Hanson",starter,us-east-1,313,4.21,8.2,8.7
+2026-04-23,t007,"Moon, Ford and Hanson",starter,us-east-1,324,4.2,6.5,8.3
+2026-04-24,t007,"Moon, Ford and Hanson",starter,us-east-1,297,4.41,6.08,8.29
+2026-04-25,t007,"Moon, Ford and Hanson",starter,us-east-1,265,4.43,5.89,8.32
+2026-04-26,t007,"Moon, Ford and Hanson",starter,us-east-1,208,4.68,4.58,8.67
+2026-04-27,t007,"Moon, Ford and Hanson",starter,us-east-1,426,4.27,11.32,8.42
+2026-04-28,t007,"Moon, Ford and Hanson",starter,us-east-1,484,4.63,10.64,8.32
+2026-04-29,t007,"Moon, Ford and Hanson",starter,us-east-1,386,4.04,9.09,8.29
+2026-04-30,t007,"Moon, Ford and Hanson",starter,us-east-1,498,4.37,12.88,8.49
+2026-05-01,t007,"Moon, Ford and Hanson",starter,us-east-1,513,4.42,10.37,8.58
+2026-05-02,t007,"Moon, Ford and Hanson",starter,us-east-1,285,4.7,5.68,8.45
+2026-05-03,t007,"Moon, Ford and Hanson",starter,us-east-1,154,4.82,4.04,8.22
+2026-05-04,t007,"Moon, Ford and Hanson",starter,us-east-1,338,4.56,6.86,8.72
+2026-05-05,t007,"Moon, Ford and Hanson",starter,us-east-1,517,4.24,11.04,8.72
+2026-05-06,t007,"Moon, Ford and Hanson",starter,us-east-1,493,4.82,10.69,8.17
+2026-05-07,t007,"Moon, Ford and Hanson",starter,us-east-1,401,4.23,8.21,8.63
+2026-05-08,t007,"Moon, Ford and Hanson",starter,us-east-1,362,4.38,8.96,7.93
+2026-05-09,t007,"Moon, Ford and Hanson",starter,us-east-1,185,4.45,3.52,8.68
+2026-05-10,t007,"Moon, Ford and Hanson",starter,us-east-1,251,4.38,4.81,8.11
+2026-05-11,t007,"Moon, Ford and Hanson",starter,us-east-1,516,4.58,12.39,8.38
+2026-05-12,t007,"Moon, Ford and Hanson",starter,us-east-1,379,4.25,9.76,8.18
+2026-05-13,t007,"Moon, Ford and Hanson",starter,us-east-1,451,4.81,8.81,8.05
+2026-05-14,t007,"Moon, Ford and Hanson",starter,us-east-1,404,4.4,8.0,8.34
+2026-05-15,t007,"Moon, Ford and Hanson",starter,us-east-1,377,4.34,9.59,7.93
+2026-05-16,t007,"Moon, Ford and Hanson",starter,us-east-1,178,4.2,4.51,8.66
+2026-05-17,t007,"Moon, Ford and Hanson",starter,us-east-1,282,4.55,5.19,7.99
+2026-05-18,t007,"Moon, Ford and Hanson",starter,us-east-1,351,4.88,8.42,8.02
+2026-05-19,t007,"Moon, Ford and Hanson",starter,us-east-1,447,4.26,11.57,8.45
+2026-05-20,t007,"Moon, Ford and Hanson",starter,us-east-1,337,4.73,8.98,8.41
+2026-05-21,t007,"Moon, Ford and Hanson",starter,us-east-1,317,4.49,7.97,8.55
+2026-05-22,t007,"Moon, Ford and Hanson",starter,us-east-1,501,4.85,9.69,8.19
+2026-05-23,t007,"Moon, Ford and Hanson",starter,us-east-1,155,4.5,4.12,8.37
+2026-05-24,t007,"Moon, Ford and Hanson",starter,us-east-1,269,4.85,5.12,8.74
+2026-05-25,t007,"Moon, Ford and Hanson",starter,us-east-1,292,4.51,7.39,8.69
+2026-05-26,t007,"Moon, Ford and Hanson",starter,us-east-1,384,4.77,8.68,8.27
+2026-05-27,t007,"Moon, Ford and Hanson",starter,us-east-1,380,4.38,8.02,8.51
+2026-05-28,t007,"Moon, Ford and Hanson",starter,us-east-1,347,4.08,6.75,8.5
+2026-05-29,t007,"Moon, Ford and Hanson",starter,us-east-1,333,4.04,8.34,8.5
+2026-05-30,t007,"Moon, Ford and Hanson",starter,us-east-1,184,4.36,3.31,8.62
+2026-05-31,t007,"Moon, Ford and Hanson",starter,us-east-1,197,4.63,4.82,8.48
+2026-06-01,t007,"Moon, Ford and Hanson",starter,us-east-1,365,4.24,8.84,8.57
+2026-06-02,t007,"Moon, Ford and Hanson",starter,us-east-1,354,4.85,7.16,8.03
+2026-06-03,t007,"Moon, Ford and Hanson",starter,us-east-1,518,4.64,9.71,8.14
+2026-06-04,t007,"Moon, Ford and Hanson",starter,us-east-1,444,4.66,10.2,8.06
+2026-06-05,t007,"Moon, Ford and Hanson",starter,us-east-1,477,4.79,11.54,7.95
+2026-06-06,t007,"Moon, Ford and Hanson",starter,us-east-1,218,4.34,4.34,8.07
+2026-06-07,t007,"Moon, Ford and Hanson",starter,us-east-1,261,4.02,5.65,8.07
+2026-06-08,t007,"Moon, Ford and Hanson",starter,us-east-1,516,4.89,10.37,8.58
+2026-06-09,t007,"Moon, Ford and Hanson",starter,us-east-1,478,4.83,10.36,8.36
+2026-06-10,t007,"Moon, Ford and Hanson",starter,us-east-1,419,4.25,9.67,8.05
+2026-06-11,t007,"Moon, Ford and Hanson",starter,us-east-1,434,4.03,9.93,8.68
+2026-06-12,t007,"Moon, Ford and Hanson",starter,us-east-1,435,4.49,7.77,8.36
+2026-06-13,t007,"Moon, Ford and Hanson",starter,us-east-1,209,4.38,3.95,8.46
+2026-06-14,t007,"Moon, Ford and Hanson",starter,us-east-1,222,4.08,4.42,8.41
+2026-06-15,t007,"Moon, Ford and Hanson",starter,us-east-1,423,4.1,8.51,8.69
+2026-06-16,t007,"Moon, Ford and Hanson",starter,us-east-1,305,4.01,6.23,8.23
+2026-06-17,t007,"Moon, Ford and Hanson",starter,us-east-1,338,4.88,8.2,8.12
+2026-06-18,t007,"Moon, Ford and Hanson",starter,us-east-1,357,4.38,7.28,7.93
+2026-06-19,t007,"Moon, Ford and Hanson",starter,us-east-1,437,4.44,11.32,8.59
+2026-06-20,t007,"Moon, Ford and Hanson",starter,us-east-1,231,4.53,4.63,7.93
+2026-06-21,t007,"Moon, Ford and Hanson",starter,us-east-1,173,4.16,4.08,7.95
+2026-06-22,t007,"Moon, Ford and Hanson",starter,us-east-1,413,4.3,7.89,8.64
+2026-06-23,t007,"Moon, Ford and Hanson",starter,us-east-1,499,4.02,9.53,8.25
+2026-06-24,t007,"Moon, Ford and Hanson",starter,us-east-1,516,4.17,11.11,8.43
+2026-06-25,t007,"Moon, Ford and Hanson",starter,us-east-1,461,4.47,8.75,8.09
+2026-06-26,t007,"Moon, Ford and Hanson",starter,us-east-1,456,4.87,11.81,8.16
+2026-06-27,t007,"Moon, Ford and Hanson",starter,us-east-1,182,4.7,4.7,8.59
+2026-06-28,t007,"Moon, Ford and Hanson",starter,us-east-1,252,4.69,6.58,8.75
+2026-06-29,t007,"Moon, Ford and Hanson",starter,us-east-1,512,4.0,10.81,8.5
+2026-06-30,t007,"Moon, Ford and Hanson",starter,us-east-1,436,4.75,10.53,8.6
+2026-03-03,t008,Hughes Ltd,growth,eu-central-1,2981,34.09,55.83,39.44
+2026-03-04,t008,Hughes Ltd,growth,eu-central-1,2657,32.5,65.79,38.15
+2026-03-05,t008,Hughes Ltd,growth,eu-central-1,2443,31.91,47.27,39.18
+2026-03-06,t008,Hughes Ltd,growth,eu-central-1,3595,31.74,73.94,39.17
+2026-03-07,t008,Hughes Ltd,growth,eu-central-1,1516,33.51,30.38,40.71
+2026-03-08,t008,Hughes Ltd,growth,eu-central-1,1628,32.84,38.61,38.2
+2026-03-09,t008,Hughes Ltd,growth,eu-central-1,2875,34.98,56.52,40.27
+2026-03-10,t008,Hughes Ltd,growth,eu-central-1,3723,35.82,98.81,41.53
+2026-03-11,t008,Hughes Ltd,growth,eu-central-1,2818,36.36,73.21,41.4
+2026-03-12,t008,Hughes Ltd,growth,eu-central-1,3364,34.87,84.02,38.42
+2026-03-13,t008,Hughes Ltd,growth,eu-central-1,3774,34.48,76.45,40.05
+2026-03-14,t008,Hughes Ltd,growth,eu-central-1,1191,31.36,30.92,39.74
+2026-03-15,t008,Hughes Ltd,growth,eu-central-1,1917,32.65,44.32,38.09
+2026-03-16,t008,Hughes Ltd,growth,eu-central-1,2526,34.52,64.97,38.82
+2026-03-17,t008,Hughes Ltd,growth,eu-central-1,2255,30.9,49.98,38.91
+2026-03-18,t008,Hughes Ltd,growth,eu-central-1,3435,31.78,82.69,40.36
+2026-03-19,t008,Hughes Ltd,growth,eu-central-1,3608,33.25,87.31,40.55
+2026-03-20,t008,Hughes Ltd,growth,eu-central-1,3847,33.34,72.58,40.85
+2026-03-21,t008,Hughes Ltd,growth,eu-central-1,1311,34.58,31.11,41.61
+2026-03-22,t008,Hughes Ltd,growth,eu-central-1,1520,33.81,31.18,39.99
+2026-03-23,t008,Hughes Ltd,growth,eu-central-1,3659,35.33,69.32,41.36
+2026-03-24,t008,Hughes Ltd,growth,eu-central-1,3197,35.47,69.53,41.68
+2026-03-25,t008,Hughes Ltd,growth,eu-central-1,2405,31.71,60.27,40.18
+2026-03-26,t008,Hughes Ltd,growth,eu-central-1,3222,34.6,72.74,39.2
+2026-03-27,t008,Hughes Ltd,growth,eu-central-1,2809,35.8,62.12,40.99
+2026-03-28,t008,Hughes Ltd,growth,eu-central-1,1922,35.53,37.58,38.45
+2026-03-29,t008,Hughes Ltd,growth,eu-central-1,1268,30.46,33.12,41.28
+2026-03-30,t008,Hughes Ltd,growth,eu-central-1,3497,34.22,85.25,39.9
+2026-03-31,t008,Hughes Ltd,growth,eu-central-1,3838,31.8,69.44,41.31
+2026-04-01,t008,Hughes Ltd,growth,eu-central-1,2933,32.26,53.77,38.57
+2026-04-02,t008,Hughes Ltd,growth,eu-central-1,2668,35.0,48.97,40.85
+2026-04-03,t008,Hughes Ltd,growth,eu-central-1,2548,35.13,52.68,39.57
+2026-04-04,t008,Hughes Ltd,growth,eu-central-1,1389,35.05,27.21,39.61
+2026-04-05,t008,Hughes Ltd,growth,eu-central-1,1177,35.5,22.36,38.15
+2026-04-06,t008,Hughes Ltd,growth,eu-central-1,3203,31.1,58.02,38.05
+2026-04-07,t008,Hughes Ltd,growth,eu-central-1,2390,30.33,43.7,41.28
+2026-04-08,t008,Hughes Ltd,growth,eu-central-1,3179,35.53,60.64,40.37
+2026-04-09,t008,Hughes Ltd,growth,eu-central-1,3265,30.78,80.57,38.46
+2026-04-10,t008,Hughes Ltd,growth,eu-central-1,3276,35.43,78.88,40.36
+2026-04-11,t008,Hughes Ltd,growth,eu-central-1,1376,33.97,24.91,39.76
+2026-04-12,t008,Hughes Ltd,growth,eu-central-1,2004,34.62,45.63,38.36
+2026-04-13,t008,Hughes Ltd,growth,eu-central-1,2419,34.22,58.46,39.45
+2026-04-14,t008,Hughes Ltd,growth,eu-central-1,3504,36.45,92.49,40.26
+2026-04-15,t008,Hughes Ltd,growth,eu-central-1,3501,32.97,78.41,39.73
+2026-04-16,t008,Hughes Ltd,growth,eu-central-1,3027,33.12,80.62,40.48
+2026-04-17,t008,Hughes Ltd,growth,eu-central-1,2425,34.51,49.12,40.94
+2026-04-18,t008,Hughes Ltd,growth,eu-central-1,1507,33.9,30.46,39.64
+2026-04-19,t008,Hughes Ltd,growth,eu-central-1,1167,33.6,28.49,40.3
+2026-04-20,t008,Hughes Ltd,growth,eu-central-1,3036,32.61,64.54,38.11
+2026-04-21,t008,Hughes Ltd,growth,eu-central-1,2374,35.65,42.68,39.32
+2026-04-22,t008,Hughes Ltd,growth,eu-central-1,2836,33.19,50.57,39.84
+2026-04-23,t008,Hughes Ltd,growth,eu-central-1,2728,30.82,67.66,41.83
+2026-04-24,t008,Hughes Ltd,growth,eu-central-1,3058,33.24,56.4,40.14
+2026-04-25,t008,Hughes Ltd,growth,eu-central-1,2001,32.33,36.05,38.93
+2026-04-26,t008,Hughes Ltd,growth,eu-central-1,2089,32.66,38.15,39.03
+2026-04-27,t008,Hughes Ltd,growth,eu-central-1,3192,36.09,72.17,38.66
+2026-04-28,t008,Hughes Ltd,growth,eu-central-1,3165,32.76,80.88,38.38
+2026-04-29,t008,Hughes Ltd,growth,eu-central-1,2561,35.94,50.9,41.02
+2026-04-30,t008,Hughes Ltd,growth,eu-central-1,2755,31.23,53.17,40.87
+2026-05-01,t008,Hughes Ltd,growth,eu-central-1,3419,35.5,78.25,39.68
+2026-05-02,t008,Hughes Ltd,growth,eu-central-1,1882,34.91,43.36,41.54
+2026-05-03,t008,Hughes Ltd,growth,eu-central-1,1506,35.05,28.96,41.52
+2026-05-04,t008,Hughes Ltd,growth,eu-central-1,3369,32.07,80.78,40.46
+2026-05-05,t008,Hughes Ltd,growth,eu-central-1,3000,32.63,58.94,41.87
+2026-05-06,t008,Hughes Ltd,growth,eu-central-1,2249,36.41,49.13,38.6
+2026-05-07,t008,Hughes Ltd,growth,eu-central-1,3013,35.37,74.97,41.61
+2026-05-08,t008,Hughes Ltd,growth,eu-central-1,2448,32.21,63.84,39.91
+2026-05-09,t008,Hughes Ltd,growth,eu-central-1,2086,36.24,45.52,41.51
+2026-05-10,t008,Hughes Ltd,growth,eu-central-1,1999,32.66,46.76,39.61
+2026-05-11,t008,Hughes Ltd,growth,eu-central-1,2556,35.86,64.38,39.34
+2026-05-12,t008,Hughes Ltd,growth,eu-central-1,2264,35.13,48.48,38.07
+2026-05-13,t008,Hughes Ltd,growth,eu-central-1,3583,35.74,95.38,39.7
+2026-05-14,t008,Hughes Ltd,growth,eu-central-1,3408,34.78,87.68,41.2
+2026-05-15,t008,Hughes Ltd,growth,eu-central-1,3873,33.41,85.33,39.69
+2026-05-16,t008,Hughes Ltd,growth,eu-central-1,1538,30.34,38.58,40.53
+2026-05-17,t008,Hughes Ltd,growth,eu-central-1,1790,36.23,47.47,40.68
+2026-05-18,t008,Hughes Ltd,growth,eu-central-1,2453,30.26,54.49,39.21
+2026-05-19,t008,Hughes Ltd,growth,eu-central-1,3357,31.37,84.22,41.03
+2026-05-20,t008,Hughes Ltd,growth,eu-central-1,2882,33.59,54.48,38.55
+2026-05-21,t008,Hughes Ltd,growth,eu-central-1,2549,32.31,45.51,39.64
+2026-05-22,t008,Hughes Ltd,growth,eu-central-1,2798,31.56,73.84,38.87
+2026-05-23,t008,Hughes Ltd,growth,eu-central-1,1965,32.22,35.23,39.89
+2026-05-24,t008,Hughes Ltd,growth,eu-central-1,1522,36.58,37.2,40.33
+2026-05-25,t008,Hughes Ltd,growth,eu-central-1,2790,32.33,59.64,38.58
+2026-05-26,t008,Hughes Ltd,growth,eu-central-1,3598,36.58,93.43,38.96
+2026-05-27,t008,Hughes Ltd,growth,eu-central-1,2811,34.82,67.37,38.93
+2026-05-28,t008,Hughes Ltd,growth,eu-central-1,2668,35.33,68.53,38.82
+2026-05-29,t008,Hughes Ltd,growth,eu-central-1,2566,30.51,47.55,38.73
+2026-05-30,t008,Hughes Ltd,growth,eu-central-1,1260,35.16,29.1,41.11
+2026-05-31,t008,Hughes Ltd,growth,eu-central-1,1463,35.19,32.06,38.25
+2026-06-01,t008,Hughes Ltd,growth,eu-central-1,2435,32.01,60.81,39.99
+2026-06-02,t008,Hughes Ltd,growth,eu-central-1,2469,33.48,51.38,40.22
+2026-06-03,t008,Hughes Ltd,growth,eu-central-1,3731,33.13,78.53,38.9
+2026-06-04,t008,Hughes Ltd,growth,eu-central-1,3024,30.44,75.33,39.17
+2026-06-05,t008,Hughes Ltd,growth,eu-central-1,2573,34.63,53.53,40.27
+2026-06-06,t008,Hughes Ltd,growth,eu-central-1,1489,30.98,39.36,39.57
+2026-06-07,t008,Hughes Ltd,growth,eu-central-1,1382,31.86,31.44,38.64
+2026-06-08,t008,Hughes Ltd,growth,eu-central-1,3632,30.38,75.83,41.19
+2026-06-09,t008,Hughes Ltd,growth,eu-central-1,2761,32.17,61.14,38.95
+2026-06-10,t008,Hughes Ltd,growth,eu-central-1,3327,31.16,87.18,41.1
+2026-06-11,t008,Hughes Ltd,growth,eu-central-1,3632,36.17,76.31,38.91
+2026-06-12,t008,Hughes Ltd,growth,eu-central-1,3411,31.97,61.24,38.09
+2026-06-13,t008,Hughes Ltd,growth,eu-central-1,1856,34.13,44.54,41.28
+2026-06-14,t008,Hughes Ltd,growth,eu-central-1,1802,36.54,39.93,38.37
+2026-06-15,t008,Hughes Ltd,growth,eu-central-1,3719,32.13,83.59,39.62
+2026-06-16,t008,Hughes Ltd,growth,eu-central-1,3394,35.84,62.73,40.08
+2026-06-17,t008,Hughes Ltd,growth,eu-central-1,2422,35.86,43.87,38.71
+2026-06-18,t008,Hughes Ltd,growth,eu-central-1,2582,31.18,47.14,41.78
+2026-06-19,t008,Hughes Ltd,growth,eu-central-1,2152,30.62,47.96,41.19
+2026-06-20,t008,Hughes Ltd,growth,eu-central-1,1316,33.72,26.18,39.74
+2026-06-21,t008,Hughes Ltd,growth,eu-central-1,2121,34.57,54.28,38.48
+2026-06-22,t008,Hughes Ltd,growth,eu-central-1,3590,30.44,88.84,41.85
+2026-06-23,t008,Hughes Ltd,growth,eu-central-1,3174,32.98,57.37,41.87
+2026-06-24,t008,Hughes Ltd,growth,eu-central-1,3192,32.3,75.71,40.05
+2026-06-25,t008,Hughes Ltd,growth,eu-central-1,3180,30.54,56.76,41.04
+2026-06-26,t008,Hughes Ltd,growth,eu-central-1,2116,30.73,48.7,38.29
+2026-06-27,t008,Hughes Ltd,growth,eu-central-1,1315,36.39,25.59,38.61
+2026-06-28,t008,Hughes Ltd,growth,eu-central-1,1514,34.65,29.7,39.15
+2026-06-29,t008,Hughes Ltd,growth,eu-central-1,2669,34.92,65.27,39.59
+2026-06-30,t008,Hughes Ltd,growth,eu-central-1,2273,33.42,54.01,39.45

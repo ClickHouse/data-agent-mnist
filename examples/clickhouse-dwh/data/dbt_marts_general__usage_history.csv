@@ -1,0 +1,901 @@
+timestamp_hour,organization__id,organization__name,organization__email_domain,organization__tier,organization__billing_model,organization__cloud_provider,organization__region,organization__country,organization__dollar_usage,organization__MRR,organization__MRR_PAYG,organization__MRR_Committed,organization__query_count,organization__error_count
+2026-04-02 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1239.55,41000.0,6150.0,34850.0,818040,688
+2026-04-03 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1362.2,41000.0,6150.0,34850.0,1013357,2545
+2026-04-04 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1354.71,41000.0,6150.0,34850.0,452351,323
+2026-04-05 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1457.36,41000.0,6150.0,34850.0,490151,1046
+2026-04-06 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1347.9,41000.0,6150.0,34850.0,924518,2709
+2026-04-07 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1382.58,41000.0,6150.0,34850.0,712602,2341
+2026-04-08 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1490.33,41000.0,6150.0,34850.0,763802,1235
+2026-04-09 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1455.34,41000.0,6150.0,34850.0,902493,1958
+2026-04-10 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1480.43,41000.0,6150.0,34850.0,971337,1848
+2026-04-11 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1301.21,41000.0,6150.0,34850.0,574171,1872
+2026-04-12 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1334.7,41000.0,6150.0,34850.0,660061,2243
+2026-04-13 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1429.81,41000.0,6150.0,34850.0,751289,1969
+2026-04-14 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1276.46,41000.0,6150.0,34850.0,1090228,1574
+2026-04-15 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1251.38,41000.0,6150.0,34850.0,948570,1467
+2026-04-16 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1298.73,41000.0,6150.0,34850.0,888192,743
+2026-04-17 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1247.73,41000.0,6150.0,34850.0,1051052,3830
+2026-04-18 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1267.18,41000.0,6150.0,34850.0,667164,835
+2026-04-19 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1489.46,41000.0,6150.0,34850.0,630729,1392
+2026-04-20 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1481.97,41000.0,6150.0,34850.0,988284,1900
+2026-04-21 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1373.92,41000.0,6150.0,34850.0,1018607,1336
+2026-04-22 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1445.57,41000.0,6150.0,34850.0,940868,2606
+2026-04-23 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1270.57,41000.0,6150.0,34850.0,849447,2475
+2026-04-24 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1284.54,41000.0,6150.0,34850.0,776127,994
+2026-04-25 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1232.18,41000.0,6150.0,34850.0,446292,704
+2026-04-26 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1257.37,41000.0,6150.0,34850.0,532349,397
+2026-04-27 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1288.03,41000.0,6150.0,34850.0,1055227,2375
+2026-04-28 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1244.51,41000.0,6150.0,34850.0,847500,3029
+2026-04-29 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1380.53,41000.0,6150.0,34850.0,1075976,4021
+2026-04-30 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1440.4,41000.0,6150.0,34850.0,730305,2312
+2026-05-01 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1240.96,41000.0,6150.0,34850.0,741383,1345
+2026-05-02 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1332.3,41000.0,6150.0,34850.0,576788,1813
+2026-05-03 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1480.91,41000.0,6150.0,34850.0,511056,673
+2026-05-04 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1406.44,41000.0,6150.0,34850.0,1020591,2109
+2026-05-05 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1263.49,41000.0,6150.0,34850.0,1103811,3278
+2026-05-06 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1461.68,41000.0,6150.0,34850.0,1093050,1115
+2026-05-07 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1237.93,41000.0,6150.0,34850.0,874508,2425
+2026-05-08 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1343.29,41000.0,6150.0,34850.0,828414,2360
+2026-05-09 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1273.08,41000.0,6150.0,34850.0,414903,858
+2026-05-10 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1239.47,41000.0,6150.0,34850.0,419797,523
+2026-05-11 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1458.84,41000.0,6150.0,34850.0,738669,1061
+2026-05-12 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1456.65,41000.0,6150.0,34850.0,715747,1009
+2026-05-13 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1395.38,41000.0,6150.0,34850.0,892222,2531
+2026-05-14 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1441.77,41000.0,6150.0,34850.0,989589,634
+2026-05-15 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1364.15,41000.0,6150.0,34850.0,918216,743
+2026-05-16 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1437.47,41000.0,6150.0,34850.0,406870,736
+2026-05-17 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1241.61,41000.0,6150.0,34850.0,615682,827
+2026-05-18 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1379.77,41000.0,6150.0,34850.0,891256,539
+2026-05-19 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1449.92,41000.0,6150.0,34850.0,1032106,1864
+2026-05-20 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1345.14,41000.0,6150.0,34850.0,710533,1658
+2026-05-21 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1454.82,41000.0,6150.0,34850.0,774266,2384
+2026-05-22 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1374.33,41000.0,6150.0,34850.0,932703,594
+2026-05-23 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1429.35,41000.0,6150.0,34850.0,442017,653
+2026-05-24 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1316.14,41000.0,6150.0,34850.0,439328,1099
+2026-05-25 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1465.05,41000.0,6150.0,34850.0,953155,1111
+2026-05-26 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1252.44,41000.0,6150.0,34850.0,1101332,1768
+2026-05-27 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1354.97,41000.0,6150.0,34850.0,709080,1319
+2026-05-28 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1445.51,41000.0,6150.0,34850.0,1110249,1134
+2026-05-29 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1408.9,41000.0,6150.0,34850.0,1035499,1694
+2026-05-30 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1293.43,41000.0,6150.0,34850.0,588545,443
+2026-05-31 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1475.54,41000.0,6150.0,34850.0,674956,893
+2026-06-01 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1423.09,41000.0,6150.0,34850.0,1080348,3597
+2026-06-02 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1275.86,41000.0,6150.0,34850.0,846489,3052
+2026-06-03 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1354.61,41000.0,6150.0,34850.0,1009577,1653
+2026-06-04 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1293.97,41000.0,6150.0,34850.0,889753,1079
+2026-06-05 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1304.24,41000.0,6150.0,34850.0,1012941,1233
+2026-06-06 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1392.5,41000.0,6150.0,34850.0,613418,1820
+2026-06-07 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1297.98,41000.0,6150.0,34850.0,590675,1308
+2026-06-08 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1302.41,41000.0,6150.0,34850.0,1115354,745
+2026-06-09 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1305.01,41000.0,6150.0,34850.0,821269,961
+2026-06-10 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1311.4,41000.0,6150.0,34850.0,875963,1644
+2026-06-11 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1353.28,41000.0,6150.0,34850.0,815008,1103
+2026-06-12 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1337.34,41000.0,6150.0,34850.0,794197,402
+2026-06-13 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1234.62,41000.0,6150.0,34850.0,542080,563
+2026-06-14 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1448.84,41000.0,6150.0,34850.0,566372,1223
+2026-06-15 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1319.16,41000.0,6150.0,34850.0,1049131,2906
+2026-06-16 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1340.49,41000.0,6150.0,34850.0,813595,2074
+2026-06-17 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1302.23,41000.0,6150.0,34850.0,696458,386
+2026-06-18 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1404.3,41000.0,6150.0,34850.0,877135,2547
+2026-06-19 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1273.41,41000.0,6150.0,34850.0,752297,813
+2026-06-20 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1235.8,41000.0,6150.0,34850.0,659141,1242
+2026-06-21 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1472.15,41000.0,6150.0,34850.0,641376,1668
+2026-06-22 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1496.26,41000.0,6150.0,34850.0,1070248,3364
+2026-06-23 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1276.78,41000.0,6150.0,34850.0,701080,1045
+2026-06-24 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1363.88,41000.0,6150.0,34850.0,793170,2829
+2026-06-25 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1405.16,41000.0,6150.0,34850.0,1012912,1147
+2026-06-26 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1351.83,41000.0,6150.0,34850.0,684034,821
+2026-06-27 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1496.94,41000.0,6150.0,34850.0,562983,1561
+2026-06-28 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1261.02,41000.0,6150.0,34850.0,482119,1848
+2026-06-29 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1312.15,41000.0,6150.0,34850.0,844025,1868
+2026-06-30 00:00:00,a89547ec-db48-4fcd-ba2d-a11cc2e032df,Stewart-Johnson,stewart-johnso.example,Enterprise,Committed,aws,us-east-1,United States,1364.63,41000.0,6150.0,34850.0,1010359,879
+2026-04-02 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,156.53,5200.0,5200.0,0.0,71267,162
+2026-04-03 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,167.51,5200.0,5200.0,0.0,69872,98
+2026-04-04 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,164.13,5200.0,5200.0,0.0,60648,178
+2026-04-05 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,183.89,5200.0,5200.0,0.0,46102,53
+2026-04-06 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,169.35,5200.0,5200.0,0.0,74579,220
+2026-04-07 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,164.32,5200.0,5200.0,0.0,105863,115
+2026-04-08 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,160.21,5200.0,5200.0,0.0,90920,166
+2026-04-09 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,162.86,5200.0,5200.0,0.0,98795,149
+2026-04-10 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,158.48,5200.0,5200.0,0.0,71782,56
+2026-04-11 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,179.22,5200.0,5200.0,0.0,49633,91
+2026-04-12 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,174.84,5200.0,5200.0,0.0,52062,113
+2026-04-13 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,169.86,5200.0,5200.0,0.0,106296,85
+2026-04-14 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,169.57,5200.0,5200.0,0.0,81036,179
+2026-04-15 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,169.12,5200.0,5200.0,0.0,73562,189
+2026-04-16 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,182.86,5200.0,5200.0,0.0,104926,117
+2026-04-17 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,182.18,5200.0,5200.0,0.0,77969,177
+2026-04-18 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,161.32,5200.0,5200.0,0.0,57577,150
+2026-04-19 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,181.48,5200.0,5200.0,0.0,47432,90
+2026-04-20 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,156.09,5200.0,5200.0,0.0,81576,213
+2026-04-21 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,189.26,5200.0,5200.0,0.0,107871,72
+2026-04-22 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,166.46,5200.0,5200.0,0.0,72079,103
+2026-04-23 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,157.63,5200.0,5200.0,0.0,101461,225
+2026-04-24 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,166.18,5200.0,5200.0,0.0,93175,178
+2026-04-25 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,184.97,5200.0,5200.0,0.0,44663,30
+2026-04-26 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,173.38,5200.0,5200.0,0.0,46480,165
+2026-04-27 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,158.75,5200.0,5200.0,0.0,71735,88
+2026-04-28 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,166.06,5200.0,5200.0,0.0,75699,292
+2026-04-29 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,179.83,5200.0,5200.0,0.0,79694,177
+2026-04-30 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,160.74,5200.0,5200.0,0.0,92000,63
+2026-05-01 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,176.34,5200.0,5200.0,0.0,94571,285
+2026-05-02 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,175.15,5200.0,5200.0,0.0,51412,172
+2026-05-03 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,186.04,5200.0,5200.0,0.0,47316,158
+2026-05-04 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,188.57,5200.0,5200.0,0.0,98595,375
+2026-05-05 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,186.86,5200.0,5200.0,0.0,88612,208
+2026-05-06 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,162.22,5200.0,5200.0,0.0,79883,294
+2026-05-07 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,176.96,5200.0,5200.0,0.0,102170,140
+2026-05-08 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,163.26,5200.0,5200.0,0.0,109406,104
+2026-05-09 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,156.13,5200.0,5200.0,0.0,67153,224
+2026-05-10 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,178.77,5200.0,5200.0,0.0,61436,164
+2026-05-11 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,181.18,5200.0,5200.0,0.0,105756,249
+2026-05-12 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,158.35,5200.0,5200.0,0.0,81234,154
+2026-05-13 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,189.12,5200.0,5200.0,0.0,96594,275
+2026-05-14 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,177.17,5200.0,5200.0,0.0,84960,310
+2026-05-15 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,178.71,5200.0,5200.0,0.0,82797,241
+2026-05-16 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,184.27,5200.0,5200.0,0.0,58060,83
+2026-05-17 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,158.7,5200.0,5200.0,0.0,50954,156
+2026-05-18 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,173.87,5200.0,5200.0,0.0,77850,102
+2026-05-19 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,162.42,5200.0,5200.0,0.0,102048,130
+2026-05-20 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,164.13,5200.0,5200.0,0.0,110082,270
+2026-05-21 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,167.53,5200.0,5200.0,0.0,87377,98
+2026-05-22 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,166.39,5200.0,5200.0,0.0,69074,130
+2026-05-23 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,173.3,5200.0,5200.0,0.0,57326,121
+2026-05-24 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,161.39,5200.0,5200.0,0.0,40727,162
+2026-05-25 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,159.51,5200.0,5200.0,0.0,80273,105
+2026-05-26 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,166.32,5200.0,5200.0,0.0,83906,270
+2026-05-27 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,177.09,5200.0,5200.0,0.0,71515,55
+2026-05-28 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,188.56,5200.0,5200.0,0.0,75759,210
+2026-05-29 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,158.48,5200.0,5200.0,0.0,95447,281
+2026-05-30 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,188.26,5200.0,5200.0,0.0,57016,47
+2026-05-31 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,184.16,5200.0,5200.0,0.0,62318,34
+2026-06-01 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,181.37,5200.0,5200.0,0.0,101368,326
+2026-06-02 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,186.71,5200.0,5200.0,0.0,83672,272
+2026-06-03 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,166.59,5200.0,5200.0,0.0,79306,90
+2026-06-04 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,167.58,5200.0,5200.0,0.0,76697,289
+2026-06-05 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,159.48,5200.0,5200.0,0.0,109951,219
+2026-06-06 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,180.34,5200.0,5200.0,0.0,57071,109
+2026-06-07 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,174.09,5200.0,5200.0,0.0,61004,148
+2026-06-08 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,175.09,5200.0,5200.0,0.0,70138,128
+2026-06-09 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,174.79,5200.0,5200.0,0.0,74590,241
+2026-06-10 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,168.35,5200.0,5200.0,0.0,76160,99
+2026-06-11 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,175.35,5200.0,5200.0,0.0,97730,386
+2026-06-12 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,164.26,5200.0,5200.0,0.0,91463,311
+2026-06-13 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,166.93,5200.0,5200.0,0.0,66187,261
+2026-06-14 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,185.06,5200.0,5200.0,0.0,59946,231
+2026-06-15 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,187.44,5200.0,5200.0,0.0,79334,161
+2026-06-16 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,164.29,5200.0,5200.0,0.0,84083,247
+2026-06-17 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,181.88,5200.0,5200.0,0.0,96709,71
+2026-06-18 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,168.85,5200.0,5200.0,0.0,104247,178
+2026-06-19 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,178.25,5200.0,5200.0,0.0,93918,48
+2026-06-20 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,161.5,5200.0,5200.0,0.0,55966,166
+2026-06-21 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,160.69,5200.0,5200.0,0.0,65073,247
+2026-06-22 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,156.51,5200.0,5200.0,0.0,82549,176
+2026-06-23 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,178.39,5200.0,5200.0,0.0,89033,113
+2026-06-24 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,158.79,5200.0,5200.0,0.0,72204,105
+2026-06-25 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,189.98,5200.0,5200.0,0.0,84290,46
+2026-06-26 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,170.44,5200.0,5200.0,0.0,91267,349
+2026-06-27 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,180.66,5200.0,5200.0,0.0,61210,140
+2026-06-28 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,156.7,5200.0,5200.0,0.0,62509,94
+2026-06-29 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,176.57,5200.0,5200.0,0.0,94852,118
+2026-06-30 00:00:00,42b12009-a5f9-4f07-a066-6cb16d435905,Chavez Group,chavezgroup.example,Growth,PAYG,gcp,eu-central-1,Germany,179.13,5200.0,5200.0,0.0,82459,278
+2026-04-02 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4344,6
+2026-04-03 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4342,6
+2026-04-04 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2201,3
+2026-04-05 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2648,7
+2026-04-06 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4377,7
+2026-04-07 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4260,2
+2026-04-08 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3491,7
+2026-04-09 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3428,8
+2026-04-10 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4495,5
+2026-04-11 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2219,1
+2026-04-12 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2997,7
+2026-04-13 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4967,14
+2026-04-14 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3064,5
+2026-04-15 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3091,9
+2026-04-16 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4787,15
+2026-04-17 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4708,5
+2026-04-18 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2320,4
+2026-04-19 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2882,10
+2026-04-20 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4037,8
+2026-04-21 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3644,3
+2026-04-22 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4336,5
+2026-04-23 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4487,9
+2026-04-24 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4156,11
+2026-04-25 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2920,2
+2026-04-26 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2955,3
+2026-04-27 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4241,8
+2026-04-28 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4669,17
+2026-04-29 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4304,16
+2026-04-30 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3836,4
+2026-05-01 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4952,17
+2026-05-02 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2449,2
+2026-05-03 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2092,5
+2026-05-04 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4135,11
+2026-05-05 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4032,12
+2026-05-06 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4124,7
+2026-05-07 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4661,6
+2026-05-08 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3425,12
+2026-05-09 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2113,8
+2026-05-10 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2705,6
+2026-05-11 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4077,4
+2026-05-12 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3736,4
+2026-05-13 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4315,10
+2026-05-14 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3947,6
+2026-05-15 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3711,5
+2026-05-16 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2838,2
+2026-05-17 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2989,3
+2026-05-18 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4783,10
+2026-05-19 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4900,10
+2026-05-20 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3750,11
+2026-05-21 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3936,7
+2026-05-22 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3525,1
+2026-05-23 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2417,6
+2026-05-24 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2261,3
+2026-05-25 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3371,5
+2026-05-26 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3721,11
+2026-05-27 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3433,12
+2026-05-28 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4201,4
+2026-05-29 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4595,7
+2026-05-30 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2427,8
+2026-05-31 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2311,5
+2026-06-01 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4840,6
+2026-06-02 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4682,7
+2026-06-03 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4717,2
+2026-06-04 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4000,4
+2026-06-05 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3504,5
+2026-06-06 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2185,7
+2026-06-07 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2030,7
+2026-06-08 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4701,15
+2026-06-09 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3658,3
+2026-06-10 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4752,4
+2026-06-11 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3513,13
+2026-06-12 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4230,9
+2026-06-13 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2512,9
+2026-06-14 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2472,8
+2026-06-15 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3704,5
+2026-06-16 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4316,15
+2026-06-17 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4886,3
+2026-06-18 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3869,4
+2026-06-19 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3874,7
+2026-06-20 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2270,3
+2026-06-21 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2129,2
+2026-06-22 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3965,2
+2026-06-23 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4720,13
+2026-06-24 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4089,7
+2026-06-25 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3460,11
+2026-06-26 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4588,8
+2026-06-27 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,1823,0
+2026-06-28 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,2757,4
+2026-06-29 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,4600,17
+2026-06-30 00:00:00,d4134725-8ff3-40fa-a20f-871b35ce1bba,Andrews and Sons,andrewsandsons.example,Free,Committed,azure,ap-east-1,Singapore,0.0,0.0,0.0,0.0,3865,8
+2026-04-02 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1297.85,41000.0,41000.0,0.0,990642,540
+2026-04-03 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1442.27,41000.0,41000.0,0.0,769706,2203
+2026-04-04 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1247.34,41000.0,41000.0,0.0,406015,1185
+2026-04-05 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1449.0,41000.0,41000.0,0.0,649420,1937
+2026-04-06 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1241.62,41000.0,41000.0,0.0,991950,2753
+2026-04-07 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1420.01,41000.0,41000.0,0.0,1069842,927
+2026-04-08 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1273.54,41000.0,41000.0,0.0,750811,1868
+2026-04-09 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1412.03,41000.0,41000.0,0.0,720666,2737
+2026-04-10 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1301.89,41000.0,41000.0,0.0,1027383,3678
+2026-04-11 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1252.29,41000.0,41000.0,0.0,526149,759
+2026-04-12 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1430.31,41000.0,41000.0,0.0,551164,563
+2026-04-13 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1496.64,41000.0,41000.0,0.0,1025637,1123
+2026-04-14 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1458.69,41000.0,41000.0,0.0,904239,2767
+2026-04-15 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1305.6,41000.0,41000.0,0.0,840366,1907
+2026-04-16 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1302.21,41000.0,41000.0,0.0,1085425,1710
+2026-04-17 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1393.32,41000.0,41000.0,0.0,986835,3011
+2026-04-18 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1238.21,41000.0,41000.0,0.0,520379,846
+2026-04-19 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1297.42,41000.0,41000.0,0.0,533218,948
+2026-04-20 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1485.8,41000.0,41000.0,0.0,725612,2433
+2026-04-21 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1295.48,41000.0,41000.0,0.0,791433,2922
+2026-04-22 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1357.0,41000.0,41000.0,0.0,712098,2697
+2026-04-23 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1441.83,41000.0,41000.0,0.0,1068047,828
+2026-04-24 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1385.68,41000.0,41000.0,0.0,1041513,1518
+2026-04-25 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1480.93,41000.0,41000.0,0.0,663013,470
+2026-04-26 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1446.6,41000.0,41000.0,0.0,584184,1636
+2026-04-27 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1405.11,41000.0,41000.0,0.0,826966,466
+2026-04-28 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1307.06,41000.0,41000.0,0.0,730287,815
+2026-04-29 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1430.12,41000.0,41000.0,0.0,985141,3156
+2026-04-30 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1347.21,41000.0,41000.0,0.0,855252,1525
+2026-05-01 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1283.93,41000.0,41000.0,0.0,894008,760
+2026-05-02 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1374.34,41000.0,41000.0,0.0,493875,1648
+2026-05-03 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1466.55,41000.0,41000.0,0.0,526911,1400
+2026-05-04 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1259.3,41000.0,41000.0,0.0,960871,3467
+2026-05-05 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1287.27,41000.0,41000.0,0.0,1019192,1957
+2026-05-06 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1321.41,41000.0,41000.0,0.0,861142,3205
+2026-05-07 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1412.47,41000.0,41000.0,0.0,675495,2360
+2026-05-08 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1439.06,41000.0,41000.0,0.0,814619,1705
+2026-05-09 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1357.91,41000.0,41000.0,0.0,558046,1769
+2026-05-10 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1473.92,41000.0,41000.0,0.0,642664,2222
+2026-05-11 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1465.96,41000.0,41000.0,0.0,761640,3028
+2026-05-12 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1286.64,41000.0,41000.0,0.0,1041540,2767
+2026-05-13 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1459.71,41000.0,41000.0,0.0,724939,2399
+2026-05-14 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1428.13,41000.0,41000.0,0.0,863599,3096
+2026-05-15 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1290.04,41000.0,41000.0,0.0,857239,3309
+2026-05-16 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1475.01,41000.0,41000.0,0.0,505190,1882
+2026-05-17 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1406.29,41000.0,41000.0,0.0,673565,2012
+2026-05-18 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1430.22,41000.0,41000.0,0.0,991302,2227
+2026-05-19 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1436.64,41000.0,41000.0,0.0,803430,945
+2026-05-20 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1251.87,41000.0,41000.0,0.0,1015324,1224
+2026-05-21 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1285.93,41000.0,41000.0,0.0,923639,2817
+2026-05-22 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1327.73,41000.0,41000.0,0.0,1072871,2110
+2026-05-23 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1476.37,41000.0,41000.0,0.0,618969,664
+2026-05-24 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1269.24,41000.0,41000.0,0.0,520084,932
+2026-05-25 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1339.06,41000.0,41000.0,0.0,689357,1427
+2026-05-26 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1294.3,41000.0,41000.0,0.0,897181,2232
+2026-05-27 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1380.6,41000.0,41000.0,0.0,713837,2312
+2026-05-28 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1236.88,41000.0,41000.0,0.0,873534,2659
+2026-05-29 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1307.68,41000.0,41000.0,0.0,790562,1233
+2026-05-30 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1404.45,41000.0,41000.0,0.0,500469,1740
+2026-05-31 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1324.74,41000.0,41000.0,0.0,508835,1558
+2026-06-01 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1326.91,41000.0,41000.0,0.0,1026488,1147
+2026-06-02 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1355.54,41000.0,41000.0,0.0,845479,2447
+2026-06-03 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1326.66,41000.0,41000.0,0.0,968838,1169
+2026-06-04 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1258.01,41000.0,41000.0,0.0,942698,1833
+2026-06-05 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1260.79,41000.0,41000.0,0.0,725854,2398
+2026-06-06 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1451.16,41000.0,41000.0,0.0,645816,2003
+2026-06-07 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1260.06,41000.0,41000.0,0.0,490844,675
+2026-06-08 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1384.42,41000.0,41000.0,0.0,878280,2956
+2026-06-09 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1494.26,41000.0,41000.0,0.0,966016,583
+2026-06-10 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1471.68,41000.0,41000.0,0.0,862811,1548
+2026-06-11 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1291.44,41000.0,41000.0,0.0,936006,3434
+2026-06-12 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1240.62,41000.0,41000.0,0.0,735895,2296
+2026-06-13 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1377.18,41000.0,41000.0,0.0,457904,1642
+2026-06-14 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1328.95,41000.0,41000.0,0.0,659365,2267
+2026-06-15 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1481.85,41000.0,41000.0,0.0,1091152,3563
+2026-06-16 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1475.0,41000.0,41000.0,0.0,1034991,2546
+2026-06-17 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1379.23,41000.0,41000.0,0.0,1068406,771
+2026-06-18 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1398.8,41000.0,41000.0,0.0,1095924,3157
+2026-06-19 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1274.16,41000.0,41000.0,0.0,1075233,1270
+2026-06-20 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1321.91,41000.0,41000.0,0.0,585076,1746
+2026-06-21 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1301.35,41000.0,41000.0,0.0,674206,1747
+2026-06-22 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1335.22,41000.0,41000.0,0.0,845329,1034
+2026-06-23 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1328.1,41000.0,41000.0,0.0,815835,2203
+2026-06-24 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1449.62,41000.0,41000.0,0.0,932800,3241
+2026-06-25 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1383.47,41000.0,41000.0,0.0,738049,1167
+2026-06-26 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1353.51,41000.0,41000.0,0.0,720483,983
+2026-06-27 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1350.1,41000.0,41000.0,0.0,561336,491
+2026-06-28 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1497.79,41000.0,41000.0,0.0,643435,1977
+2026-06-29 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1493.78,41000.0,41000.0,0.0,752737,974
+2026-06-30 00:00:00,ec37ff83-0007-4eb1-9b2f-204d21894d44,Bryant-Brown,bryant-brown.example,Enterprise,PAYG,aws,sa-east-1,Brazil,1490.91,41000.0,41000.0,0.0,755295,2361
+2026-04-02 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,183.67,5200.0,780.0,4420.0,101089,337
+2026-04-03 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,189.75,5200.0,780.0,4420.0,107830,406
+2026-04-04 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,177.48,5200.0,780.0,4420.0,66603,262
+2026-04-05 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,171.3,5200.0,780.0,4420.0,63695,73
+2026-04-06 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,188.3,5200.0,780.0,4420.0,89560,184
+2026-04-07 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,174.53,5200.0,780.0,4420.0,76245,87
+2026-04-08 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,168.96,5200.0,780.0,4420.0,110300,74
+2026-04-09 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,175.98,5200.0,780.0,4420.0,73000,185
+2026-04-10 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,162.69,5200.0,780.0,4420.0,107277,313
+2026-04-11 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,172.38,5200.0,780.0,4420.0,42872,167
+2026-04-12 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,171.38,5200.0,780.0,4420.0,57296,93
+2026-04-13 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,180.98,5200.0,780.0,4420.0,100365,66
+2026-04-14 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,176.37,5200.0,780.0,4420.0,87202,333
+2026-04-15 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,156.99,5200.0,780.0,4420.0,96596,132
+2026-04-16 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,167.46,5200.0,780.0,4420.0,82681,287
+2026-04-17 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,172.02,5200.0,780.0,4420.0,70176,277
+2026-04-18 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,177.62,5200.0,780.0,4420.0,58646,146
+2026-04-19 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,178.02,5200.0,780.0,4420.0,53688,28
+2026-04-20 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,166.31,5200.0,780.0,4420.0,107337,328
+2026-04-21 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,187.69,5200.0,780.0,4420.0,109037,171
+2026-04-22 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,163.04,5200.0,780.0,4420.0,80946,145
+2026-04-23 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,185.51,5200.0,780.0,4420.0,100850,236
+2026-04-24 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,159.2,5200.0,780.0,4420.0,89170,116
+2026-04-25 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,181.43,5200.0,780.0,4420.0,44508,161
+2026-04-26 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,162.27,5200.0,780.0,4420.0,42747,32
+2026-04-27 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,190.44,5200.0,780.0,4420.0,100359,398
+2026-04-28 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,188.54,5200.0,780.0,4420.0,82053,207
+2026-04-29 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,168.0,5200.0,780.0,4420.0,73926,245
+2026-04-30 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,163.18,5200.0,780.0,4420.0,91458,263
+2026-05-01 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,170.79,5200.0,780.0,4420.0,85026,301
+2026-05-02 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,171.77,5200.0,780.0,4420.0,45928,64
+2026-05-03 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,185.68,5200.0,780.0,4420.0,55777,60
+2026-05-04 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,167.75,5200.0,780.0,4420.0,71056,47
+2026-05-05 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,174.34,5200.0,780.0,4420.0,102955,244
+2026-05-06 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,182.87,5200.0,780.0,4420.0,97590,71
+2026-05-07 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,189.93,5200.0,780.0,4420.0,105023,115
+2026-05-08 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,186.17,5200.0,780.0,4420.0,86740,182
+2026-05-09 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,190.12,5200.0,780.0,4420.0,62843,153
+2026-05-10 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,169.89,5200.0,780.0,4420.0,60008,121
+2026-05-11 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,189.09,5200.0,780.0,4420.0,67687,49
+2026-05-12 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,182.2,5200.0,780.0,4420.0,97830,358
+2026-05-13 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,164.01,5200.0,780.0,4420.0,90679,319
+2026-05-14 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,173.65,5200.0,780.0,4420.0,106398,55
+2026-05-15 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,181.45,5200.0,780.0,4420.0,105640,240
+2026-05-16 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,187.93,5200.0,780.0,4420.0,50945,50
+2026-05-17 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,158.76,5200.0,780.0,4420.0,51398,75
+2026-05-18 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,182.44,5200.0,780.0,4420.0,104240,305
+2026-05-19 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,163.72,5200.0,780.0,4420.0,72438,93
+2026-05-20 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,181.93,5200.0,780.0,4420.0,112028,175
+2026-05-21 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,183.38,5200.0,780.0,4420.0,103308,180
+2026-05-22 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,189.36,5200.0,780.0,4420.0,90173,139
+2026-05-23 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,179.2,5200.0,780.0,4420.0,49727,62
+2026-05-24 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,160.94,5200.0,780.0,4420.0,45075,114
+2026-05-25 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,183.07,5200.0,780.0,4420.0,67759,114
+2026-05-26 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,167.76,5200.0,780.0,4420.0,99791,385
+2026-05-27 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,180.26,5200.0,780.0,4420.0,92297,198
+2026-05-28 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,179.84,5200.0,780.0,4420.0,91877,240
+2026-05-29 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,189.28,5200.0,780.0,4420.0,91536,328
+2026-05-30 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,159.54,5200.0,780.0,4420.0,42072,124
+2026-05-31 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,174.09,5200.0,780.0,4420.0,46450,64
+2026-06-01 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,175.63,5200.0,780.0,4420.0,91720,79
+2026-06-02 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,170.06,5200.0,780.0,4420.0,86274,77
+2026-06-03 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,182.63,5200.0,780.0,4420.0,94647,323
+2026-06-04 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,176.66,5200.0,780.0,4420.0,101625,367
+2026-06-05 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,183.49,5200.0,780.0,4420.0,100949,319
+2026-06-06 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,188.31,5200.0,780.0,4420.0,63723,44
+2026-06-07 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,187.38,5200.0,780.0,4420.0,41740,24
+2026-06-08 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,172.56,5200.0,780.0,4420.0,87420,340
+2026-06-09 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,156.39,5200.0,780.0,4420.0,89036,276
+2026-06-10 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,182.6,5200.0,780.0,4420.0,76227,261
+2026-06-11 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,184.06,5200.0,780.0,4420.0,94791,57
+2026-06-12 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,182.73,5200.0,780.0,4420.0,88524,298
+2026-06-13 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,159.63,5200.0,780.0,4420.0,43385,98
+2026-06-14 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,169.27,5200.0,780.0,4420.0,61609,122
+2026-06-15 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,182.09,5200.0,780.0,4420.0,103774,77
+2026-06-16 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,163.7,5200.0,780.0,4420.0,87188,119
+2026-06-17 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,171.33,5200.0,780.0,4420.0,106884,293
+2026-06-18 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,188.85,5200.0,780.0,4420.0,104827,142
+2026-06-19 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,187.75,5200.0,780.0,4420.0,96363,366
+2026-06-20 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,177.01,5200.0,780.0,4420.0,52267,202
+2026-06-21 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,174.77,5200.0,780.0,4420.0,66737,45
+2026-06-22 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,186.92,5200.0,780.0,4420.0,70603,70
+2026-06-23 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,166.94,5200.0,780.0,4420.0,76777,74
+2026-06-24 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,156.54,5200.0,780.0,4420.0,71911,146
+2026-06-25 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,167.55,5200.0,780.0,4420.0,74605,201
+2026-06-26 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,184.72,5200.0,780.0,4420.0,68633,154
+2026-06-27 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,161.38,5200.0,780.0,4420.0,55637,55
+2026-06-28 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,168.03,5200.0,780.0,4420.0,47875,44
+2026-06-29 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,163.56,5200.0,780.0,4420.0,103663,266
+2026-06-30 00:00:00,14053b1b-e751-49a0-9ba1-8d201525bab7,Owens-Chavez,owens-chavez.example,Growth,Committed,gcp,me-south-1,United Arab Emirates,159.68,5200.0,780.0,4420.0,82301,263
+2026-04-02 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4184,5
+2026-04-03 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4570,11
+2026-04-04 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2695,10
+2026-04-05 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2721,9
+2026-04-06 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4737,5
+2026-04-07 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3683,2
+2026-04-08 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3830,9
+2026-04-09 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4085,5
+2026-04-10 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4467,17
+2026-04-11 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2709,8
+2026-04-12 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2769,2
+2026-04-13 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4010,4
+2026-04-14 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4871,17
+2026-04-15 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4143,16
+2026-04-16 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3277,10
+2026-04-17 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4742,10
+2026-04-18 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2946,2
+2026-04-19 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2960,11
+2026-04-20 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4633,16
+2026-04-21 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4134,9
+2026-04-22 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3794,11
+2026-04-23 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3568,10
+2026-04-24 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3203,7
+2026-04-25 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,1888,1
+2026-04-26 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2123,2
+2026-04-27 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3705,7
+2026-04-28 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4478,3
+2026-04-29 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4344,7
+2026-04-30 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4322,12
+2026-05-01 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4676,15
+2026-05-02 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2875,11
+2026-05-03 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,1911,2
+2026-05-04 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4409,13
+2026-05-05 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3644,12
+2026-05-06 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4633,2
+2026-05-07 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3596,3
+2026-05-08 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3847,13
+2026-05-09 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2336,7
+2026-05-10 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2767,8
+2026-05-11 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3878,12
+2026-05-12 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4495,11
+2026-05-13 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4625,5
+2026-05-14 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3580,6
+2026-05-15 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3415,6
+2026-05-16 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,1874,4
+2026-05-17 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2261,1
+2026-05-18 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3806,11
+2026-05-19 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4139,2
+2026-05-20 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3126,2
+2026-05-21 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4877,9
+2026-05-22 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4035,11
+2026-05-23 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,1958,4
+2026-05-24 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2230,1
+2026-05-25 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4350,7
+2026-05-26 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4914,9
+2026-05-27 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4310,7
+2026-05-28 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3227,5
+2026-05-29 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3980,6
+2026-05-30 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2277,6
+2026-05-31 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2258,1
+2026-06-01 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3735,12
+2026-06-02 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4506,6
+2026-06-03 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3930,12
+2026-06-04 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3633,13
+2026-06-05 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4512,14
+2026-06-06 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2565,5
+2026-06-07 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2840,5
+2026-06-08 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3592,5
+2026-06-09 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4828,9
+2026-06-10 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4274,12
+2026-06-11 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4537,10
+2026-06-12 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4344,10
+2026-06-13 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2120,7
+2026-06-14 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2708,9
+2026-06-15 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3377,7
+2026-06-16 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4462,12
+2026-06-17 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4683,9
+2026-06-18 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4333,4
+2026-06-19 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4023,9
+2026-06-20 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2303,1
+2026-06-21 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,1837,1
+2026-06-22 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3133,9
+2026-06-23 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3503,10
+2026-06-24 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4253,9
+2026-06-25 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4360,14
+2026-06-26 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,3060,2
+2026-06-27 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2362,3
+2026-06-28 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,2030,4
+2026-06-29 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4526,10
+2026-06-30 00:00:00,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,Spencer Group,spencergroup.example,Free,PAYG,azure,us-east-1,United States,0.0,0.0,0.0,0.0,4165,11
+2026-04-02 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1479.69,41000.0,6150.0,34850.0,750695,1337
+2026-04-03 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1442.71,41000.0,6150.0,34850.0,957669,1015
+2026-04-04 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1339.07,41000.0,6150.0,34850.0,588831,814
+2026-04-05 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1485.06,41000.0,6150.0,34850.0,643621,2202
+2026-04-06 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1317.92,41000.0,6150.0,34850.0,1023201,2175
+2026-04-07 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1419.43,41000.0,6150.0,34850.0,691442,1821
+2026-04-08 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1304.16,41000.0,6150.0,34850.0,1011064,3722
+2026-04-09 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1239.43,41000.0,6150.0,34850.0,1022430,4047
+2026-04-10 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1324.99,41000.0,6150.0,34850.0,883211,2086
+2026-04-11 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1444.91,41000.0,6150.0,34850.0,444262,1035
+2026-04-12 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1493.78,41000.0,6150.0,34850.0,615691,394
+2026-04-13 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1266.02,41000.0,6150.0,34850.0,926245,643
+2026-04-14 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1461.66,41000.0,6150.0,34850.0,680873,1747
+2026-04-15 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1357.12,41000.0,6150.0,34850.0,964083,653
+2026-04-16 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1344.86,41000.0,6150.0,34850.0,849687,685
+2026-04-17 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1441.25,41000.0,6150.0,34850.0,858916,2118
+2026-04-18 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1431.8,41000.0,6150.0,34850.0,535549,894
+2026-04-19 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1490.26,41000.0,6150.0,34850.0,660247,2349
+2026-04-20 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1268.29,41000.0,6150.0,34850.0,1060390,4222
+2026-04-21 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1328.05,41000.0,6150.0,34850.0,1111620,3213
+2026-04-22 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1482.58,41000.0,6150.0,34850.0,806776,1926
+2026-04-23 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1363.58,41000.0,6150.0,34850.0,923595,1172
+2026-04-24 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1399.04,41000.0,6150.0,34850.0,864653,478
+2026-04-25 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1269.85,41000.0,6150.0,34850.0,635955,2031
+2026-04-26 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1451.5,41000.0,6150.0,34850.0,414396,719
+2026-04-27 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1324.16,41000.0,6150.0,34850.0,987380,2068
+2026-04-28 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1463.67,41000.0,6150.0,34850.0,820694,1308
+2026-04-29 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1358.41,41000.0,6150.0,34850.0,897850,1399
+2026-04-30 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1324.71,41000.0,6150.0,34850.0,874035,2079
+2026-05-01 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1232.17,41000.0,6150.0,34850.0,699563,1288
+2026-05-02 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1240.49,41000.0,6150.0,34850.0,647476,2424
+2026-05-03 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1240.16,41000.0,6150.0,34850.0,554958,1318
+2026-05-04 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1312.2,41000.0,6150.0,34850.0,734130,2578
+2026-05-05 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1409.27,41000.0,6150.0,34850.0,679384,1498
+2026-05-06 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1428.42,41000.0,6150.0,34850.0,1101360,2113
+2026-05-07 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1485.39,41000.0,6150.0,34850.0,698578,2657
+2026-05-08 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1395.53,41000.0,6150.0,34850.0,936125,2923
+2026-05-09 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1430.49,41000.0,6150.0,34850.0,423731,1246
+2026-05-10 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1438.01,41000.0,6150.0,34850.0,463862,386
+2026-05-11 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1294.7,41000.0,6150.0,34850.0,1032280,2322
+2026-05-12 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1464.41,41000.0,6150.0,34850.0,941371,556
+2026-05-13 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1281.4,41000.0,6150.0,34850.0,807575,2761
+2026-05-14 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1267.92,41000.0,6150.0,34850.0,1076606,1175
+2026-05-15 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1252.27,41000.0,6150.0,34850.0,948780,1981
+2026-05-16 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1230.38,41000.0,6150.0,34850.0,630170,834
+2026-05-17 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1433.36,41000.0,6150.0,34850.0,653169,791
+2026-05-18 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1353.49,41000.0,6150.0,34850.0,905997,3402
+2026-05-19 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1274.05,41000.0,6150.0,34850.0,898688,2868
+2026-05-20 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1433.63,41000.0,6150.0,34850.0,1016644,2453
+2026-05-21 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1284.06,41000.0,6150.0,34850.0,758161,660
+2026-05-22 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1268.3,41000.0,6150.0,34850.0,858089,1076
+2026-05-23 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1236.03,41000.0,6150.0,34850.0,652531,1016
+2026-05-24 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1314.26,41000.0,6150.0,34850.0,572537,1962
+2026-05-25 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1371.13,41000.0,6150.0,34850.0,1090872,2674
+2026-05-26 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1338.59,41000.0,6150.0,34850.0,963823,2119
+2026-05-27 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1236.34,41000.0,6150.0,34850.0,897523,1830
+2026-05-28 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1437.43,41000.0,6150.0,34850.0,895573,2902
+2026-05-29 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1309.35,41000.0,6150.0,34850.0,734075,1438
+2026-05-30 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1378.67,41000.0,6150.0,34850.0,611265,562
+2026-05-31 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1482.44,41000.0,6150.0,34850.0,515719,669
+2026-06-01 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1441.69,41000.0,6150.0,34850.0,864649,443
+2026-06-02 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1286.15,41000.0,6150.0,34850.0,722803,450
+2026-06-03 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1311.1,41000.0,6150.0,34850.0,1035237,1576
+2026-06-04 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1463.17,41000.0,6150.0,34850.0,836347,1055
+2026-06-05 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1443.64,41000.0,6150.0,34850.0,972133,1112
+2026-06-06 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1383.36,41000.0,6150.0,34850.0,544862,1615
+2026-06-07 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1271.53,41000.0,6150.0,34850.0,570207,1064
+2026-06-08 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1251.36,41000.0,6150.0,34850.0,921413,3368
+2026-06-09 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1330.38,41000.0,6150.0,34850.0,1093844,2204
+2026-06-10 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1282.88,41000.0,6150.0,34850.0,875926,2138
+2026-06-11 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1293.06,41000.0,6150.0,34850.0,709399,1769
+2026-06-12 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1239.39,41000.0,6150.0,34850.0,765149,1479
+2026-06-13 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1408.24,41000.0,6150.0,34850.0,440952,598
+2026-06-14 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1333.25,41000.0,6150.0,34850.0,421311,1242
+2026-06-15 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1275.04,41000.0,6150.0,34850.0,1072344,952
+2026-06-16 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1406.15,41000.0,6150.0,34850.0,864657,1225
+2026-06-17 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1324.14,41000.0,6150.0,34850.0,710972,762
+2026-06-18 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1320.0,41000.0,6150.0,34850.0,906276,2092
+2026-06-19 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1327.97,41000.0,6150.0,34850.0,874041,3078
+2026-06-20 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1275.53,41000.0,6150.0,34850.0,670975,2484
+2026-06-21 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1302.61,41000.0,6150.0,34850.0,636542,2017
+2026-06-22 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1336.2,41000.0,6150.0,34850.0,1104844,2888
+2026-06-23 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1494.49,41000.0,6150.0,34850.0,958543,3515
+2026-06-24 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1283.81,41000.0,6150.0,34850.0,1082846,1776
+2026-06-25 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1502.13,41000.0,6150.0,34850.0,937877,1643
+2026-06-26 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1353.74,41000.0,6150.0,34850.0,958035,3289
+2026-06-27 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1421.79,41000.0,6150.0,34850.0,523597,1734
+2026-06-28 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1478.5,41000.0,6150.0,34850.0,572661,613
+2026-06-29 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1301.41,41000.0,6150.0,34850.0,714561,2725
+2026-06-30 00:00:00,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,Neal Inc,nealinc.example,Enterprise,Committed,aws,eu-central-1,Germany,1302.66,41000.0,6150.0,34850.0,1029937,3587
+2026-04-02 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,176.42,5200.0,5200.0,0.0,94024,372
+2026-04-03 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,183.51,5200.0,5200.0,0.0,80466,284
+2026-04-04 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,167.75,5200.0,5200.0,0.0,50344,44
+2026-04-05 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,166.21,5200.0,5200.0,0.0,55185,92
+2026-04-06 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,161.21,5200.0,5200.0,0.0,85152,133
+2026-04-07 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,164.9,5200.0,5200.0,0.0,108699,241
+2026-04-08 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,179.39,5200.0,5200.0,0.0,108503,350
+2026-04-09 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,182.94,5200.0,5200.0,0.0,87187,241
+2026-04-10 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,188.53,5200.0,5200.0,0.0,89702,145
+2026-04-11 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,189.51,5200.0,5200.0,0.0,54045,91
+2026-04-12 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,182.31,5200.0,5200.0,0.0,51171,72
+2026-04-13 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,162.19,5200.0,5200.0,0.0,102500,56
+2026-04-14 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,172.96,5200.0,5200.0,0.0,87058,207
+2026-04-15 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,171.56,5200.0,5200.0,0.0,80080,131
+2026-04-16 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,173.82,5200.0,5200.0,0.0,72535,240
+2026-04-17 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,170.71,5200.0,5200.0,0.0,96507,128
+2026-04-18 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,158.55,5200.0,5200.0,0.0,56779,131
+2026-04-19 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,184.0,5200.0,5200.0,0.0,55386,138
+2026-04-20 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,181.4,5200.0,5200.0,0.0,67887,239
+2026-04-21 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,178.03,5200.0,5200.0,0.0,97141,265
+2026-04-22 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,185.77,5200.0,5200.0,0.0,103544,173
+2026-04-23 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,170.45,5200.0,5200.0,0.0,75225,281
+2026-04-24 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,176.62,5200.0,5200.0,0.0,79993,262
+2026-04-25 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,179.15,5200.0,5200.0,0.0,49500,61
+2026-04-26 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,168.26,5200.0,5200.0,0.0,62647,214
+2026-04-27 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,158.64,5200.0,5200.0,0.0,95923,207
+2026-04-28 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,174.48,5200.0,5200.0,0.0,101718,228
+2026-04-29 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,160.16,5200.0,5200.0,0.0,93924,361
+2026-04-30 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,173.36,5200.0,5200.0,0.0,111088,126
+2026-05-01 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,166.2,5200.0,5200.0,0.0,99446,290
+2026-05-02 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,162.31,5200.0,5200.0,0.0,41987,31
+2026-05-03 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,171.75,5200.0,5200.0,0.0,57321,119
+2026-05-04 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,184.16,5200.0,5200.0,0.0,89335,56
+2026-05-05 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,187.06,5200.0,5200.0,0.0,103257,70
+2026-05-06 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,160.03,5200.0,5200.0,0.0,103518,401
+2026-05-07 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,165.32,5200.0,5200.0,0.0,95894,174
+2026-05-08 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,183.35,5200.0,5200.0,0.0,108014,335
+2026-05-09 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,187.5,5200.0,5200.0,0.0,55852,151
+2026-05-10 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,166.41,5200.0,5200.0,0.0,55410,87
+2026-05-11 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,169.81,5200.0,5200.0,0.0,106811,332
+2026-05-12 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,176.61,5200.0,5200.0,0.0,94540,290
+2026-05-13 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,156.58,5200.0,5200.0,0.0,75646,141
+2026-05-14 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,174.54,5200.0,5200.0,0.0,77830,87
+2026-05-15 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,175.42,5200.0,5200.0,0.0,95048,62
+2026-05-16 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,169.75,5200.0,5200.0,0.0,60710,159
+2026-05-17 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,168.38,5200.0,5200.0,0.0,50543,28
+2026-05-18 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,176.56,5200.0,5200.0,0.0,82894,51
+2026-05-19 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,186.19,5200.0,5200.0,0.0,97669,128
+2026-05-20 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,188.2,5200.0,5200.0,0.0,100386,191
+2026-05-21 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,178.22,5200.0,5200.0,0.0,102088,289
+2026-05-22 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,174.66,5200.0,5200.0,0.0,71388,171
+2026-05-23 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,185.45,5200.0,5200.0,0.0,56163,130
+2026-05-24 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,164.19,5200.0,5200.0,0.0,52870,61
+2026-05-25 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,187.39,5200.0,5200.0,0.0,109791,162
+2026-05-26 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,179.09,5200.0,5200.0,0.0,87545,86
+2026-05-27 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,162.43,5200.0,5200.0,0.0,93733,346
+2026-05-28 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,180.68,5200.0,5200.0,0.0,98521,260
+2026-05-29 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,165.22,5200.0,5200.0,0.0,82528,104
+2026-05-30 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,177.99,5200.0,5200.0,0.0,43016,82
+2026-05-31 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,174.99,5200.0,5200.0,0.0,66627,264
+2026-06-01 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,186.32,5200.0,5200.0,0.0,90896,98
+2026-06-02 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,187.71,5200.0,5200.0,0.0,69408,234
+2026-06-03 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,163.95,5200.0,5200.0,0.0,95822,301
+2026-06-04 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,167.96,5200.0,5200.0,0.0,107227,232
+2026-06-05 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,187.98,5200.0,5200.0,0.0,83186,261
+2026-06-06 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,161.88,5200.0,5200.0,0.0,43254,145
+2026-06-07 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,185.76,5200.0,5200.0,0.0,64049,67
+2026-06-08 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,160.19,5200.0,5200.0,0.0,102523,207
+2026-06-09 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,166.06,5200.0,5200.0,0.0,67799,253
+2026-06-10 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,179.08,5200.0,5200.0,0.0,88242,350
+2026-06-11 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,175.77,5200.0,5200.0,0.0,92366,158
+2026-06-12 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,181.01,5200.0,5200.0,0.0,90502,47
+2026-06-13 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,177.22,5200.0,5200.0,0.0,50114,176
+2026-06-14 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,168.35,5200.0,5200.0,0.0,40569,55
+2026-06-15 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,168.3,5200.0,5200.0,0.0,92817,47
+2026-06-16 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,166.19,5200.0,5200.0,0.0,74408,178
+2026-06-17 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,174.74,5200.0,5200.0,0.0,91648,166
+2026-06-18 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,176.98,5200.0,5200.0,0.0,68186,163
+2026-06-19 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,170.76,5200.0,5200.0,0.0,71195,256
+2026-06-20 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,167.58,5200.0,5200.0,0.0,44270,103
+2026-06-21 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,190.28,5200.0,5200.0,0.0,58108,200
+2026-06-22 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,172.67,5200.0,5200.0,0.0,100919,401
+2026-06-23 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,174.42,5200.0,5200.0,0.0,92223,320
+2026-06-24 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,173.34,5200.0,5200.0,0.0,68055,215
+2026-06-25 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,157.77,5200.0,5200.0,0.0,74547,198
+2026-06-26 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,181.4,5200.0,5200.0,0.0,73138,249
+2026-06-27 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,166.77,5200.0,5200.0,0.0,47808,143
+2026-06-28 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,157.82,5200.0,5200.0,0.0,47203,171
+2026-06-29 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,185.13,5200.0,5200.0,0.0,70512,130
+2026-06-30 00:00:00,f3009b38-7598-4254-9606-57c3d8d3bf08,Grant-Flynn,grant-flynn.example,Growth,PAYG,gcp,ap-east-1,Singapore,159.65,5200.0,5200.0,0.0,106965,223
+2026-04-02 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4242,14
+2026-04-03 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4554,6
+2026-04-04 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2524,2
+2026-04-05 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2216,5
+2026-04-06 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4630,11
+2026-04-07 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3391,12
+2026-04-08 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3385,11
+2026-04-09 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4366,5
+2026-04-10 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3225,6
+2026-04-11 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2459,2
+2026-04-12 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2583,6
+2026-04-13 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4397,12
+2026-04-14 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3609,4
+2026-04-15 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3345,5
+2026-04-16 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4969,14
+2026-04-17 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4640,14
+2026-04-18 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2933,6
+2026-04-19 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2946,10
+2026-04-20 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4326,10
+2026-04-21 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3134,2
+2026-04-22 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3076,5
+2026-04-23 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3471,12
+2026-04-24 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4202,9
+2026-04-25 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2883,4
+2026-04-26 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2914,6
+2026-04-27 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3419,8
+2026-04-28 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3965,3
+2026-04-29 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4468,4
+2026-04-30 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4103,5
+2026-05-01 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4400,9
+2026-05-02 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2176,1
+2026-05-03 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2548,7
+2026-05-04 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3918,4
+2026-05-05 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4773,12
+2026-05-06 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4056,9
+2026-05-07 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4579,13
+2026-05-08 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4369,6
+2026-05-09 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2754,4
+2026-05-10 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2731,4
+2026-05-11 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4365,13
+2026-05-12 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3704,12
+2026-05-13 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4049,12
+2026-05-14 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4719,17
+2026-05-15 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3533,3
+2026-05-16 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2569,7
+2026-05-17 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2792,10
+2026-05-18 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3750,1
+2026-05-19 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3339,10
+2026-05-20 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4600,10
+2026-05-21 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4455,4
+2026-05-22 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3644,10
+2026-05-23 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2481,2
+2026-05-24 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2102,1
+2026-05-25 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3860,10
+2026-05-26 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4302,13
+2026-05-27 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3137,7
+2026-05-28 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3923,14
+2026-05-29 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4304,12
+2026-05-30 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2472,8
+2026-05-31 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2364,5
+2026-06-01 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3265,3
+2026-06-02 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4352,7
+2026-06-03 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3677,4
+2026-06-04 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4465,4
+2026-06-05 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4121,12
+2026-06-06 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2398,1
+2026-06-07 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2872,3
+2026-06-08 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4535,11
+2026-06-09 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4813,7
+2026-06-10 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3666,13
+2026-06-11 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4554,10
+2026-06-12 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3926,7
+2026-06-13 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2113,7
+2026-06-14 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2212,1
+2026-06-15 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3790,7
+2026-06-16 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3012,5
+2026-06-17 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4417,5
+2026-06-18 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4810,6
+2026-06-19 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3675,10
+2026-06-20 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2041,1
+2026-06-21 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2475,4
+2026-06-22 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4932,17
+2026-06-23 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3908,14
+2026-06-24 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4721,10
+2026-06-25 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4016,12
+2026-06-26 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3123,4
+2026-06-27 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,2421,1
+2026-06-28 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,1802,1
+2026-06-29 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,3315,5
+2026-06-30 00:00:00,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,Walker Ltd,walkerltd.example,Free,Committed,azure,sa-east-1,Brazil,0.0,0.0,0.0,0.0,4048,10
+2026-04-02 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1242.26,41000.0,41000.0,0.0,856090,3392
+2026-04-03 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1235.3,41000.0,41000.0,0.0,740075,1353
+2026-04-04 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1298.0,41000.0,41000.0,0.0,649090,2169
+2026-04-05 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1426.38,41000.0,41000.0,0.0,526635,888
+2026-04-06 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1300.35,41000.0,41000.0,0.0,699579,756
+2026-04-07 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1369.52,41000.0,41000.0,0.0,941059,2216
+2026-04-08 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1230.03,41000.0,41000.0,0.0,1093423,3881
+2026-04-09 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1265.47,41000.0,41000.0,0.0,1075139,1808
+2026-04-10 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1424.52,41000.0,41000.0,0.0,677722,2262
+2026-04-11 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1405.07,41000.0,41000.0,0.0,624174,1494
+2026-04-12 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1409.72,41000.0,41000.0,0.0,626337,1152
+2026-04-13 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1303.68,41000.0,41000.0,0.0,1001792,1187
+2026-04-14 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1449.39,41000.0,41000.0,0.0,1008278,1224
+2026-04-15 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1265.82,41000.0,41000.0,0.0,786616,917
+2026-04-16 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1489.15,41000.0,41000.0,0.0,1089248,1616
+2026-04-17 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1376.92,41000.0,41000.0,0.0,942152,2686
+2026-04-18 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1436.35,41000.0,41000.0,0.0,488858,1505
+2026-04-19 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1266.88,41000.0,41000.0,0.0,452088,705
+2026-04-20 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1348.08,41000.0,41000.0,0.0,838545,1780
+2026-04-21 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1493.81,41000.0,41000.0,0.0,1115238,2652
+2026-04-22 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1278.49,41000.0,41000.0,0.0,788806,2010
+2026-04-23 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1413.86,41000.0,41000.0,0.0,1024534,2059
+2026-04-24 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1285.2,41000.0,41000.0,0.0,941688,2797
+2026-04-25 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1394.0,41000.0,41000.0,0.0,560020,1720
+2026-04-26 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1465.45,41000.0,41000.0,0.0,645161,2084
+2026-04-27 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1235.08,41000.0,41000.0,0.0,1028651,2930
+2026-04-28 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1357.16,41000.0,41000.0,0.0,913932,2514
+2026-04-29 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1301.77,41000.0,41000.0,0.0,709859,843
+2026-04-30 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1275.75,41000.0,41000.0,0.0,1095653,3243
+2026-05-01 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1357.68,41000.0,41000.0,0.0,785685,478
+2026-05-02 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1425.64,41000.0,41000.0,0.0,611213,2176
+2026-05-03 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1458.05,41000.0,41000.0,0.0,471059,846
+2026-05-04 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1368.25,41000.0,41000.0,0.0,951627,3799
+2026-05-05 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1435.43,41000.0,41000.0,0.0,940334,2409
+2026-05-06 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1423.12,41000.0,41000.0,0.0,821938,1526
+2026-05-07 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1265.53,41000.0,41000.0,0.0,984008,1815
+2026-05-08 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1293.71,41000.0,41000.0,0.0,687639,2580
+2026-05-09 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1321.81,41000.0,41000.0,0.0,593697,998
+2026-05-10 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1296.08,41000.0,41000.0,0.0,593145,1793
+2026-05-11 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1296.95,41000.0,41000.0,0.0,871450,1150
+2026-05-12 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1344.17,41000.0,41000.0,0.0,979359,2525
+2026-05-13 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1254.51,41000.0,41000.0,0.0,1029804,1418
+2026-05-14 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1439.35,41000.0,41000.0,0.0,1035021,2207
+2026-05-15 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1240.81,41000.0,41000.0,0.0,737132,2457
+2026-05-16 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1307.54,41000.0,41000.0,0.0,463367,1784
+2026-05-17 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1482.38,41000.0,41000.0,0.0,621489,1228
+2026-05-18 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1409.19,41000.0,41000.0,0.0,1083194,1054
+2026-05-19 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1399.13,41000.0,41000.0,0.0,753122,1213
+2026-05-20 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1275.83,41000.0,41000.0,0.0,1012446,2951
+2026-05-21 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1495.09,41000.0,41000.0,0.0,1072348,2620
+2026-05-22 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1492.89,41000.0,41000.0,0.0,911055,589
+2026-05-23 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1275.1,41000.0,41000.0,0.0,570669,1123
+2026-05-24 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1260.92,41000.0,41000.0,0.0,665977,1220
+2026-05-25 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1308.75,41000.0,41000.0,0.0,844774,3162
+2026-05-26 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1353.03,41000.0,41000.0,0.0,817682,708
+2026-05-27 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1436.34,41000.0,41000.0,0.0,1049738,560
+2026-05-28 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1364.62,41000.0,41000.0,0.0,1043856,663
+2026-05-29 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1348.09,41000.0,41000.0,0.0,861401,1653
+2026-05-30 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1261.28,41000.0,41000.0,0.0,413207,279
+2026-05-31 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1264.3,41000.0,41000.0,0.0,570822,1664
+2026-06-01 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1302.61,41000.0,41000.0,0.0,896984,3124
+2026-06-02 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1349.62,41000.0,41000.0,0.0,793913,2702
+2026-06-03 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1468.71,41000.0,41000.0,0.0,727010,1392
+2026-06-04 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1327.99,41000.0,41000.0,0.0,778292,3009
+2026-06-05 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1428.97,41000.0,41000.0,0.0,1047203,3094
+2026-06-06 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1297.67,41000.0,41000.0,0.0,413720,284
+2026-06-07 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1256.62,41000.0,41000.0,0.0,611416,910
+2026-06-08 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1386.76,41000.0,41000.0,0.0,812897,2189
+2026-06-09 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1449.25,41000.0,41000.0,0.0,732660,880
+2026-06-10 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1272.52,41000.0,41000.0,0.0,805091,1558
+2026-06-11 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1424.77,41000.0,41000.0,0.0,738360,2837
+2026-06-12 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1441.17,41000.0,41000.0,0.0,908435,2828
+2026-06-13 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1283.54,41000.0,41000.0,0.0,560049,1093
+2026-06-14 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1383.56,41000.0,41000.0,0.0,575274,1780
+2026-06-15 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1313.65,41000.0,41000.0,0.0,733703,637
+2026-06-16 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1331.61,41000.0,41000.0,0.0,893395,576
+2026-06-17 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1437.06,41000.0,41000.0,0.0,976384,2292
+2026-06-18 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1315.33,41000.0,41000.0,0.0,856921,592
+2026-06-19 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1498.67,41000.0,41000.0,0.0,741112,2780
+2026-06-20 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1350.27,41000.0,41000.0,0.0,423548,870
+2026-06-21 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1445.23,41000.0,41000.0,0.0,504875,1430
+2026-06-22 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1310.67,41000.0,41000.0,0.0,1070198,1727
+2026-06-23 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1298.62,41000.0,41000.0,0.0,722247,2760
+2026-06-24 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1285.93,41000.0,41000.0,0.0,724015,2080
+2026-06-25 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1356.56,41000.0,41000.0,0.0,1099000,1860
+2026-06-26 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1282.51,41000.0,41000.0,0.0,775256,620
+2026-06-27 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1374.23,41000.0,41000.0,0.0,518963,1223
+2026-06-28 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1393.87,41000.0,41000.0,0.0,671375,1053
+2026-06-29 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1321.33,41000.0,41000.0,0.0,930058,1586
+2026-06-30 00:00:00,973fe534-9cf8-4186-bb6d-36d608f255f5,Kirk-Ward,kirk-ward.example,Enterprise,PAYG,aws,me-south-1,United Arab Emirates,1435.53,41000.0,41000.0,0.0,1033304,2605

@@ -1,0 +1,11 @@
+organization__key,organization__id,organization__account_key,organization__tier,organization__billing_model,organization__cloud_provider,organization__region,organization__country
+org-0001,a89547ec-db48-4fcd-ba2d-a11cc2e032df,001000000000000000,Enterprise,Committed,aws,us-east-1,United States
+org-0002,42b12009-a5f9-4f07-a066-6cb16d435905,001000000000000001,Growth,PAYG,gcp,eu-central-1,Germany
+org-0003,d4134725-8ff3-40fa-a20f-871b35ce1bba,001000000000000002,Free,Committed,azure,ap-east-1,Singapore
+org-0004,ec37ff83-0007-4eb1-9b2f-204d21894d44,001000000000000003,Enterprise,PAYG,aws,sa-east-1,Brazil
+org-0005,14053b1b-e751-49a0-9ba1-8d201525bab7,001000000000000004,Growth,Committed,gcp,me-south-1,United Arab Emirates
+org-0006,18a8cf6a-a15b-45b0-805e-7e905ec9fca4,001000000000000005,Free,PAYG,azure,us-east-1,United States
+org-0007,f89203b7-4b87-43e5-a5f5-9faa8a355b8f,001000000000000006,Enterprise,Committed,aws,eu-central-1,Germany
+org-0008,f3009b38-7598-4254-9606-57c3d8d3bf08,001000000000000007,Growth,PAYG,gcp,ap-east-1,Singapore
+org-0009,680c4cc8-cb81-4a1c-abfe-f6b181e6ab68,001000000000000008,Free,Committed,azure,sa-east-1,Brazil
+org-0010,973fe534-9cf8-4186-bb6d-36d608f255f5,001000000000000009,Enterprise,PAYG,aws,me-south-1,United Arab Emirates

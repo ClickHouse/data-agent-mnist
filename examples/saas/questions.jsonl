@@ -1,0 +1,8 @@
+{"trace_id": "ex-001", "nl_question": "What was the total spend across all tenants in June 2026?"}
+{"trace_id": "ex-002", "nl_question": "Which region had the most queries over the last 30 days, and how many?"}
+{"trace_id": "ex-003", "nl_question": "What plan is Hughes Ltd on, and what was its average daily spend in June 2026?"}
+{"trace_id": "ex-004", "nl_question": "Give me the top 3 tenants by total compute minutes over the last 90 days."}
+{"trace_id": "ex-005", "nl_question": "How many support cases does Hull-Hart currently have open?"}
+{"trace_id": "ex-006", "nl_question": "What is the total value of opportunities still in the negotiation stage, broken down by account owner?"}
+{"trace_id": "ex-007", "nl_question": "Which tenants have a closed_won opportunity, and when did each of them sign on?"}
+{"trace_id": "ex-008", "nl_question": "What was the total spend in June 2026 for the tenants owned by analyst-2?"}

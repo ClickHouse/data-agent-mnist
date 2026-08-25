@@ -1,0 +1,81 @@
+# Staged into this repository as .github/workflows/tests.yml. It lives at
+# ci/tests.yml in the source tree, because a file under .github/workflows there
+# would be an inert copy of a workflow that only ever runs here.
+#
+# This is not a duplicate of the source repository's checks, and the test counts
+# are the proof: 50 pass there, 46 pass and 4 skip here. The trees differ, so a
+# green run there does not imply a green run here. Two tests have already failed
+# only in this tree, both asserting a property of the source repository's layout
+# rather than of the code.
+#
+# It is also the only check on a sync pull request. Without it nothing verifies
+# the mirrored tree before it lands: the source repository can prove the
+# published subset imports, which is a weaker claim than the tree working.
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      # The minimum environment, which makes this file the executable version of
+      # the README's setup section.
+      #
+      # DAM_MODELS_CONFIG, because there is deliberately no config/models.yaml:
+      # importing the registry without one fails with instructions rather than
+      # guessing, so nobody runs the example catalog thinking it is theirs.
+      DAM_MODELS_CONFIG: ${{ github.workspace }}/config/models.example.yaml
+      # DAM_DATA_ROOT, because the modules resolve a benchmark data root at
+      # import and no benchmark data ships. Any path will do, and it need not
+      # exist: the resolver only insists on one when nobody set the variable.
+      #
+      # github.workspace, not runner.temp. The `runner` context is NOT available
+      # in a job-level env block, and using it there makes the whole file invalid,
+      # so the run fails before any job exists and there are no logs to read. The
+      # sibling workflow in the source repository carries a comment saying exactly
+      # this, and I wrote it, and then did it again here.
+      DAM_DATA_ROOT: ${{ github.workspace }}/.dam-data
+      # Placeholders. Nothing below reaches a provider: the clients are built at
+      # import and the OpenAI one refuses to construct without a key, so this
+      # asserts that importing needs no real credential and no cloud account.
+      OPENAI_API_KEY: placeholder
+      ANTHROPIC_API_KEY: placeholder
+      FIREWORKS_API_KEY: placeholder
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "latest"
+
+      - name: Set up Python
+        run: uv python install 3.13
+
+      - name: Install dependencies
+        # In a clean container, so a dependency that only ever existed in
+        # somebody's virtualenv fails here.
+        run: uv sync --all-extras
+
+      - name: Seed both example warehouses
+        # Free and offline: the rows are committed CSVs and this only loads them
+        # into chDB. Breaks if a fixture, a header or the null encoding drifts.
+        run: |
+          uv run examples/saas/seed_example.py
+          uv run examples/clickhouse-dwh/seed_dwh.py
+
+      - name: Tests
+        run: uv run pytest tests -q
+
+      # Deliberately absent: the annotate and eval stages. They call models and
+      # cost money per run, so they cannot sit on a per-push workflow. Adding
+      # them behind workflow_dispatch with a question limit is the sane version
+      # if the end-to-end path ever needs guarding here.

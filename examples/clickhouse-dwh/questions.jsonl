@@ -1,0 +1,8 @@
+{"trace_id": "chdwh-001", "nl_question": "What was the total dollar usage across all organizations in June 2026?"}
+{"trace_id": "chdwh-002", "nl_question": "Which cloud provider had the most queries over the last 30 days, and how many?"}
+{"trace_id": "chdwh-003", "nl_question": "What tier is Kirk-Ward on, and what is its current MRR?"}
+{"trace_id": "chdwh-004", "nl_question": "Give me the top 3 organizations by total query count over the last 60 days."}
+{"trace_id": "chdwh-005", "nl_question": "How many support cases does Walker Ltd currently have open?"}
+{"trace_id": "chdwh-006", "nl_question": "Which organizations have a P1 support case, and what industry is each account in?"}
+{"trace_id": "chdwh-007", "nl_question": "What was the total dollar usage in June 2026 for organizations whose account industry is Financial Services?"}
+{"trace_id": "chdwh-008", "nl_question": "List the accounts whose status is Prospect, with the tier of their organization."}

@@ -1,0 +1,31 @@
+case__case_number,case__account_key,case__subject,case__category,case__status,case__is_closed,case__priority,case__origin,case__owner_name,case__created_date,case__closed_date
+5100000,001000000000000000,Access question from Stewart-Johnson,Performance,Open,0,P3,Phone,support-4,2026-04-03,\N
+5100100,001000000000000001,Access question from Chavez Group,Ingestion,In Progress,0,P4,Web,support-2,2026-06-22,\N
+5100101,001000000000000001,Performance question from Chavez Group,Access,Open,0,P2,Phone,support-2,2026-06-04,\N
+5100102,001000000000000001,Access question from Chavez Group,Ingestion,Open,0,P1,Web,support-4,2026-04-10,\N
+5100200,001000000000000002,Ingestion question from Andrews and Sons,Ingestion,Closed,1,P1,Phone,support-4,2026-04-24,2026-05-12
+5100300,001000000000000003,Performance question from Bryant-Brown,Access,Closed,1,P4,Phone,support-3,2026-06-16,2026-07-03
+5100301,001000000000000003,Upgrade question from Bryant-Brown,Upgrade,Closed,1,P2,Email,support-3,2026-05-30,2026-06-12
+5100302,001000000000000003,Performance question from Bryant-Brown,Performance,Closed,1,P4,Web,support-2,2026-05-20,2026-06-01
+5100303,001000000000000003,Access question from Bryant-Brown,Access,Closed,1,P1,Email,support-1,2026-06-29,2026-07-18
+5100400,001000000000000004,Billing question from Owens-Chavez,Upgrade,Open,0,P4,Web,support-2,2026-04-13,\N
+5100401,001000000000000004,Performance question from Owens-Chavez,Billing,Open,0,P1,Web,support-1,2026-05-20,\N
+5100402,001000000000000004,Performance question from Owens-Chavez,Upgrade,In Progress,0,P2,Email,support-1,2026-04-13,\N
+5100403,001000000000000004,Billing question from Owens-Chavez,Ingestion,Open,0,P2,Email,support-2,2026-06-25,\N
+5100404,001000000000000004,Access question from Owens-Chavez,Ingestion,Closed,1,P2,Web,support-1,2026-04-18,2026-04-20
+5100500,001000000000000005,Billing question from Spencer Group,Performance,In Progress,0,P2,Email,support-1,2026-04-19,\N
+5100501,001000000000000005,Access question from Spencer Group,Access,Open,0,P2,Web,support-1,2026-04-10,\N
+5100502,001000000000000005,Ingestion question from Spencer Group,Billing,Closed,1,P1,Phone,support-3,2026-05-30,2026-06-14
+5100503,001000000000000005,Ingestion question from Spencer Group,Billing,In Progress,0,P4,Phone,support-1,2026-05-02,\N
+5100600,001000000000000006,Ingestion question from Neal Inc,Performance,Closed,1,P2,Web,support-3,2026-05-06,2026-05-11
+5100601,001000000000000006,Performance question from Neal Inc,Billing,Open,0,P2,Phone,support-3,2026-04-25,\N
+5100602,001000000000000006,Upgrade question from Neal Inc,Upgrade,Open,0,P4,Phone,support-3,2026-06-13,\N
+5100700,001000000000000007,Performance question from Grant-Flynn,Ingestion,Open,0,P1,Email,support-4,2026-04-27,\N
+5100800,001000000000000008,Performance question from Walker Ltd,Access,Closed,1,P2,Email,support-4,2026-05-28,2026-06-16
+5100801,001000000000000008,Performance question from Walker Ltd,Access,Open,0,P2,Email,support-2,2026-06-06,\N
+5100802,001000000000000008,Billing question from Walker Ltd,Access,Open,0,P1,Email,support-1,2026-06-17,\N
+5100900,001000000000000009,Performance question from Kirk-Ward,Performance,Open,0,P3,Phone,support-4,2026-05-04,\N
+5100901,001000000000000009,Upgrade question from Kirk-Ward,Access,Closed,1,P1,Web,support-1,2026-05-30,2026-06-10
+5100902,001000000000000009,Billing question from Kirk-Ward,Upgrade,Open,0,P4,Phone,support-2,2026-04-02,\N
+5100903,001000000000000009,Performance question from Kirk-Ward,Access,Closed,1,P3,Phone,support-3,2026-05-06,2026-05-16
+5100904,001000000000000009,Billing question from Kirk-Ward,Ingestion,Closed,1,P3,Web,support-2,2026-06-28,2026-06-30
