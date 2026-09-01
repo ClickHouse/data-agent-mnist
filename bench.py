@@ -478,7 +478,19 @@ def run_candidate_bedrock(
     system_prompt: str,
 ) -> dict:
     start    = time.time()
-    system   = [{"text": system_prompt}]
+    # PROMPT CACHING, the same two static breakpoints as the native
+    # Anthropic path. Converse caches nothing without an explicit cachePoint,
+    # while the OpenAI, Fireworks and Vertex paths cache unasked, so writing no
+    # cache code produced DIFFERENT behaviour per provider rather than uniform
+    # behaviour. Mantle proves this is opt-in rather than a Bedrock limit: it is
+    # Bedrock through an OpenAI-compatible surface and caches 22.5% by itself,
+    # while Converse cached 0%.
+    #
+    # System prompt and tool list only, both byte-identical across every turn and
+    # every question. The growing transcript is left uncached on purpose: see the
+    # note in run_candidate_messages_api for why a rolling breakpoint is out of
+    # scope for this methodology.
+    system   = [{"text": system_prompt}, {"cachePoint": {"type": "default"}}]
     messages = [{"role": "user", "content": [{"text": nl_question}]}]
     sqls, sql_results = [], []
     # Reasoning models bill thinking as output and emit it before the answer, so a 2048
@@ -494,7 +506,8 @@ def run_candidate_bedrock(
     for turn in range(MAX_TURNS):
         resp = _bedrock_converse_with_retry(
             modelId=model_id, system=system, messages=messages,
-            toolConfig={"tools": TOOLS_BEDROCK},
+            toolConfig={"tools": TOOLS_BEDROCK
+                        + [{"cachePoint": {"type": "default"}}]},
             inferenceConfig={"maxTokens": token_limit},
         )
         usage.add_bedrock(resp)
@@ -719,11 +732,55 @@ def run_candidate_messages_api(
     sqls, sql_results = [], []
     served       = model_id  # resolved id as reported by the endpoint
 
+    # PROMPT CACHING. Anthropic caches nothing without an explicit
+    # cache_control breakpoint, while the OpenAI, Fireworks and Vertex paths cache
+    # automatically. Without this the Claude models paid full input price on every
+    # turn of a 60-turn loop and their competitors did not, which made the board's
+    # cost column a measurement of our client code rather than of the models.
+    #
+    # Two static breakpoints, on the system prompt and on the tool list. Both are
+    # byte-identical across every turn AND every question, so the prefix is shared
+    # by concurrent workers and re-hit for the whole run, not just within one
+    # question.
+    #
+    # STATIC ONLY: NO PROVIDER-SPECIFIC OPTIMIZATION. The benchmark's methodology
+    # is that every provider path gets the same treatment, so the board measures
+    # models rather than how much tuning each integration received.
+    #
+    # Zero caching was not that treatment, it was a defect. OpenAI, Fireworks and
+    # Vertex cache a stable prefix without being asked; Anthropic and Bedrock
+    # Converse require an explicit opt-in for the same behaviour. So "write no
+    # cache code" produced DIFFERENT behaviour per provider, not uniform behaviour.
+    # These two breakpoints buy parity of intent, nothing more: cache the stable
+    # prefix, which is what the automatic providers already do.
+    #
+    # A third, rolling breakpoint on the growing transcript was tried and rejected.
+    # Measured share of input served from cache on this workload:
+    #
+    #     no breakpoints (what shipped)        0.0%
+    #     system + tools (this)               42.9%
+    #     + rolling point on the transcript   99.6%
+    #
+    # It works, and it is exactly the kind of change this methodology excludes: a
+    # technique available on one provider's API, with no counterpart being applied
+    # to the other five paths, which reach their endpoints through a shared
+    # OpenAI-compatible call that exposes no cache controls at all. Adopting it
+    # would make the cost column partly a record of which integrations we hand-
+    # tuned. The 99.6% is recorded here so the ceiling is known rather than hidden.
+    #
+    # Bedrock Converse needs the same static treatment for the same reason: it
+    # accepts cachePoint at system, messages and tools, and currently sets none,
+    # which is why the six Claude models on that path also sat at zero.
+    cached_system = [{"type": "text", "text": system_prompt,
+                      "cache_control": {"type": "ephemeral"}}]
+    cached_tools = [dict(t) for t in TOOLS_MESSAGES]
+    cached_tools[-1]["cache_control"] = {"type": "ephemeral"}
+
     usage = TokenUsage()
     for turn in range(MAX_TURNS):
         resp = retry(lambda: anthropic_native.messages.create(
-            model=model_id, max_tokens=16000, system=system_prompt,
-            messages=messages, tools=TOOLS_MESSAGES, extra_body=extra,
+            model=model_id, max_tokens=16000, system=cached_system,
+            messages=messages, tools=cached_tools, extra_body=extra,
         ), what=f"messages.create[{model_id}]")
         usage.add_anthropic(resp)
         served      = getattr(resp, "model", None) or served
