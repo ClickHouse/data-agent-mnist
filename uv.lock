@@ -470,7 +470,7 @@ wheels = [
 
 [[package]]
 name = "chdb"
-version = "4.1.8"
+version = "4.3.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "chdb-core" },
@@ -478,22 +478,22 @@ dependencies = [
     { name = "pyarrow" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/a8/6a/2f83aa4ad09c86d97c58b00f2a7915f70e9c3c8b5ef52d13c1339e10f9e9/chdb-4.1.8-py3-none-any.whl", hash = "sha256:69d6bc5be0f88202926e1c6814aaba96dc06c6992fdc1c48ca7b3547bcc823aa", size = 1501206, upload-time = "2026-05-22T09:00:37.229Z" },
+    { url = "https://files.pythonhosted.org/packages/da/34/6f3228fbe0a3d86e00ff236efe1a25dd93eaaa522a90b7c0495e919f1317/chdb-4.3.0-py3-none-any.whl", hash = "sha256:b5ee56faa348aeda79aaa82586902d226e013092cfcd57db9563baa96cffb837", size = 1662907, upload-time = "2026-08-17T08:53:09.137Z" },
 ]
 
 [[package]]
 name = "chdb-core"
-version = "26.3.0"
+version = "26.7.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pandas" },
     { name = "pyarrow" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/d5/77/7cd81c89c2bf3d6ad592474fbd01926206cd5be1dfbb80c8423eeea21103/chdb_core-26.3.0-cp39-abi3-macosx_10_15_x86_64.whl", hash = "sha256:83b76bd4bb026a74b5a3134582fc552fde10451969f3a20722f664b3b712d913", size = 108507808, upload-time = "2026-05-11T08:51:33.692Z" },
-    { url = "https://files.pythonhosted.org/packages/49/69/dc1b788581b7544c21db42fe02bc27ade24477c2baef004c4e95024af665/chdb_core-26.3.0-cp39-abi3-macosx_11_0_arm64.whl", hash = "sha256:bc2d889ed2f9273c44a89cba7383f2b4d8f0bdfeed38af09f49160484a625d42", size = 91972510, upload-time = "2026-05-11T07:46:00.153Z" },
-    { url = "https://files.pythonhosted.org/packages/03/b1/ef4add0ffcf903d094a7974f8d41f7af92f1937e4b852e61fe908c4cd97c/chdb_core-26.3.0-cp39-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:dcbec93852abaa94937242da65644c563bde389ae5d0d67caae6d46067af95c5", size = 120790107, upload-time = "2026-05-11T08:22:29.125Z" },
-    { url = "https://files.pythonhosted.org/packages/8a/ef/de277cc1b1e452eda2669581c2be1899daf523af3125141183548817e00c/chdb_core-26.3.0-cp39-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:2b91a47a69db1185908f51aebdb32d1258cf7c0646e7dc6be3d2922cb694e3ad", size = 158980348, upload-time = "2026-05-11T07:52:27.176Z" },
+    { url = "https://files.pythonhosted.org/packages/71/00/307d0ed8bbf14f3e42b018c589b84d2b4bb99222c2ce54ba26c7a71b057a/chdb_core-26.7.0-cp39-abi3-macosx_10_15_x86_64.whl", hash = "sha256:7134aa30087a54b1bc45b7893d34d1719b976f22dc7624f783ffec926d40db1d", size = 120845633, upload-time = "2026-08-13T04:22:50.054Z" },
+    { url = "https://files.pythonhosted.org/packages/41/4e/06524356d7bda9257a12a11860a4713f706d388330249d74a8e542e53953/chdb_core-26.7.0-cp39-abi3-macosx_11_0_arm64.whl", hash = "sha256:191124104076e21581de6a4d1335eb0c87c41e2521243f84600fa9205fbc94d1", size = 103982428, upload-time = "2026-08-12T23:34:33.474Z" },
+    { url = "https://files.pythonhosted.org/packages/54/ee/1f3bfcf04b8d5ec265236412f95d3a27a7c586a12363775e7cc34ff962da/chdb_core-26.7.0-cp39-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:3afa4b054ab815197149378d947e0409b0e4017baf87a5dc8d9b7c6571f99893", size = 136524494, upload-time = "2026-08-12T23:16:10.072Z" },
+    { url = "https://files.pythonhosted.org/packages/dd/79/8dbea41ea83f486e5824d081232892c69cfd8522539f578a620e082a7810/chdb_core-26.7.0-cp39-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:659c36f2f2fe910c3f2b0bcc230c84242cb97d9588aed1359bf7e84566d01f32", size = 175224786, upload-time = "2026-08-12T22:28:28.183Z" },
 ]
 
 [[package]]
@@ -728,7 +728,7 @@ dev = [
 requires-dist = [
     { name = "anthropic", specifier = ">=0.111.0" },
     { name = "boto3", specifier = ">=1.34.0" },
-    { name = "chdb", specifier = ">=2.0" },
+    { name = "chdb", specifier = ">=4.3" },
     { name = "clickhouse-connect", specifier = ">=0.6.0" },
     { name = "faker", specifier = ">=40.28.1" },
     { name = "google-auth", specifier = ">=2.0" },

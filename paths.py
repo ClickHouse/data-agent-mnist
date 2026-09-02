@@ -27,11 +27,28 @@ from pathlib import Path
 _ENV = "DAM_DATA_ROOT"
 _HERE = Path(__file__).resolve().parent
 
-# Monorepo default: <repo>/data/benchmarks, two levels above this directory.
-_DEFAULT = _HERE.parents[1] / "data" / "benchmarks"
-
+# DAM_DATA_ROOT first, then fall back to inferring the monorepo layout. Order
+# matters: the fallback can fail, and it must not be able to fail for someone who
+# set the variable and therefore needs no inference at all.
 _explicit = os.environ.get(_ENV)
-DATA: Path = Path(_explicit).expanduser().resolve() if _explicit else _DEFAULT
+
+if _explicit:
+    DATA: Path = Path(_explicit).expanduser().resolve()
+else:
+    # Monorepo default: <repo>/data/benchmarks, two levels above this directory.
+    #
+    # Guarded, because parents[1] raises a bare `IndexError: 1` when this
+    # directory is fewer than two levels from the filesystem root. That is not
+    # hypothetical for the standalone harness: cloning it to a shallow path made
+    # every module importing this one fail to collect, with a traceback pointing
+    # at pathlib and no hint about the cause.
+    if len(_HERE.parents) < 2:
+        raise RuntimeError(
+            f"cannot infer a benchmark data root: {_HERE} is too close to the "
+            f"filesystem root to have a monorepo above it.\n"
+            f"  Set {_ENV} to the directory holding the benchmark datasets, or "
+            f"clone to a deeper path.")
+    DATA = _HERE.parents[1] / "data" / "benchmarks"
 
 if not _explicit and not DATA.exists():
     raise FileNotFoundError(
@@ -54,4 +71,20 @@ if not _explicit and not DATA.exists():
 #
 # Exported anyway so the assumption lives in exactly one labelled place instead of
 # being re-derived with parents[3] in the tools that use it.
-REPO_ROOT: Path = _HERE.parents[1]
+#
+# Resolved LAZILY, via module __getattr__, for two reasons. It cannot be computed
+# at all when this directory is fewer than two levels from the filesystem root,
+# and computing it eagerly made a shallow standalone clone fail on import even
+# when DAM_DATA_ROOT was set and no repository root was wanted. And since nothing
+# on the eval path may depend on it, nobody who does not ask for it should pay for
+# it. `from paths import REPO_ROOT` still works; it just fails at the point of use
+# rather than at import, with a message instead of an IndexError.
+def __getattr__(name: str):
+    if name == "REPO_ROOT":
+        if len(_HERE.parents) < 2:
+            raise RuntimeError(
+                f"REPO_ROOT is not available: {_HERE} has no repository root "
+                f"above it. It is monorepo-only and nothing on the eval path "
+                f"may depend on it.")
+        return _HERE.parents[1]
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
