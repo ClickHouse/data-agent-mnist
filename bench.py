@@ -338,12 +338,30 @@ class TokenUsage:
     """
 
     __slots__ = ("prompt", "completion", "reasoning", "cache_read", "cache_write",
-                 "calls", "missing")
+                 "calls", "missing", "per_turn")
 
     def __init__(self):
         self.prompt = self.completion = self.reasoning = 0
         self.cache_read = self.cache_write = 0
         self.calls = self.missing = 0
+        # One entry per turn, which the sums cannot reconstruct in either direction.
+        #
+        # A sum answers "what did the run cost". It cannot answer how close a turn
+        # came to the per-call output cap, and that cap is what truncates a run
+        # (ERR_MAX_OUTPUT_TOKENS) and therefore scores it as a failure. From
+        # completion_tokens / api_calls you get the mean turn and never the largest,
+        # and the gap between them is unbounded: measured on the board, that
+        # inference leaves the peak somewhere in an interval 23 to 91 points wide.
+        #
+        # Storing the vector rather than a single max because the statistic worth
+        # having is not decided yet. Floor, median, p90 and peak all fall out of it,
+        # and so does input growth per turn, which is what the prompt-caching work
+        # needed and could not see: it could measure that 42.9% of input was served
+        # from cache overall, but not which turn the cache started hitting.
+        #
+        # Cheap: about 10 to 60 entries per run, a few hundred KB across a full
+        # board against a results file already in the tens of MB.
+        self.per_turn = []
 
     @staticmethod
     def _int(obj, *names):
@@ -377,6 +395,13 @@ class TokenUsage:
         self.reasoning += reasoning
         self.cache_read += c_read
         self.cache_write += c_write
+        # Recorded raw, in the provider's own accounting, with nothing derived.
+        # `reasoning` is NOT added to `completion`: every provider that reports it
+        # counts it inside its completion figure, so adding them would double-count
+        # exactly the models the field exists to illuminate, and would overstate
+        # how close a turn came to the output cap. Kept as its own element so a
+        # reader can still see the split per turn.
+        self.per_turn.append([prompt, completion, reasoning, c_read, c_write])
 
     def add_bedrock(self, resp):
         """Converse: cache figures sit beside inputTokens, not inside it."""
@@ -465,6 +490,13 @@ class TokenUsage:
             "total_tokens": (self.prompt + self.completion
                              + self.cache_read + self.cache_write),
             "api_calls": self.calls,
+            # One [prompt, completion, reasoning, cache_read, cache_write] per turn
+            # that reported usage, in call order. Every per-turn statistic derives
+            # from this and none of them from the sums: peak output against the cap,
+            # median turn, and input growth across the transcript. Turns that
+            # reported no usage are absent, so len() can be below api_calls; that
+            # gap is `calls_missing_usage`.
+            "per_turn": self.per_turn,
             # >0 means some turns reported no usage, so the totals are a LOWER
             # bound and must not be presented as exact.
             "calls_missing_usage": self.missing,
