@@ -277,11 +277,17 @@ def test_a_flagged_reasoning_model_gets_the_larger_candidate_budget():
     model matching none of them (glm-5p2 in the example config) got the reasoning
     floor as a judge and the 2048 cap as a candidate, from one flag.
     """
-    src = (DAM / "bench.py").read_text()
-    i = src.index("def run_candidate_openai_compat")
-    body = src[i:i + 3000]
-    assert "model_id in BEDROCK_REASONING" in body, (
-        "candidate budget ignores the registry reasoning flag")
+    flagged = sorted(registry.BEDROCK_REASONING)
+    assert flagged, "example config declares no reasoning model, so this guards nothing"
+    for model_id in flagged:
+        assert bench.emits_inline_reasoning(model_id), (
+            f"{model_id} is flagged `reasoning: true` but the candidate budget "
+            f"does not treat it as a reasoning model")
+    # And the rule is one function, not two copies. The probe used to carry its
+    # own three-term version that missed every Gemini.
+    probe = (DAM / "12_contamination_probe.py").read_text()
+    assert "bench.emits_inline_reasoning" in probe, (
+        "the contamination probe sizes its own budget again")
 
 
 def test_a_bad_snapshot_column_says_so(example_db):

@@ -31,7 +31,8 @@ import difflib
 import json
 import random
 import sys
-from collections import defaultdict
+import uuid
+from collections import Counter, defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -126,9 +127,21 @@ def _complete(model_key: str, prompt: str, max_tokens: int = 300) -> str:
     # but only o*/gpt-5* take OpenAI's max_completion_tokens — Kimi is served over
     # Fireworks/Mantle, which use max_tokens (matching run_candidate_openai_compat).
     _openai_reasoning = model_id.startswith(("o", "gpt-5"))
-    _big = _openai_reasoning or "thinking" in model_id or "kimi" in model_id
+    # Shared with the eval so the probe cannot under-budget a model the eval
+    # budgets correctly. The local three-term version missed every Gemini, which
+    # gave gemini-3.1-pro 100 output tokens against the eval's 8192.
+    _big = bench.emits_inline_reasoning(model_id)
     _token_kwarg = "max_completion_tokens" if _openai_reasoning else "max_tokens"
     kwargs = {_token_kwarg: max(max_tokens, 2048) if _big else max_tokens}
+    if _openai_reasoning:
+        # Same design intent as the Gemma 4, Anthropic and qwen3p8-max branches
+        # above: the probe measures completion, not deliberation. Without this,
+        # gpt-5.5 spent all 2048 tokens reasoning and returned an empty string on
+        # every entity call (finish_reason "length", reasoning_tokens 2048), so
+        # its 25 zeros were the instrument, not the model. The o-series rejects
+        # "none" and floors at "low", which leaves reasoning on but bounded: o4-mini
+        # spent 448 tokens and still answered.
+        kwargs["reasoning_effort"] = "low" if model_id.startswith("o") else "none"
     if "qwen3p8-max" in model_id:
         # Its separate-channel reasoning is unbounded on completion-style prompts
         # (starved 90%+ of cells even at 8192); the probe measures bare
@@ -151,6 +164,92 @@ def _complete(model_key: str, prompt: str, max_tokens: int = 300) -> str:
     if not text and choice.finish_reason == "length":
         raise RuntimeError(f"probe truncated before any visible output (finish=length, {model_id})")
     return text
+
+
+SHAPES = ["hit", "id_shaped", "degenerate", "prose", "empty"]
+
+
+def _id_signature(v: str) -> str:
+    """Which character classes a string uses, order and count discarded.
+
+    A uuid is "-dl", a mixed-case alphanumeric key is "dlu", eighteen digits is
+    "d". Coarse on purpose: the question is whether a reply is drawn from the
+    same alphabet as the ids, not whether it is one of them.
+    """
+    return "".join(sorted({
+        "d" if c.isdigit() else "u" if c.isupper() else "l" if c.islower() else "-"
+        for c in v}))
+
+
+def build_id_profile(answers) -> dict:
+    """Learn what an id in this column looks like from the ids we sampled.
+
+    Written this way rather than with an identifier-validation library because
+    the warehouse is synthetic. Our 18-character keys are Salesforce-shaped but
+    Faker-generated, and all 24 of them fail the real Salesforce check-digit
+    rule, so `python-stdnum` and friends would reject the very ground truth the
+    models are being asked to recall. Inducing the shape from the sample also
+    means the probe still travels to a warehouse keyed on something else.
+    """
+    vals = [str(a) for a in answers if a]
+    uuids = 0
+    for v in vals:
+        try:
+            uuid.UUID(v)
+            uuids += 1
+        except ValueError:
+            pass
+    return {"all_uuid": bool(vals) and uuids == len(vals),
+            "any_uuid": uuids > 0,
+            "min_len": min((len(v) for v in vals), default=0),
+            "signatures": frozenset(_id_signature(v) for v in vals)}
+
+
+SHAPES = ["hit", "id_shaped", "degenerate", "prose", "empty"]
+
+
+def entity_shape(gen: str, answer: str, profile: dict) -> str:
+    """Bucket one entity-recovery generation by what kind of output it is.
+
+    A score of 0 says nothing about whether the model tried. Empty output, a
+    two-character integer and a reasoned refusal are three different
+    observations and they were sharing one column, which is how 10 of 26 models
+    came to look like confident non-recall when they were in fact silent.
+
+    An id is one token, so whitespace separates a refusal from an attempt. What
+    counts as id-shaped comes from `build_id_profile`, computed once per run.
+    Where the column holds uuids at all, anything `uuid.UUID` parses is an
+    attempt, and where it holds nothing else that is the whole test. Otherwise a
+    reply has to use one of the alphabets the real ids use and be at least as
+    long as the shortest of them. Eighteen digits therefore fail against a
+    column of uuids and mixed-case keys, where a plain length test passed them.
+
+    A one-word refusal ("unknown") still lands in `degenerate` rather than
+    `prose`. That is the remaining soft edge, and `chars` is recorded per row so
+    the split can be redone without paying for another run.
+    """
+    g = (gen or "").strip()
+    ans = str(answer or "")
+    if not g:
+        return "empty"
+    if ans and ans.lower() in g.lower():
+        return "hit"
+    if len(g.split()) > 1:
+        return "prose"
+    if profile.get("any_uuid"):
+        # Before the signature test, not only when the column is all uuids: hex
+        # is case-insensitive, so an uppercase reply has a different signature
+        # from a lowercase sample and a valid uuid would read as degenerate.
+        try:
+            uuid.UUID(g)
+            return "id_shaped"
+        except ValueError:
+            pass
+    if profile.get("all_uuid"):
+        return "degenerate"      # nothing else in this column to look like
+    shaped = (_id_signature(g) in profile.get("signatures", frozenset())
+              and len(g) >= profile.get("min_len", 0))
+    return "id_shaped" if shaped else "degenerate"
 
 
 def similarity(a: str, b: str) -> float:
@@ -286,6 +385,10 @@ def main():
         items += (load_spider(args.sample, "train") + load_spider(args.sample, "validation")
                   + load_spider(args.sample, "test"))
 
+    # One length threshold for the whole run, not one per row: see entity_shape.
+    id_profile = build_id_profile(it["answer"] for it in items
+                                  if it["probe"] == "entity_recovery")
+
     done = set()
     if args.out.exists():
         for line in args.out.read_text().splitlines():
@@ -308,12 +411,19 @@ def main():
                                        .replace("<<NAME>>", it["name"]))
                 gen = _complete(m, prompt, max_tokens=100)
                 score = 1.0 if str(it["answer"]).lower() in gen.lower() else 0.0
+                shape = entity_shape(gen, it["answer"], id_profile)
+                chars = len(gen.strip())
             else:
                 gen = _complete(m, COMPLETION_PROMPT.replace("<<DATASET>>", it["dataset"])
                                                      .replace("<<PREFIX>>", it["prefix"]))
                 score = similarity(gen, it["tail"])
-            return {"probe": it["probe"], "id": it["id"], "model": m,
-                    "score": round(score, 4), "generation": gen[:500]}
+                shape = chars = None
+            row = {"probe": it["probe"], "id": it["id"], "model": m,
+                   "score": round(score, 4), "generation": gen[:500]}
+            if shape is not None:
+                row["shape"] = shape
+                row["chars"] = chars
+            return row
         except Exception as e:  # noqa: BLE001 — record and move on
             return {"probe": it["probe"], "id": it["id"], "model": m,
                     "score": None, "error": str(e)[:200]}
@@ -332,11 +442,14 @@ def main():
 
     # summary
     by = defaultdict(list)
+    shapes = defaultdict(Counter)
     for line in args.out.read_text().splitlines():
         if line.strip():
             r = json.loads(line)
             if r.get("score") is not None and r["model"] in models:
                 by[(r["model"], r["probe"])].append(r["score"])
+                if r["probe"] == "entity_recovery" and r.get("shape"):
+                    shapes[r["model"]][r["shape"]] += 1
     probes = ["ours_completion", "entity_recovery", "spider_control",
               "spider_dev_control", "spider_test_control"]
     print(f"\n{'model':24}" + "".join(f"{p:>18}" for p in probes))
@@ -346,6 +459,24 @@ def main():
             v = by.get((m, p))
             cells.append(f"{sum(v)/len(v):>17.3f} " if v else f"{'--':>18}")
         print(f"{m:24}" + "".join(cells))
+
+    # Entity-recovery output shapes. A row of zeros is only evidence of
+    # non-recall to the extent the model produced something to score, so the
+    # shape counts travel with the score rather than being recoverable only by
+    # re-reading the generations.
+    if shapes:
+        print(f"\n{'model':24}" + "".join(f"{k:>12}" for k in SHAPES))
+        for m in models:
+            c = shapes.get(m)
+            if not c:
+                continue
+            print(f"{m:24}" + "".join(f"{c.get(k, 0):>12}" for k in SHAPES))
+        mute = {m: c for m, c in shapes.items()
+                if c.get("empty", 0) + c.get("degenerate", 0) > sum(c.values()) / 2}
+        if mute:
+            print(f"\n{len(mute)} of {len(shapes)} models returned mostly empty or "
+                  f"degenerate output, so their zeros are weak evidence: "
+                  f"{', '.join(sorted(mute))}")
 
 
 if __name__ == "__main__":
