@@ -150,16 +150,34 @@ class _GCPAuth(httpx.Auth):
 
     def __init__(self):
         self._creds = None
+        # Serialises resolve-and-refresh. `refresh()` mutates the credential in
+        # place, so without this a worker can read `.token` while another is
+        # midway through replacing it and send a torn value.
+        self._lock = threading.Lock()
+
+    def _token(self, force: bool = False) -> str:
+        with self._lock:
+            if self._creds is None:
+                self._creds, _ = google.auth.default(
+                    scopes=["https://www.googleapis.com/auth/cloud-platform"]
+                )
+            if force or not self._creds.valid:
+                self._creds.refresh(google.auth.transport.requests.Request())
+            return self._creds.token
 
     def auth_flow(self, request):
-        if self._creds is None:
-            self._creds, _ = google.auth.default(
-                scopes=["https://www.googleapis.com/auth/cloud-platform"]
-            )
-        if not self._creds.valid:
-            self._creds.refresh(google.auth.transport.requests.Request())
-        request.headers["Authorization"] = f"Bearer {self._creds.token}"
-        yield request
+        # Retry once on 401 with a forced refresh. `.valid` is not sufficient:
+        # a token can be accepted locally and rejected by Vertex, which answers
+        # 401 ACCESS_TOKEN_TYPE_UNSUPPORTED rather than anything expiry-shaped.
+        # The retry layer cannot cover this — 401 is deliberately not in
+        # _RETRYABLE_STATUS, since for every other provider it means a bad key —
+        # so a lost token costs the whole question. Measured: 6 of 201 questions
+        # on a run that outlived one token lifetime.
+        request.headers["Authorization"] = f"Bearer {self._token()}"
+        response = yield request
+        if response.status_code == 401:
+            request.headers["Authorization"] = f"Bearer {self._token(force=True)}"
+            yield request
 
 # ── Clients ───────────────────────────────────────────────────────────────────
 
