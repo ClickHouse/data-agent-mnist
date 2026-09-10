@@ -16,13 +16,16 @@ from paths import DATA
 FM_LABELS = DATA / "text2sqlbench-synthetic/fm_labels.jsonl"
 FMS = ["FM1", "FM2", "FM3", "FM4", "FM5"]
 
-# Display names + board order (overall pass rate, desc) — keep in sync with 09.
-ORDER = ["opus48", "fable5", "kimi-k3", "gpt-5.6", "gpt-5.5", "opus47", "opus5", "qwen3.8-max", "sonnet5",
-         "sonnet46", "glm-5.2", "deepseek-v4-pro-0813", "gemini-2.5-pro",
-         "deepseek-v4-flash-0731", "haiku45", "kimi-k2.6", "o4-mini",
-         "qwen3-coder-480b", "gemini-3.5-flash", "kimi-k2-thinking", "gemma-4-31b", "deepseek-v3.2",
-         "gemini-3.1-pro-preview", "gemini-2.5-flash", "gpt-4.1",
-         "qwen3-coder-30b", "gemini-3.7-flash"]
+# Board order (pass rate at the 60-turn budget, desc). A model that has failure
+# labels but is missing here used to vanish from the table without a word, so
+# compute() now refuses instead. Display names are kept in sync with 09.
+ORDER = ["fable51", "deepseek-v4-pro-0813", "kimi-k3", "gemini-3.1-pro-preview",
+         "fable5", "opus48", "gpt-5.5", "qwen3.8-max", "kimi-k2.6", "glm-5.2",
+         "gpt-5.6", "opus5", "gemini-3.8-flash", "sonnet46",
+         "deepseek-v4-flash-0731", "gemini-3.7-flash", "opus47", "sonnet5",
+         "deepseek-v3.2", "haiku45", "gemma-4-31b", "kimi-k2-thinking", "o4-mini",
+         "gemini-3.5-flash", "gemini-2.5-pro", "qwen3-coder-480b",
+         "qwen3-coder-30b", "gemini-2.5-flash", "gpt-4.1"]
 NAMES = {"opus48": "Claude Opus 4.8", "opus47": "Claude Opus 4.7", "gpt-5.6": "GPT-5.6",
          "opus5": "Claude Opus 5",
          "fable5": "Claude Fable 5", "kimi-k3": "Kimi K3", "kimi-k2.6": "Kimi K2.6",
@@ -33,6 +36,8 @@ NAMES = {"opus48": "Claude Opus 4.8", "opus47": "Claude Opus 4.7", "gpt-5.6": "G
          "gemini-2.5-pro": "Gemini 2.5 Pro", "haiku45": "Claude Haiku 4.5",
          "deepseek-v4-flash": "DeepSeek V4 Flash (Apr preview)", "kimi-k2-thinking": "Kimi K2 Thinking",
          "o4-mini": "o4-mini", "gemini-3.5-flash": "Gemini 3.5 Flash",
+         "gemini-3.8-flash": "Gemini 3.8 Flash",
+         "fable51": "Claude Fable 5.1",
          "qwen3-coder-480b": "Qwen3-Coder 480B", "gemini-3.1-pro-preview": "Gemini 3.1 Pro (prev.)",
          "deepseek-v3.2": "DeepSeek V3.2", "gemma-4-31b": "Gemma 4 31B", "gpt-4.1": "GPT-4.1",
          "gemini-2.5-flash": "Gemini 2.5 Flash", "gemini-3.7-flash": "Gemini 3.7 Flash",
@@ -41,17 +46,41 @@ NAMES = {"opus48": "Claude Opus 4.8", "opus47": "Claude Opus 4.7", "gpt-5.6": "G
          "nova-micro": "Amazon Nova Micro"}
 
 
+def _retired() -> set[str]:
+    """Retired model keys, when the registry is readable.
+
+    This script is offline by design and the published mirror ships only
+    config/models.example.yaml, so importing the registry at module scope would
+    break it there. Without a registry every labelled key has to be in ORDER,
+    which is the stricter reading and the right one when we cannot tell a
+    retired candidate from a forgotten one.
+    """
+    try:
+        from registry import RETIRED_CANDIDATES
+    except (ImportError, FileNotFoundError):
+        return set()
+    return set(RETIRED_CANDIDATES)
+
+
 def compute():
     cnt = defaultdict(Counter)
     for line in FM_LABELS.read_text().splitlines():
         if line.strip():
             r = json.loads(line)
             cnt[r["model"]][r["fm"]] += 1
+    retired = _retired()
+    missing = sorted(m for m in cnt if m not in ORDER and m not in retired)
+    if missing:
+        raise SystemExit(
+            f"fm_labels.jsonl has models with no place in ORDER: {', '.join(missing)}.\n"
+            f"  Add them to ORDER (and to NAMES) in this file, in board order.")
     rows = []
     for m in ORDER:
         c = cnt[m]
         tot = sum(c.values())
-        rows.append((NAMES.get(m, m), [100 * c[f] / tot if tot else 0 for f in FMS], tot))
+        if not tot:            # on the board, not labelled in this corpus
+            continue
+        rows.append((NAMES.get(m, m), [100 * c[f] / tot for f in FMS], tot))
     return rows
 
 
