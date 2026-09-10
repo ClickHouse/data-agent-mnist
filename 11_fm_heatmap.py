@@ -13,7 +13,6 @@ import json
 from collections import Counter, defaultdict
 from pathlib import Path
 from paths import DATA
-from registry import RETIRED_CANDIDATES
 FM_LABELS = DATA / "text2sqlbench-synthetic/fm_labels.jsonl"
 FMS = ["FM1", "FM2", "FM3", "FM4", "FM5"]
 
@@ -47,13 +46,30 @@ NAMES = {"opus48": "Claude Opus 4.8", "opus47": "Claude Opus 4.7", "gpt-5.6": "G
          "nova-micro": "Amazon Nova Micro"}
 
 
+def _retired() -> set[str]:
+    """Retired model keys, when the registry is readable.
+
+    This script is offline by design and the published mirror ships only
+    config/models.example.yaml, so importing the registry at module scope would
+    break it there. Without a registry every labelled key has to be in ORDER,
+    which is the stricter reading and the right one when we cannot tell a
+    retired candidate from a forgotten one.
+    """
+    try:
+        from registry import RETIRED_CANDIDATES
+    except (ImportError, FileNotFoundError):
+        return set()
+    return set(RETIRED_CANDIDATES)
+
+
 def compute():
     cnt = defaultdict(Counter)
     for line in FM_LABELS.read_text().splitlines():
         if line.strip():
             r = json.loads(line)
             cnt[r["model"]][r["fm"]] += 1
-    missing = sorted(m for m in cnt if m not in ORDER and m not in RETIRED_CANDIDATES)
+    retired = _retired()
+    missing = sorted(m for m in cnt if m not in ORDER and m not in retired)
     if missing:
         raise SystemExit(
             f"fm_labels.jsonl has models with no place in ORDER: {', '.join(missing)}.\n"
