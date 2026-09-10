@@ -44,6 +44,8 @@ NAMES = {"opus48": "Claude Opus 4.8", "opus47": "Claude Opus 4.7", "gpt-5.6": "G
          "gemini-2.5-pro": "Gemini 2.5 Pro", "haiku45": "Claude Haiku 4.5",
          "deepseek-v4-flash": "DeepSeek V4 Flash (Apr preview)", "kimi-k2-thinking": "Kimi K2 Thinking",
          "o4-mini": "o4-mini", "gemini-3.5-flash": "Gemini 3.5 Flash",
+         "gemini-3.8-flash": "Gemini 3.8 Flash",
+         "fable51": "Claude Fable 5.1",
          "qwen3-coder-480b": "Qwen3-Coder 480B", "gemini-3.1-pro-preview": "Gemini 3.1 Pro (prev.)",
          "deepseek-v3.2": "DeepSeek V3.2", "gemma-4-31b": "Gemma 4 31B", "gpt-4.1": "GPT-4.1",
          "gemini-2.5-flash": "Gemini 2.5 Flash", "gemini-3.7-flash": "Gemini 3.7 Flash",
