@@ -598,6 +598,28 @@ def run_candidate_bedrock(
             "usage": usage.as_dict()}
 
 
+def emits_inline_reasoning(model_id: str) -> bool:
+    """Does this model spend output tokens thinking before it says anything?
+
+    Extracted because it was written twice and the copies drifted.
+    `run_candidate_openai_compat` had the full list; `12_contamination_probe`
+    had a three-term version missing every Gemini, so the probe gave
+    gemini-3.1-pro 100 output tokens where the eval gives it 8192, and the model
+    either truncated mid-thought or emitted a stub. That looked like a model
+    declining to recall an id and was an unfunded budget.
+
+    The registry's `reasoning: true` flag is the forward-looking half; the
+    substring list is history, kept so no board candidate's budget changes.
+    """
+    return (model_id.startswith(("o", "gpt-5"))
+            or model_id in BEDROCK_REASONING
+            or model_id.startswith("google/gemini-2.5-pro")
+            or model_id.startswith("google/gemini-3")
+            or "deepseek-v4" in model_id
+            or "kimi" in model_id
+            or "qwen3p8-max" in model_id)
+
+
 def run_candidate_openai_compat(
     nl_question: str,
     model_id: str,
@@ -623,11 +645,7 @@ def run_candidate_openai_compat(
     # model whose id matches nothing in the list (glm-5p2 in the example config)
     # was given the reasoning floor as a judge and the 2048 cap as a candidate,
     # from the same flag.
-    _big          = (_is_reasoning or model_id in BEDROCK_REASONING
-                     or model_id.startswith("google/gemini-2.5-pro")
-                     or model_id.startswith("google/gemini-3") or "deepseek-v4" in model_id
-                     or "kimi" in model_id or "qwen3p8-max" in model_id)
-    _token_limit  = 8192 if _big else 2048
+    _token_limit  = 8192 if emits_inline_reasoning(model_id) else 2048
     messages     = [
         {"role": "system", "content": system_prompt},
         {"role": "user",   "content": nl_question},
