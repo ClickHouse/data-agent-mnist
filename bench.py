@@ -48,7 +48,7 @@ from registry import (  # noqa: E402
 
 # Overridable for sensitivity sweeps: the budget is never announced to
 # the model, so runs at different budgets share a distribution over early turns.
-MAX_TURNS   = int(os.environ.get("DAM_MAX_TURNS", "10"))
+MAX_TURNS   = int(os.environ.get("DAM_MAX_TURNS", "60"))
 EVAL_SEED   = 42
 
 # Error marker for a turn truncated by the output-token cap (Messages API
