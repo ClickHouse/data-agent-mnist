@@ -649,12 +649,14 @@ def run_candidate_openai_compat(
     system_prompt: str,
 ) -> dict:
     start        = time.time()
-    # o-series and gpt-5.x are reasoning models -> max_completion_tokens; gemini 2.5-pro
-    # and gemini 3.x, deepseek-v4, and Kimi (K2 Thinking / K2.6) are thinking models that
-    # emit reasoning inline -> need a larger budget so reasoning tokens don't starve the
-    # answer (at 2048 Kimi K2.6 truncated mid-reasoning on 18% of questions before it could
-    # even issue a query).
-    _is_reasoning = model_id.startswith("o") or model_id.startswith("gpt-5")
+    # o-series, gpt-5.x, and anything the registry flags `reasoning` take
+    # max_completion_tokens rather than max_tokens. gemini 2.5-pro and gemini 3.x,
+    # deepseek-v4, and Kimi (K2 Thinking / K2.6) are thinking models that emit
+    # reasoning inline -> need a larger budget so reasoning tokens don't starve the
+    # answer (at 2048 Kimi K2.6 truncated mid-reasoning on 18% of questions before it
+    # could even issue a query).
+    _is_reasoning = (model_id.startswith("o") or model_id.startswith("gpt-5")
+                     or model_id in BEDROCK_REASONING)
     _token_kwarg  = "max_completion_tokens" if _is_reasoning else "max_tokens"
     # qwen3p8-max emits no inline thinking but is verbose enough to hit a 2048 cap
     # on plain prose (observed finish_reason=length in the pre-trust probe).

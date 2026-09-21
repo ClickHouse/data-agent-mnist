@@ -123,24 +123,26 @@ def _complete(model_key: str, prompt: str, max_tokens: int = 300) -> str:
         raise KeyError(model_key)
     # Budget and token-kwarg are separate concerns. Kimi (K2 Thinking / K2.6) emits
     # reasoning before visible text and needs the larger budget or the completion
-    # truncates inside the thinking block (observed: empty generations at 300 tokens);
-    # but only o*/gpt-5* take OpenAI's max_completion_tokens — Kimi is served over
-    # Fireworks/Mantle, which use max_tokens (matching run_candidate_openai_compat).
-    _openai_reasoning = model_id.startswith(("o", "gpt-5"))
+    # truncates inside the thinking block (observed: empty generations at 300 tokens).
+    # o*/gpt-5* and any registry-flagged reasoning model take OpenAI's
+    # max_completion_tokens; Kimi is served over Fireworks/Mantle, which use
+    # max_tokens. The predicate matches run_candidate_openai_compat.
     # Shared with the eval so the probe cannot under-budget a model the eval
     # budgets correctly. The local three-term version missed every Gemini, which
     # gave gemini-3.1-pro 100 output tokens against the eval's 8192.
+    _completion_tokens = model_id.startswith(("o", "gpt-5")) or model_id in bench.BEDROCK_REASONING
     _big = bench.emits_inline_reasoning(model_id)
-    _token_kwarg = "max_completion_tokens" if _openai_reasoning else "max_tokens"
+    _token_kwarg = "max_completion_tokens" if _completion_tokens else "max_tokens"
     kwargs = {_token_kwarg: max(max_tokens, 2048) if _big else max_tokens}
-    if _openai_reasoning:
+    if _completion_tokens:
         # Same design intent as the Gemma 4, Anthropic and qwen3p8-max branches
         # above: the probe measures completion, not deliberation. Without this,
         # gpt-5.5 spent all 2048 tokens reasoning and returned an empty string on
         # every entity call (finish_reason "length", reasoning_tokens 2048), so
         # its 25 zeros were the instrument, not the model. The o-series rejects
         # "none" and floors at "low", which leaves reasoning on but bounded: o4-mini
-        # spent 448 tokens and still answered.
+        # spent 448 tokens and still answered. gpt-5.x and gpt-6-astra take "none"
+        # (verified on the gateway), so a reasoning-flagged id cannot starve the floor.
         kwargs["reasoning_effort"] = "low" if model_id.startswith("o") else "none"
     if "qwen3p8-max" in model_id:
         # Its separate-channel reasoning is unbounded on completion-style prompts
