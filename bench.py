@@ -5,6 +5,7 @@ ch_query and system_prompt are passed as arguments to keep DB/schema
 concerns in the notebook and infrastructure concerns here.
 """
 import json
+import math
 import os
 import random
 import re
@@ -14,7 +15,7 @@ import time
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from typing import Callable, Iterable
+from typing import Callable, Iterable, NamedTuple
 
 import boto3
 import botocore.auth
@@ -44,6 +45,7 @@ from registry import (  # noqa: E402
     JUDGE_MODEL_IDS, JUDGE_PROVIDER, JUDGE_SEATS, MANTLE_CANDIDATES,
     MANTLE_RESPONSES_CANDIDATES, OPENAI_CANDIDATES, OPENAI_RESPONSES_ONLY,
     RETIRED_CANDIDATES,
+    SCORE_ABS_TOL, SCORE_REL_TOL, SCORE_ROUND_DECIMALS,
 )
 
 # Overridable for sensitivity sweeps: the budget is never announced to
@@ -61,8 +63,27 @@ ERR_MAX_OUTPUT_TOKENS = "max output tokens"
 
 
 
-# Result-set agreement tolerance: catches 59K vs 70K, ignores rounding.
-AGREEMENT_TOL = 0.05
+# Result-set numeric agreement policy. Two numbers agree when they are within
+# the absolute OR the relative tolerance (math.isclose). Values are first rounded
+# to `round_decimals` places, or kept at full precision when it is None.
+#
+# The board is a currency warehouse, so the default rounds to cents and allows 5%
+# relative drift: it catches 59K vs 70K and ignores rounding. That default is
+# wrong for a warehouse of concentrations, p-values or dose-response, where a
+# wrong answer by a factor of two sits inside 5% and two small values both round
+# to 0.00. A non-currency operator overrides these in the `scoring` section of
+# the model config (see config/models.example.yaml); the values come from
+# registry.py so annotate-time and eval-time share one policy.
+class ComparisonPolicy(NamedTuple):
+    round_decimals: int | None
+    rel_tol: float
+    abs_tol: float
+
+
+SCORING = ComparisonPolicy(SCORE_ROUND_DECIMALS, SCORE_REL_TOL, SCORE_ABS_TOL)
+
+# Back-compat alias: the sensitivity scripts read bench.AGREEMENT_TOL.
+AGREEMENT_TOL = SCORING.rel_tol
 
 # ── Tool schemas ──────────────────────────────────────────────────────────────
 
@@ -1184,8 +1205,13 @@ def is_exploratory(sql: str) -> bool:
 
 # ── Majority-vote ground truth ───────────────────────────────────────
 
-def _parse_result(result_str):
-    """Parse a result-set string into normalized, sorted rows (numbers rounded)."""
+def _parse_result(result_str, decimals: int | None = SCORING.round_decimals):
+    """Parse a result-set string into normalized, sorted rows.
+
+    Numbers are rounded to `decimals` places when it is not None (the board rounds
+    to cents); None keeps full precision so small-magnitude values are not
+    flattened before comparison. Non-numeric cells are kept as strings.
+    """
     if not result_str or result_str.startswith("Error:") or result_str == "(empty result)":
         return []
     rows = []
@@ -1193,7 +1219,7 @@ def _parse_result(result_str):
         try:
             _row, _norm = json.loads(_ln), {}
             for k, v in _row.items():
-                try:    _norm[k.lower().strip()] = round(float(v), 2)
+                try:    _norm[k.lower().strip()] = round(float(v), decimals) if decimals is not None else float(v)
                 except: _norm[k.lower().strip()] = str(v)
             rows.append(_norm)
         except Exception:
@@ -1255,11 +1281,12 @@ def _link_columns(keys_a: list, keys_b: list) -> dict:
         return _COL_LINK_CACHE.setdefault((ka, kb), mapping)
 
 
-def _results_match(res_a: str, res_b: str, tol: float = AGREEMENT_TOL) -> bool:
-    """Whether two result-set strings are equivalent within `tol` (rounding-safe).
+def _results_match(res_a: str, res_b: str, policy: ComparisonPolicy = SCORING) -> bool:
+    """Whether two result-set strings are equivalent under `policy` (rounding-safe).
     Columns are entity-linked first so differently-aliased value columns are still
-    compared by value, not silently skipped."""
-    a, b = _parse_result(res_a), _parse_result(res_b)
+    compared by value, not silently skipped. Two numbers agree when they are within
+    the policy's absolute OR relative tolerance; the currency default is 5% relative."""
+    a, b = _parse_result(res_a, policy.round_decimals), _parse_result(res_b, policy.round_decimals)
     if not a and not b:
         return True
     if not a or not b or len(a) != len(b):
@@ -1282,7 +1309,7 @@ def _results_match(res_a: str, res_b: str, tol: float = AGREEMENT_TOL) -> bool:
             x, y = ra[k], rb[k]
             try:
                 fx, fy = float(x), float(y)
-                if abs(fx - fy) / max(abs(fx), abs(fy), 1e-9) > tol:
+                if not math.isclose(fx, fy, rel_tol=policy.rel_tol, abs_tol=policy.abs_tol):
                     return False
             except (ValueError, TypeError):
                 if str(x) != str(y):

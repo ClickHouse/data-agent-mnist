@@ -164,3 +164,21 @@ if LINKER not in MODELS and LINKER not in JUDGE_MODEL_IDS:
         f"not in judges.extra_ids. Use one of: {', '.join(sorted(MODELS))}")
 
 ANNOTATORS: dict[str, str] = {k: MODELS[k]["id"] for k in _CFG.get("annotators", [])}
+
+# Result-set numeric comparison policy. Optional: absent, it defaults to the
+# board's currency behaviour (round to cents, 5% relative, no absolute floor), so
+# existing configs and the frozen board are unchanged. A non-currency warehouse
+# sets `round_decimals` (null keeps full precision), `rel_tol` and `abs_tol` here;
+# bench.py builds one ComparisonPolicy from them and uses it at both annotate and
+# eval time. Two numbers agree when within the absolute OR the relative tolerance.
+_S = _CFG.get("scoring") or {}
+SCORE_ROUND_DECIMALS: int | None = _S.get("round_decimals", 2)
+SCORE_REL_TOL: float = float(_S.get("rel_tol", 0.05))
+SCORE_ABS_TOL: float = float(_S.get("abs_tol", 0.0))
+if SCORE_ROUND_DECIMALS is not None and not isinstance(SCORE_ROUND_DECIMALS, int):
+    raise ValueError(
+        f"{CONFIG_PATH}: scoring.round_decimals must be an integer or null, "
+        f"got {SCORE_ROUND_DECIMALS!r}")
+if SCORE_REL_TOL < 0 or SCORE_ABS_TOL < 0:
+    raise ValueError(
+        f"{CONFIG_PATH}: scoring.rel_tol and scoring.abs_tol must be non-negative")

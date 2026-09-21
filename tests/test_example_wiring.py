@@ -374,3 +374,43 @@ def test_temperature_is_withheld_from_reasoning_judges(monkeypatch):
     with pytest.raises(Exception):
         bench._judge_complete(reasoning[0], "hi", 256, temperature=0)
     assert "temperature" not in seen, "would 400 on a reasoning model"
+
+
+# ── the numeric comparator ───────────────────────────────────────────────────────
+# The comparator was currency-shaped: round every number to cents, then allow 5%
+# relative drift. Right for money, wrong for a warehouse of concentrations,
+# p-values or counts, where the harness ships public and an adopter points it at
+# their own data. Same column names on both sides, so the linker short-circuits
+# and none of these hit a model.
+
+def test_currency_default_reproduces_the_board_behaviour():
+    """The default policy must not move: it is what the frozen board was scored on."""
+    assert bench._results_match('{"total":100}', '{"total":104}'), "4% is inside 5%"
+    assert not bench._results_match('{"total":59000}', '{"total":70000}'), "19% is outside 5%"
+
+
+def test_default_flattens_small_magnitude_values():
+    """The bug, pinned. Under the currency default a p-value wrong by 2x passes,
+    because both operands round to 0.00 before the tolerance test even runs."""
+    assert bench._results_match('{"p_value":0.0001}', '{"p_value":0.0002}')
+
+
+def test_precise_policy_separates_small_magnitude_values():
+    """Full precision + a small absolute tolerance is what a non-currency operator
+    configures, and it scores the same pair correctly."""
+    precise = bench.ComparisonPolicy(round_decimals=None, rel_tol=0.0, abs_tol=1e-9)
+    assert not bench._results_match('{"p_value":0.0001}', '{"p_value":0.0002}', precise)
+    assert bench._results_match('{"p_value":0.0001}', '{"p_value":0.0001}', precise)
+
+
+def test_absolute_tolerance_catches_a_relative_false_positive():
+    """100 vs 104 is a pass at 5% relative and a fail at a 0.5 absolute tolerance,
+    so the two knobs are independently reachable."""
+    counts = bench.ComparisonPolicy(round_decimals=0, rel_tol=0.0, abs_tol=0.5)
+    assert not bench._results_match('{"n":100}', '{"n":104}', counts)
+    assert bench._results_match('{"n":100}', '{"n":100}', counts)
+
+
+def test_parse_result_rounding_is_configurable():
+    assert bench._parse_result('{"x":0.0001}', decimals=2) == [{"x": 0.0}]
+    assert bench._parse_result('{"x":0.0001}', decimals=None) == [{"x": 0.0001}]
