@@ -1,0 +1,52 @@
+# Example name lists for the anonymiser.
+#
+# Copy to config/names.yaml, or point DAM_NAMES_CONFIG at your own file. Every
+# section must be present. The names below are invented; replace them with the real
+# customer, employee and service names your extractor misses.
+#
+# The anonymiser derives each fake deterministically from the real value, so a name
+# only needs to appear here if the extractor did not already catch it in the source.
+
+# Org names the extractor misses. Scrubbed whole-word.
+orgs:
+- Globex
+- Initech
+- Contoso
+- Umbrella Industries
+- Hooli
+
+# Service instance names. Kebab/snake-case, scrubbed whole-word so a generic rule
+# cannot clobber matching SQL identifiers.
+services:
+- acme-prod-01
+- sandbox-uat
+
+# Org names that are also common English words. Scrubbed case-sensitively, so the
+# capitalised company goes but the lowercase word is left alone.
+case_sensitive_orgs:
+- Apex
+- Summit
+
+# Person names the extractor misses. Only add names confirmed present in the source
+# questions; a Faker substitute in the output is not one.
+people:
+- Alex Rivera
+- Sam Okoye
+- Priya Menon
+
+# Person names scrubbed case-sensitively and whole-word: short names, or common-word
+# first names where only the capitalised contact use should scrub.
+case_sensitive_people:
+- Ed
+
+# Trace ids whose operational figures are scaled by one deterministic per-trace
+# factor. Board-specific, so an adopter supplies their own; empty by default.
+scale_figures: []
+
+# Per-question post-scrub edits, keyed by trace id, each a [pattern, replacement]
+# applied after the name scrub. Board-specific, so empty by default. Example shape:
+#   question_overrides:
+#     <trace_id>:
+#     - - '\bacme weave\b'
+#       - a competing product
+question_overrides: {}
