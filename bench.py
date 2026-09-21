@@ -1232,13 +1232,15 @@ def _parse_result(result_str, decimals: int | None = SCORING.round_decimals):
 _COL_LINK_CACHE: dict = {}   # (tuple(keys_a), tuple(keys_b)) -> {a_col: b_col}
 _COL_LINK_LOCK  = threading.Lock()
 _COL_LINK_WARNED = False
+_COL_LINK_EMPTY_WARNED = False   # parsed-but-empty mapping seen (not a linker error)
 
 
 def _link_columns(keys_a: list, keys_b: list) -> dict:
     """Map each column in A to the column in B that means the same quantity, so
     aliasing (e.g. total_dollar_usage <-> monthly_spend) doesn't hide a real value
-    comparison. Identity when the column sets match (no model call); otherwise a
-    cached Haiku call (temp 0 -> reproducible). Falls back to shared names on error.
+    comparison. Identity when one column set contains the other (no model call);
+    otherwise a cached Haiku call (temp 0 -> reproducible). Falls back to shared
+    names on error; logs a parsed-but-empty mapping instead of scoring it blind.
 
     The eval loop calls this from many worker threads. The Haiku call runs OUTSIDE
     the lock so column-linking stays concurrent, but the cache read and write are
@@ -1247,8 +1249,14 @@ def _link_columns(keys_a: list, keys_b: list) -> dict:
     byte-guaranteed across calls, so last-writer-wins could otherwise hand different
     threads different mappings for the same key)."""
     ka, kb = tuple(keys_a), tuple(keys_b)
-    if set(ka) == set(kb):
-        return {k: k for k in ka}
+    sa, sb = set(ka), set(kb)
+    # Identity when one column set contains the other (no model call): the smaller
+    # set's columns all exist on the other side, so mapping each to itself scores the
+    # SELECT-subset case (candidate returns the ground truth's columns plus extras)
+    # on the ground truth's columns alone, instead of sending a wide list to the
+    # model and reading its truncated, valid-but-empty reply as "no columns match".
+    if sa <= sb or sb <= sa:
+        return {k: k for k in (ka if sa <= sb else kb)}
     with _COL_LINK_LOCK:
         if (ka, kb) in _COL_LINK_CACHE:
             return _COL_LINK_CACHE[(ka, kb)]
@@ -1260,10 +1268,20 @@ def _link_columns(keys_a: list, keys_b: list) -> dict:
         'Respond ONLY with JSON: {"mapping": {"<a_col>": "<b_col or null>"}}'
     )
     try:
-        text = _judge_complete(LINKER, prompt, max_tokens=256, temperature=0)
+        # Generous budget: a truncated reply parses as valid-but-empty JSON.
+        text = _judge_complete(LINKER, prompt, max_tokens=1024, temperature=0)
         m   = re.search(r"\{.*\}", text, re.DOTALL)
         raw = json.loads(m.group()).get("mapping", {}) if m else {}
-        mapping = {a: b for a, b in raw.items() if a in set(ka) and b in set(kb)}
+        mapping = {a: b for a, b in raw.items() if a in sa and b in sb}
+        if not mapping:
+            # Still a mismatch (no shared meaning), but say so once: on very wide
+            # non-subset sets an empty mapping can be a truncation artifact.
+            global _COL_LINK_EMPTY_WARNED
+            if not _COL_LINK_EMPTY_WARNED:
+                _COL_LINK_EMPTY_WARNED = True
+                print(f"WARNING: column linker ({LINKER}) returned an empty mapping "
+                      f"for {len(ka)}x{len(kb)} columns; scoring as a mismatch.",
+                      file=sys.stderr)
     except Exception as e:
         # Loudly. The fallback matches identical names only, so aliased columns
         # stop linking and equivalent answers score WRONG. That is a silent change

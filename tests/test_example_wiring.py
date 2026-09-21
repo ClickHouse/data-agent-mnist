@@ -358,6 +358,46 @@ def test_the_linker_pins_temperature_zero(monkeypatch):
     assert seen["temperature"] == 0, "linker no longer pins temperature"
 
 
+def test_the_linker_identity_maps_a_subset_without_a_model_call(monkeypatch):
+    """When one column set contains the other, map the shared columns by identity
+    with no model call. A wide result set otherwise goes to the linker, whose reply
+    can truncate to valid-but-empty JSON, and an empty mapping scores as a mismatch,
+    so an equivalent answer that returned extra columns fails."""
+    monkeypatch.setattr(bench, "_COL_LINK_CACHE", {})
+
+    def boom(*a, **k):
+        raise AssertionError("a subset must not call the linker model")
+
+    monkeypatch.setattr(bench, "_judge_complete", boom)
+    identity = {"region": "region", "spend": "spend"}
+    assert bench._link_columns(["region", "spend", "rank"], ["region", "spend"]) == identity
+    assert bench._link_columns(["region", "spend"], ["region", "spend", "rank"]) == identity
+
+
+def test_results_match_credits_a_wide_subset_answer(monkeypatch):
+    """The paying case: same values, candidate returns an extra column. Scores as a
+    match, on the ground truth's columns alone, with no linker call."""
+    monkeypatch.setattr(bench, "_COL_LINK_CACHE", {})
+
+    def boom(*a, **k):
+        raise AssertionError("a subset must not call the linker model")
+
+    monkeypatch.setattr(bench, "_judge_complete", boom)
+    gt        = '{"region": "us", "spend": 100}'
+    candidate = '{"region": "us", "spend": 100, "rank": 1}'
+    assert bench._results_match(candidate, gt) is True
+
+
+def test_the_linker_logs_a_parsed_empty_mapping(monkeypatch, capsys):
+    """A valid-but-empty reply still scores as a mismatch, but must not be silent:
+    on wide non-subset sets it can be truncation, not a real 'nothing matches'."""
+    monkeypatch.setattr(bench, "_COL_LINK_EMPTY_WARNED", False)
+    monkeypatch.setattr(bench, "_COL_LINK_CACHE", {})
+    monkeypatch.setattr(bench, "_judge_complete", lambda *a, **k: '{"mapping": {}}')
+    assert bench._link_columns(["spend_usd"], ["total_spend"]) == {}
+    assert "empty mapping" in capsys.readouterr().err
+
+
 def test_temperature_is_withheld_from_reasoning_judges(monkeypatch):
     """They reject anything but their default, so an explicit 0 is a 400."""
     seen = {}

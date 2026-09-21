@@ -101,7 +101,8 @@ def clt_stats(mat: np.ndarray):
 
 
 def linker_firing(rows, annotated_path: Path = ANNOTATED) -> dict:
-    """Fraction of compared (gt, candidate) result pairs whose column sets differ.
+    """Fraction of compared (gt, candidate) result pairs where neither column set
+    contains the other, so the equivalence check has to call the linker.
     Ground-truth result sets live in annotated.jsonl, keyed by trace_id."""
     gt_by_trace = {a["trace_id"]: a.get("gt_results") or []
                    for a in (json.loads(l) for l in annotated_path.read_text().splitlines() if l.strip())}
@@ -131,15 +132,15 @@ def linker_firing(rows, annotated_path: Path = ANNOTATED) -> dict:
                     continue
                 cc, cn = cp
                 # Mirror annotators_agree's any()-short-circuit: among the row-count-equal
-                # GT alternatives, if ANY shares this candidate result's column set the
-                # identity fast-path satisfies the match and no linker call is made;
-                # only when none do does the equivalence check fall to the linker. Counting
-                # per row-count-equal PAIR (the earlier version) over-counted linker use,
-                # since one identity-matching GT alternative suppresses it in the eval.
+                # GT alternatives, if ANY has a column set that contains or is contained by
+                # this candidate's, the identity fast-path satisfies the match and no linker
+                # call is made; only when none do does the equivalence check fall to the
+                # linker. Counting per row-count-equal PAIR (the earlier version) over-counted
+                # linker use, since one identity-matching GT alternative suppresses it in the eval.
                 rc_eq = [gc for gc, gn in gt_parsed if gn == cn]
                 if not rc_eq:
                     continue               # row-count mismatch: linker never reached
-                if any(set(cc) == set(gc) for gc in rc_eq):
+                if any(set(cc) <= set(gc) or set(gc) <= set(cc) for gc in rc_eq):
                     same += 1              # identity fast-path, no model call
                 else:
                     fired += 1
