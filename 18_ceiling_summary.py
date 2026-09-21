@@ -27,6 +27,14 @@ CEILING = DATA / "text2sqlbench-ceiling/results_b60.jsonl"
 BOARD = DATA / "text2sqlbench-synthetic/results.jsonl"
 S = {"pass": 1.0, "tie": 0.5, "fail": 0.0}
 
+# The token categories reported per model, both as a per-question median
+# (`tokens`) and as a board total in Mtok (`tokens_total_mtok`). One tuple feeds
+# both so the two blocks cannot drift: cache_write_tokens once went missing from
+# the totals alone, which left the categories unable to reconcile with their own
+# total_tokens.
+_TOKEN_KEYS = ("total_tokens", "prompt_tokens", "completion_tokens",
+               "reasoning_tokens", "cache_read_tokens", "cache_write_tokens")
+
 # Display names; anything not listed falls back to its key.
 NAMES = {
     "opus48": "Claude Opus 4.8", "opus47": "Claude Opus 4.7", "opus5": "Claude Opus 5",
@@ -118,17 +126,12 @@ def main():
             "gain": round(ceil_v - head, 2), "saturates_at": sat,
             "turn_limited": tl,
             "median_turns": st.median([c.get("turns") or 0 for c in cells]),
-            "tokens": {k: int(f(k)) for k in
-                       ("total_tokens", "prompt_tokens", "completion_tokens",
-                        "reasoning_tokens", "cache_read_tokens", "cache_write_tokens")},
+            "tokens": {k: int(f(k)) for k in _TOKEN_KEYS},
             # Board totals over all questions, in Mtok. These replace the
             # re-tokenized ESTIMATE the token figure used to carry as literals:
             # re-tokenizing cannot see hidden reasoning, so it under-counted
             # exactly the reasoning models.
-            "tokens_total_mtok": {k: round(tot(k) / 1e6, 4) for k in
-                                  ("total_tokens", "prompt_tokens",
-                                   "completion_tokens", "reasoning_tokens",
-                                   "cache_read_tokens")},
+            "tokens_total_mtok": {k: round(tot(k) / 1e6, 4) for k in _TOKEN_KEYS},
             # usage_cells is the denominator behind every token figure; dropped
             # counts cells excluded for absent or partial usage, so a future run
             # cannot quietly report a total built from a fraction of the board.

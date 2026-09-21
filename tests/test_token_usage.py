@@ -109,3 +109,40 @@ def test_cache_fields_are_per_turn_too():
     out = u.as_dict()
     assert [t[3] for t in out["per_turn"]] == [0, 4400], "cache reads start on turn 2"
     assert [t[4] for t in out["per_turn"]] == [4000, 0], "the write happens on turn 1"
+
+
+# THE ADAPTERS READ THE RIGHT FIELD. The tests above drive _record with keyword
+# args, so they cannot catch an adapter that reads the wrong field name or passes
+# it in the wrong position. These feed the raw provider usage shapes through the
+# adapters instead. The Bedrock objects are the exact Converse usage returned by
+# maintenance/probe_bedrock_cache_usage.py; both opus-4-8 and opus-5 report a
+# cache write on the flat cacheWriteInputTokens field, mirrored in cacheDetails.
+
+def test_add_bedrock_captures_cache_write_from_the_flat_field():
+    u = bench.TokenUsage()
+    u.add_bedrock({"usage": {
+        "inputTokens": 84, "outputTokens": 4, "totalTokens": 3761,
+        "cacheReadInputTokens": 0, "cacheWriteInputTokens": 3673,
+        "cacheDetails": [{"ttl": "5m", "inputTokens": 3673}]}})
+    out = u.as_dict()
+    assert out["cache_write_tokens"] == 3673, "the write must not read as zero"
+    assert out["cache_read_tokens"] == 0
+    assert out["calls_missing_usage"] == 0
+
+
+def test_add_bedrock_read_call_is_a_read_not_a_write():
+    u = bench.TokenUsage()
+    u.add_bedrock({"usage": {
+        "inputTokens": 84, "outputTokens": 4, "totalTokens": 3761,
+        "cacheReadInputTokens": 3673, "cacheWriteInputTokens": 0}})
+    out = u.as_dict()
+    assert (out["cache_read_tokens"], out["cache_write_tokens"]) == (3673, 0)
+
+
+def test_add_anthropic_captures_cache_creation_as_a_write():
+    u = bench.TokenUsage()
+    u.add_anthropic(_usage(usage=_usage(
+        input_tokens=84, output_tokens=4,
+        cache_read_input_tokens=0, cache_creation_input_tokens=3673)))
+    out = u.as_dict()
+    assert out["cache_write_tokens"] == 3673
