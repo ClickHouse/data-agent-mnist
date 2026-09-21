@@ -144,7 +144,8 @@ def main():
     # is the manifest-assigned epoch for these questions and still reproduces them.
     if not args.no_verify_db:
         db_path = (args.db_path or (DATA_DIR / "chdb")).resolve()
-        verify_subset(set(gt), db_path.name, db_path=db_path)
+        verify_subset(set(gt), db_path.name, db_path=db_path,
+                      session_timezone=args.session_timezone)
 
     # Load existing results. Resume is per (question, candidate): adding new
     # candidates scores only the missing pairs and merges them into existing rows.

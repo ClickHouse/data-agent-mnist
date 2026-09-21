@@ -25,8 +25,17 @@ Modes
   --require-single      (check) fail if the board spans more than one DB epoch;
                         use once v2.3 is unified onto a single seeded DB.
 
-    uv run verify_board.py --emit
-    uv run verify_board.py
+The board's answers also depend on the chDB engine release and the session
+timezone, so the manifest records both (`engine.version`, `engine.session_timezone`)
+and the guard REFUSES to run when either differs — a mismatch means the wrong
+environment, not drift to measure. The engine lives in `chdb-core`, which `chdb`
+does not pin, so board runs use a dedicated env (`chdb==4.1.8`, `chdb-core==26.3.0`,
+version() 26.3.9.1) built by scripts/board_env.sh, and pass the recorded zone.
+
+    scripts/board_env.sh                                     # build .venv-board once
+    export UV_PROJECT_ENVIRONMENT=.venv-board UV_NO_SYNC=1   # then, for every board run:
+    uv run verify_board.py --emit --session-timezone Europe/Berlin
+    uv run verify_board.py            --session-timezone Europe/Berlin
 """
 import argparse
 import hashlib
@@ -77,10 +86,16 @@ def load_rows(path: Path):
     return [json.loads(l) for l in path.read_text().splitlines() if l.strip()]
 
 
-def repro_on_db(rows, db_path: Path, only: set | None = None):
+def repro_on_db(rows, db_path: Path, only: set | None = None,
+                session_timezone: str | None = None):
     """-> {trace_id: (matched, comparable)} reproduction counts on one DB."""
     sess = chs.Session(str(db_path))
     try:
+        # chDB renders DateTime in the session timezone, so reproducing under a
+        # different zone than the board was built with shifts every DateTime cell
+        # and fails questions that are otherwise identical. Mirror warehouse.py.
+        if session_timezone:
+            sess.query(f"SET session_timezone = '{session_timezone}'")
         out = {}
         for r in rows:
             tid = r["trace_id"]
@@ -108,12 +123,24 @@ def _rate(mc):
     return (m / n) if n else None
 
 
-def emit(threshold: float):
+def engine_version(db_path: Path) -> str:
+    """The chDB engine release string, e.g. '26.3.9.1'. The board answers depend
+    on it, and `chdb` alone does not pin it: the engine lives in `chdb-core`.
+    This is the only trustworthy check that the pin is in effect."""
+    sess = chs.Session(str(db_path))
+    try:
+        return sess.query("SELECT version()", "CSV").bytes().decode().strip().strip('"')
+    finally:
+        sess.close()
+
+
+def emit(threshold: float, session_timezone: str | None = None):
     rows = load_rows(RESULTS_PATH)
     dbs = [d for d in CANDIDATE_DBS if (DATA_DIR / d).exists()]
     if not dbs:
         sys.exit(f"no candidate DBs present under {DATA_DIR} ({CANDIDATE_DBS})")
-    per_db = {d: repro_on_db(rows, DATA_DIR / d) for d in dbs}
+    per_db = {d: repro_on_db(rows, DATA_DIR / d, session_timezone=session_timezone)
+              for d in dbs}
 
     partition, summary = {}, {d: 0 for d in dbs}
     summary["low_confidence"] = 0
@@ -138,12 +165,19 @@ def emit(threshold: float):
         }
 
     manifest = {
-        "schema_version": 1,
+        "schema_version": 2,
         "threshold": threshold,
         "default_db": dbs[0],
         "dbs": {
             "chdb":      {"note": "v2.2 board commit (majority epoch)"},
             "chdb-disp": {"note": "disposition/CRM re-annotation epoch"},
+        },
+        # The engine release and session timezone both change the board's answers,
+        # so record what this board was reproduced under; check() refuses to run
+        # when either differs, rather than reporting the difference as drift.
+        "engine": {
+            "version": engine_version(DATA_DIR / dbs[0]),
+            "session_timezone": session_timezone,
         },
         "inputs": {
             "results_sha256":   _sha256(RESULTS_PATH),
@@ -169,8 +203,44 @@ def _load_manifest():
     return json.loads(MANIFEST_PATH.read_text())
 
 
-def check(require_single: bool, tolerance: float):
+def _assert_env(man: dict, session_timezone: str | None, db_path: Path):
+    """Refuse to run unless the live engine and the intended timezone match what
+    the manifest was emitted under. Both change the board's answers, so a mismatch
+    is not drift to measure — it means the board is being reproduced in the wrong
+    environment. Fail fast with an actionable message. Pre-v2 manifests carry no
+    `engine` block and are exempt (nothing to enforce).
+
+    version() is read from `db_path` (the DB about to be reproduced), not a fixed
+    default: chDB allows one session path per process, and the eval already holds
+    a Warehouse open on the partition path, so probing a different path would
+    crash it (the chdb-disp partition in particular)."""
+    eng = man.get("engine")
+    if not eng:
+        return
+    live = engine_version(db_path)
+    if live != eng["version"]:
+        sys.exit(
+            f"BOARD VERIFY REFUSED: chDB engine is {live}, board was built on "
+            f"{eng['version']}. The engine lives in chdb-core, which `chdb` does not "
+            f"pin. Run under the board env (chdb==4.1.8, chdb-core==26.3.0): see "
+            f"scripts/board_env.sh / README.")
+    if session_timezone != eng.get("session_timezone"):
+        sys.exit(
+            f"BOARD VERIFY REFUSED: --session-timezone {session_timezone!r} != board "
+            f"{eng.get('session_timezone')!r}. chDB renders DateTime in the session "
+            f"zone; reproduce the board under the zone it was built with "
+            f"(pass --session-timezone {eng.get('session_timezone')!r}).")
+
+
+def check(require_single: bool, tolerance: float, session_timezone: str | None = None):
     man = _load_manifest()
+    # Probe version() on a DB that exists (no Warehouse is open in this path, so
+    # any of them is safe). If none exist, the missing-DB check below reports it.
+    used = sorted({p["db"] for p in man["partition"].values()})
+    probe = next((DATA_DIR / d for d in [man.get("default_db"), *used, *CANDIDATE_DBS]
+                  if d and (DATA_DIR / d).exists()), None)
+    if probe is not None:
+        _assert_env(man, session_timezone, probe)
     problems = []
 
     # 1) inputs unchanged since the manifest was emitted
@@ -198,7 +268,8 @@ def check(require_single: bool, tolerance: float):
         for tid, p in man["partition"].items():
             by_db.setdefault(p["db"], set()).add(tid)
         for d, traces in by_db.items():
-            counts = repro_on_db(rows, DATA_DIR / d, only=traces)
+            counts = repro_on_db(rows, DATA_DIR / d, only=traces,
+                                 session_timezone=session_timezone)
             for tid in traces:
                 base = man["partition"][tid].get("baseline_repro")
                 if base is None:
@@ -221,7 +292,7 @@ def check(require_single: bool, tolerance: float):
 
 
 def verify_subset(traces: set[str], db_name: str, tolerance: float = 0.05,
-                  db_path: Path | None = None):
+                  db_path: Path | None = None, session_timezone: str | None = None):
     """Startup guard (importable): verify `traces` reproduce on the mounted DB at baseline.
 
     Enforces that db_name is the DB the manifest assigns each trace to, so an eval
@@ -239,6 +310,9 @@ def verify_subset(traces: set[str], db_name: str, tolerance: float = 0.05,
     db_path = db_path or (DATA_DIR / db_name)
     if not db_path.exists():
         sys.exit(f"[board guard] DB '{db_name}' not found at {db_path}")
+    # Probe version() on db_path, the same path the eval's Warehouse holds open
+    # (chDB allows one session path per process).
+    _assert_env(man, session_timezone, db_path)
     misassigned = [t for t in traces
                    if t in man["partition"] and man["partition"][t]["db"] != db_name]
     if misassigned:
@@ -246,7 +320,7 @@ def verify_subset(traces: set[str], db_name: str, tolerance: float = 0.05,
               f"DB than '{db_name}' in the manifest: {', '.join(t[:8] for t in misassigned[:10])}")
         sys.exit(1)
     rows = load_rows(RESULTS_PATH)
-    counts = repro_on_db(rows, db_path, only=traces)
+    counts = repro_on_db(rows, db_path, only=traces, session_timezone=session_timezone)
     bad, empty = [], []
     for tid in traces:
         base = man["partition"].get(tid, {}).get("baseline_repro")
@@ -268,10 +342,11 @@ def verify_subset(traces: set[str], db_name: str, tolerance: float = 0.05,
     print(f"[board guard] OK: {len(traces)} traces hold baseline on '{db_name}'")
 
 
-def check_subset(db_name: str, traces_file: Path, tolerance: float):
+def check_subset(db_name: str, traces_file: Path, tolerance: float,
+                 session_timezone: str | None = None):
     """CLI wrapper: read trace IDs from a file and run verify_subset."""
     traces = {t.strip() for t in traces_file.read_text().splitlines() if t.strip()}
-    verify_subset(traces, db_name, tolerance)
+    verify_subset(traces, db_name, tolerance, session_timezone=session_timezone)
 
 
 def main():
@@ -287,16 +362,20 @@ def main():
     ap.add_argument("--check-db", type=str, default=None,
                     help="verify only --traces-file against this DB (eval startup guard)")
     ap.add_argument("--traces-file", type=Path, default=None)
+    ap.add_argument("--session-timezone", default=None,
+                    help="reproduce under this chDB session timezone. Must match the "
+                         "zone recorded in the manifest (the board renders DateTime in "
+                         "the session zone); a mismatch is refused, not measured")
     args = ap.parse_args()
 
     if args.emit:
-        emit(args.threshold)
+        emit(args.threshold, args.session_timezone)
     elif args.check_db:
         if not args.traces_file:
             sys.exit("--check-db requires --traces-file")
-        check_subset(args.check_db, args.traces_file, args.tolerance)
+        check_subset(args.check_db, args.traces_file, args.tolerance, args.session_timezone)
     else:
-        check(args.require_single, args.tolerance)
+        check(args.require_single, args.tolerance, args.session_timezone)
 
 
 if __name__ == "__main__":
