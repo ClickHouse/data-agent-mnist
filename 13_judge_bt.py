@@ -301,8 +301,8 @@ def main() -> None:
     if args.selftest:
         raise SystemExit(0 if _selftest() else 1)
 
-    from paths import DATA
-    results = args.results or (DATA / "text2sqlbench-synthetic/results.jsonl")
+    from paths import SYNTH_DIR
+    results = args.results or (SYNTH_DIR / "results.jsonl")
     v = load_votes(results, drop_ties=args.drop_ties)
     if v.y.size == 0:
         raise SystemExit("no usable votes in the results file")

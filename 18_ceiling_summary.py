@@ -22,9 +22,9 @@ import json
 import statistics as st
 from collections import defaultdict
 from pathlib import Path
-from paths import DATA
+from paths import DATA, SYNTH_DIR
 CEILING = DATA / "text2sqlbench-ceiling/results_b60.jsonl"
-BOARD = DATA / "text2sqlbench-synthetic/results.jsonl"
+BOARD = SYNTH_DIR / "results.jsonl"
 S = {"pass": 1.0, "tie": 0.5, "fail": 0.0}
 
 # The token categories reported per model, both as a per-question median

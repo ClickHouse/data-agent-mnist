@@ -27,9 +27,9 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from bench import RETIRED_CANDIDATES, _parse_result  # noqa: E402  (offline parser, no client use)
-from paths import DATA
-RESULTS   = DATA / "text2sqlbench-synthetic/results.jsonl"
-ANNOTATED = DATA / "text2sqlbench-synthetic/annotated.jsonl"
+from paths import SYNTH_DIR
+RESULTS   = SYNTH_DIR / "results.jsonl"
+ANNOTATED = SYNTH_DIR / "annotated.jsonl"
 SCORE     = {"pass": 1.0, "tie": 0.5, "fail": 0.0}
 
 

@@ -58,9 +58,15 @@ if not _explicit and not DATA.exists():
         f"  Outside it, set {_ENV} to wherever your datasets live.")
 
 
-# Datasets are addressed as DATA / "<name>" at the point of use. There was a set
-# of named constants here (SYNTH, CEILING, ...); nothing imported them, because
-# the call sites read perfectly well without the indirection.
+# The synthetic (board) corpus directory, named once. A second corpus, a dev set
+# a partner can train against while the board stays frozen, is the same pipeline
+# pointed at a sibling directory, so the leaf name is a variable. DAM_CORPUS
+# overrides it; the default is the board's, so our own runs need no configuration.
+# The extraction-side corpus is named in oracle_corpus.py, private because its
+# directory name is internal. Other datasets (the ceiling board, the runnable
+# example) are addressed as DATA / "<name>" at the point of use.
+CORPUS: str = os.environ.get("DAM_CORPUS", "text2sqlbench-synthetic")
+SYNTH_DIR: Path = DATA / CORPUS
 
 # The monorepo root. NOT part of the harness contract and deliberately not
 # configurable: an adopter has no repository above their data, and nothing in the

@@ -29,8 +29,8 @@ from collections import defaultdict
 from pathlib import Path
 
 from bench import RETIRED_CANDIDATES  # noqa: E402
-from paths import DATA
-SYNTH     = DATA / "text2sqlbench-synthetic"
+from paths import SYNTH_DIR
+SYNTH     = SYNTH_DIR
 LAYER_MARKER = "dbt_dds"          # board default; see --layer-marker
 SCORE     = {"pass": 1.0, "tie": 0.5, "fail": 0.0}
 

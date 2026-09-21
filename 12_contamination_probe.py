@@ -37,8 +37,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import bench  # noqa: E402
-from paths import DATA
-SYNTH     = DATA / "text2sqlbench-synthetic"
+from paths import SYNTH_DIR
+SYNTH     = SYNTH_DIR
 OUT       = SYNTH / "contamination_probe.jsonl"
 SEED      = 42
 

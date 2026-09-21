@@ -12,8 +12,8 @@ import argparse
 import json
 from collections import Counter, defaultdict
 from pathlib import Path
-from paths import DATA
-FM_LABELS = DATA / "text2sqlbench-synthetic/fm_labels.jsonl"
+from paths import SYNTH_DIR
+FM_LABELS = SYNTH_DIR / "fm_labels.jsonl"
 FMS = ["FM1", "FM2", "FM3", "FM4", "FM5"]
 
 # Board order (pass rate at the 60-turn budget, desc). A model that has failure
