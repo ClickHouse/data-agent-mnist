@@ -118,6 +118,8 @@ def main():
                          "each question to its manifest-assigned DB.")
     ap.add_argument("--no-verify-db", action="store_true",
                     help="skip the board reproduction guard (not recommended)")
+    ap.add_argument("--no-preflight", action="store_true",
+                    help="skip the credential preflight (not recommended)")
     args = ap.parse_args()
 
     results_path = args.out
@@ -146,6 +148,21 @@ def main():
         db_path = (args.db_path or (DATA_DIR / "chdb")).resolve()
         verify_subset(set(gt), db_path.name, db_path=db_path,
                       session_timezone=args.session_timezone)
+
+    # Credential preflight: reach every provider the candidates, the judge seats
+    # and the linker will touch, and fail before the first paid call when one is
+    # missing or not usable. A dead judge or linker credential otherwise degrades
+    # scoring silently, question by question.
+    if not args.no_preflight:
+        import preflight
+        judge_keys = {j for seat in bench.JUDGE_SEATS.values() for j in seat}
+        try:
+            for line in preflight.preflight(models.keys(), judge_keys, bench.LINKER,
+                                            n_questions=len(gt), workers=args.workers,
+                                            results_path=RESULTS_PATH):
+                print(line)
+        except preflight.PreflightError as e:
+            raise SystemExit(str(e))
 
     # Load existing results. Resume is per (question, candidate): adding new
     # candidates scores only the missing pairs and merges them into existing rows.
