@@ -127,13 +127,18 @@ def _complete(model_key: str, prompt: str, max_tokens: int = 300) -> str:
     # o*/gpt-5* and any registry-flagged reasoning model take OpenAI's
     # max_completion_tokens; Kimi is served over Fireworks/Mantle, which use
     # max_tokens. The predicate matches run_candidate_openai_compat.
-    # Shared with the eval so the probe cannot under-budget a model the eval
-    # budgets correctly. The local three-term version missed every Gemini, which
-    # gave gemini-3.1-pro 100 output tokens against the eval's 8192.
     _completion_tokens = model_id.startswith(("o", "gpt-5")) or model_id in bench.BEDROCK_REASONING
-    _big = bench.emits_inline_reasoning(model_id)
+    # The probe measures recall, not deliberation, so a reasoning model has to be
+    # funded to finish thinking and still answer; a reply truncated inside the
+    # thinking block reads as non-recall. Reasoning models take the eval's
+    # 8192-token ceiling. bench.emits_inline_reasoning drives the eval; the probe
+    # additionally treats glm and gemini-2.5-flash as reasoning, which that list
+    # does not carry.
+    _big = (bench.emits_inline_reasoning(model_id)
+            or "glm" in model_id
+            or model_id.startswith("google/gemini-2.5-flash"))
     _token_kwarg = "max_completion_tokens" if _completion_tokens else "max_tokens"
-    kwargs = {_token_kwarg: max(max_tokens, 2048) if _big else max_tokens}
+    kwargs = {_token_kwarg: max(max_tokens, 8192) if _big else max_tokens}
     if _completion_tokens:
         # Same design intent as the Gemma 4, Anthropic and qwen3p8-max branches
         # above: the probe measures completion, not deliberation. Without this,
@@ -144,11 +149,12 @@ def _complete(model_key: str, prompt: str, max_tokens: int = 300) -> str:
         # spent 448 tokens and still answered. gpt-5.x and gpt-6-astra take "none"
         # (verified on the gateway), so a reasoning-flagged id cannot starve the floor.
         kwargs["reasoning_effort"] = "low" if model_id.startswith("o") else "none"
-    if "qwen3p8-max" in model_id:
-        # Its separate-channel reasoning is unbounded on completion-style prompts
-        # (starved 90%+ of cells even at 8192); the probe measures bare
-        # completion, so reasoning is disabled — same design intent as the
-        # Anthropic branch's thinking:disabled above.
+    if any(s in model_id for s in ("qwen3p8-max", "glm-5p2", "kimi-k2p6",
+                                   "kimi-k2-thinking")):
+        # Their separate-channel reasoning is unbounded on completion-style prompts
+        # and truncates the visible answer even at the 8192 ceiling. The probe
+        # measures bare completion, so reasoning is disabled here, the same intent
+        # as the Anthropic branch's thinking:disabled above.
         kwargs["reasoning_effort"] = "none"
     if not _big:
         kwargs["temperature"] = 0
