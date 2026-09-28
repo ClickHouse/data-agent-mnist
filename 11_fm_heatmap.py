@@ -19,15 +19,16 @@ FMS = ["FM1", "FM2", "FM3", "FM4", "FM5"]
 # Board order (pass rate at the 60-turn budget, desc). A model that has failure
 # labels but is missing here used to vanish from the table without a word, so
 # compute() now refuses instead. Display names are kept in sync with 09.
-ORDER = ["fable51", "deepseek-v4-pro-0813", "kimi-k3", "gemini-3.1-pro-preview",
-         "fable5", "opus48", "gpt-5.5", "qwen3.8-max", "kimi-k2.6", "glm-5.2",
-         "gpt-5.6", "opus5", "gemini-3.8-flash", "sonnet46",
+ORDER = ["fable51", "deepseek-v4-pro-0813", "kimi-k3", "gemini-3.1-pro-preview", "fable5",
+         "opus48", "gpt-5.5", "qwen3.8-max", "kimi-k2.6", "gpt-6-sol", "opus55", "gpt-6-luna",
+         "gpt-6-astra", "glm-5.2", "gpt-5.6", "opus5", "gemini-3.8-flash", "sonnet46",
          "deepseek-v4-flash-0731", "gemini-3.7-flash", "opus47", "sonnet5",
          "deepseek-v3.2", "haiku45", "gemma-4-31b", "kimi-k2-thinking", "o4-mini",
          "gemini-3.5-flash", "gemini-2.5-pro", "qwen3-coder-480b",
          "qwen3-coder-30b", "gemini-2.5-flash", "gpt-4.1"]
 NAMES = {"opus48": "Claude Opus 4.8", "opus47": "Claude Opus 4.7", "gpt-5.6": "GPT-5.6",
-         "opus5": "Claude Opus 5",
+         "opus5": "Claude Opus 5", "opus55": "Claude Opus 5.5", "gpt-6-astra": "GPT-6 Astra",
+         "gpt-6-luna": "GPT-6 Luna", "gpt-6-sol": "GPT-6 Sol",
          "fable5": "Claude Fable 5", "kimi-k3": "Kimi K3", "kimi-k2.6": "Kimi K2.6",
          "gpt-5.5": "GPT-5.5", "qwen3.8-max": "Qwen3.8-Max",
          "sonnet5": "Claude Sonnet 5", "sonnet46": "Claude Sonnet 4.6",

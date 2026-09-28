@@ -38,6 +38,8 @@ _TOKEN_KEYS = ("total_tokens", "prompt_tokens", "completion_tokens",
 # Display names; anything not listed falls back to its key.
 NAMES = {
     "opus48": "Claude Opus 4.8", "opus47": "Claude Opus 4.7", "opus5": "Claude Opus 5",
+    "opus55": "Claude Opus 5.5", "gpt-6-astra": "GPT-6 Astra",
+    "gpt-6-luna": "GPT-6 Luna", "gpt-6-sol": "GPT-6 Sol",
     "sonnet5": "Claude Sonnet 5", "sonnet46": "Claude Sonnet 4.6",
     "haiku45": "Claude Haiku 4.5", "fable5": "Claude Fable 5",
     "gpt-5.5": "GPT-5.5", "gpt-5.6": "GPT-5.6", "gpt-4.1": "GPT-4.1", "o4-mini": "o4-mini",

@@ -35,7 +35,8 @@ LAYER_MARKER = "dbt_dds"          # board default; see --layer-marker
 SCORE     = {"pass": 1.0, "tie": 0.5, "fail": 0.0}
 
 NAMES = {"opus48": "Claude Opus 4.8", "opus47": "Claude Opus 4.7", "gpt-5.6": "GPT-5.6",
-         "opus5": "Claude Opus 5",
+         "opus5": "Claude Opus 5", "opus55": "Claude Opus 5.5", "gpt-6-astra": "GPT-6 Astra",
+         "gpt-6-luna": "GPT-6 Luna", "gpt-6-sol": "GPT-6 Sol",
          "fable5": "Claude Fable 5", "kimi-k3": "Kimi K3", "kimi-k2.6": "Kimi K2.6",
          "gpt-5.5": "GPT-5.5", "qwen3.8-max": "Qwen3.8-Max",
          "sonnet5": "Claude Sonnet 5", "sonnet46": "Claude Sonnet 4.6",
