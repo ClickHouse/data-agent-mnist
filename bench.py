@@ -547,6 +547,7 @@ def run_candidate_bedrock(
     model_id: str,
     ch_query: Callable[[str], str],
     system_prompt: str,
+    gate: Callable[[str, str], str | None] | None = None,
 ) -> dict:
     start    = time.time()
     # PROMPT CACHING, the same two static breakpoints as the native
@@ -604,10 +605,12 @@ def run_candidate_bedrock(
                 q      = tc["input"].get("query", "")
                 sqls.append(q)
                 result = ch_query(q)
-                sql_results.append(result)
+                sql_results.append(result)                 # store the clean result the judge grades
+                note = gate(q, result) if gate is not None else None
+                shown = f"{note}\n\n{result}" if note is not None else result
                 tool_results.append({
                     "toolResult": {"toolUseId": tc["toolUseId"],
-                                   "content":   [{"text": result}]}
+                                   "content":   [{"text": shown}]}
                 })
             messages.append({"role": "user", "content": tool_results})
         else:
@@ -647,6 +650,7 @@ def run_candidate_openai_compat(
     client: OpenAI,
     ch_query: Callable[[str], str],
     system_prompt: str,
+    gate: Callable[[str, str], str | None] | None = None,
 ) -> dict:
     start        = time.time()
     # o-series, gpt-5.x, and anything the registry flags `reasoning` take
@@ -709,10 +713,16 @@ def run_candidate_openai_compat(
                     q = ""
                 sqls.append(q)
                 result = ch_query(q)
-                sql_results.append(result)
+                sql_results.append(result)                 # store the clean result the judge grades
+                # An optional gate may inspect the query and its result and prepend a
+                # short note to the tool message the model reads next, steering the next
+                # turn without withholding the data or mutating the stored result;
+                # None leaves the message unchanged.
+                note = gate(q, result) if gate is not None else None
+                shown = f"{note}\n\n{result}" if note is not None else result
             else:
-                result = "Error: unknown tool."
-            messages.append({"role": "tool", "tool_call_id": tc.id, "content": result})
+                shown = "Error: unknown tool."
+            messages.append({"role": "tool", "tool_call_id": tc.id, "content": shown})
 
     return {"sqls": sqls, "sql_results": sql_results,
             "final_answer": "", "turns": MAX_TURNS, "served_model": served,
@@ -726,6 +736,7 @@ def run_candidate_responses_api(
     client: OpenAI,
     ch_query: Callable[[str], str],
     system_prompt: str,
+    gate: Callable[[str, str], str | None] | None = None,
 ) -> dict:
     """Agentic loop over the OpenAI Responses API (/v1/responses).
 
@@ -775,11 +786,13 @@ def run_candidate_responses_api(
                     q = ""
                 sqls.append(q)
                 result = ch_query(q)
-                sql_results.append(result)
+                sql_results.append(result)                 # store the clean result the judge grades
+                note = gate(q, result) if gate is not None else None
+                shown = f"{note}\n\n{result}" if note is not None else result
             else:
-                result = "Error: unknown tool."
+                shown = "Error: unknown tool."
             pending.append({"type": "function_call_output",
-                            "call_id": fc.call_id, "output": result})
+                            "call_id": fc.call_id, "output": shown})
 
     return {"sqls": sqls, "sql_results": sql_results,
             "final_answer": "", "turns": MAX_TURNS, "served_model": served,
@@ -792,6 +805,7 @@ def run_candidate_messages_api(
     model_id: str,
     ch_query: Callable[[str], str],
     system_prompt: str,
+    gate: Callable[[str, str], str | None] | None = None,
     *,
     thinking: str = "off",
     effort: str = "high",
@@ -889,11 +903,13 @@ def run_candidate_messages_api(
                     q = (block.input or {}).get("query", "")
                     sqls.append(q)
                     result = ch_query(q)
-                    sql_results.append(result)
+                    sql_results.append(result)             # store the clean result the judge grades
+                    note = gate(q, result) if gate is not None else None
+                    shown = f"{note}\n\n{result}" if note is not None else result
                 else:
-                    result = f"Error: unknown tool {block.name!r}"
+                    shown = f"Error: unknown tool {block.name!r}"
                 tool_results.append({"type": "tool_result",
-                                     "tool_use_id": block.id, "content": result})
+                                     "tool_use_id": block.id, "content": shown})
             messages.append({"role": "user", "content": tool_results})
         else:
             final = "".join(b.text for b in resp.content if b.type == "text")
@@ -921,25 +937,26 @@ def run_candidate(
     model_id: str,
     ch_query: Callable[[str], str],
     system_prompt: str,
+    gate: Callable[[str, str], str | None] | None = None,
 ) -> dict:
     if model_name in GEMINI_CANDIDATES:
         client = gemini_global_client if model_name in GEMINI_GLOBAL else gemini_client
-        return run_candidate_openai_compat(nl_question, model_id, client, ch_query, system_prompt)
+        return run_candidate_openai_compat(nl_question, model_id, client, ch_query, system_prompt, gate)
     if model_name in OPENAI_CANDIDATES:
         if model_name in OPENAI_RESPONSES_ONLY:
-            return run_candidate_responses_api(nl_question, model_id, openai_client, ch_query, system_prompt)
-        return run_candidate_openai_compat(nl_question, model_id, openai_client, ch_query, system_prompt)
+            return run_candidate_responses_api(nl_question, model_id, openai_client, ch_query, system_prompt, gate)
+        return run_candidate_openai_compat(nl_question, model_id, openai_client, ch_query, system_prompt, gate)
     if model_name in MANTLE_RESPONSES_CANDIDATES:
-        return run_candidate_responses_api(nl_question, model_id, mantle_openai_client, ch_query, system_prompt)
+        return run_candidate_responses_api(nl_question, model_id, mantle_openai_client, ch_query, system_prompt, gate)
     if model_name in MANTLE_CANDIDATES:
-        return run_candidate_openai_compat(nl_question, model_id, mantle_client, ch_query, system_prompt)
+        return run_candidate_openai_compat(nl_question, model_id, mantle_client, ch_query, system_prompt, gate)
     if model_name in FIREWORKS_CANDIDATES:
-        return run_candidate_openai_compat(nl_question, model_id, fireworks_client, ch_query, system_prompt)
+        return run_candidate_openai_compat(nl_question, model_id, fireworks_client, ch_query, system_prompt, gate)
     if model_name in GATEWAY_CANDIDATES:
-        return run_candidate_openai_compat(nl_question, model_id, gateway_client, ch_query, system_prompt)
+        return run_candidate_openai_compat(nl_question, model_id, gateway_client, ch_query, system_prompt, gate)
     if model_name in ANTHROPIC_CANDIDATES:
-        return run_candidate_messages_api(nl_question, model_id, ch_query, system_prompt)
-    return run_candidate_bedrock(nl_question, model_id, ch_query, system_prompt)
+        return run_candidate_messages_api(nl_question, model_id, ch_query, system_prompt, gate)
+    return run_candidate_bedrock(nl_question, model_id, ch_query, system_prompt, gate)
 
 # ── Cross-model judge ─────────────────────────────────────────────────────────
 
