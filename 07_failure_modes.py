@@ -26,8 +26,7 @@ import re
 from pathlib import Path
 
 import bench
-from paths import DATA
-SYNTH_DIR   = DATA / "text2sqlbench-synthetic"
+from paths import SYNTH_DIR
 RESULTS     = SYNTH_DIR / "results.jsonl"
 ANNOTATED   = SYNTH_DIR / "annotated.jsonl"
 FM_LABELS   = SYNTH_DIR / "fm_labels.jsonl"

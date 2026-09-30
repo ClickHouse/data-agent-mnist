@@ -155,3 +155,54 @@ def test_subdirectory_scripts_import_when_run_as_scripts(tmp_path):
     assert not broken, (
         "these scripts import paths before putting the experiment root on "
         "sys.path, so they crash when run directly:\n  " + "\n  ".join(broken))
+
+
+def _reimport_corpus(env: dict[str, str]) -> subprocess.CompletedProcess:
+    """The synthetic corpus leaf resolves at import, so read it from a fresh process."""
+    return subprocess.run(
+        [sys.executable, "-c",
+         "import sys; sys.path.insert(0, %r); import paths; print(paths.SYNTH_DIR)" % str(DAM)],
+        capture_output=True, text=True, env={**os.environ, **env})
+
+
+def test_corpus_defaults_to_the_board(tmp_path, monkeypatch):
+    """With nothing set, the pipeline resolves the board's synthetic corpus, so our
+    own runs need no configuration. Strip the override from the parent environment
+    first, since _reimport_corpus forwards it and a developer may have it exported."""
+    monkeypatch.delenv("DAM_CORPUS", raising=False)
+    r = _reimport_corpus({"DAM_DATA_ROOT": str(tmp_path)})
+    assert r.returncode == 0, r.stderr
+    assert Path(r.stdout.strip()) == tmp_path.resolve() / "text2sqlbench-synthetic"
+
+
+def test_corpus_env_selects_a_sibling_leaf(tmp_path):
+    """A second corpus is the same pipeline pointed at a sibling directory: DAM_CORPUS
+    moves the leaf while the data root stays put. This is the isolation mechanism."""
+    r = _reimport_corpus({"DAM_DATA_ROOT": str(tmp_path),
+                          "DAM_CORPUS": "text2sqlbench-synthetic-dev"})
+    assert r.returncode == 0, r.stderr
+    assert Path(r.stdout.strip()) == tmp_path.resolve() / "text2sqlbench-synthetic-dev"
+
+
+def _reimport_oracle(env: dict[str, str]) -> subprocess.CompletedProcess:
+    """The extraction corpus leaf lives in the private oracle_corpus module."""
+    return subprocess.run(
+        [sys.executable, "-c",
+         "import sys; sys.path.insert(0, %r); import oracle_corpus; "
+         "print(oracle_corpus.ORACLE_DIR)" % str(DAM)],
+        capture_output=True, text=True, env={**os.environ, **env})
+
+
+def test_oracle_corpus_env_selects_a_sibling_leaf(tmp_path):
+    """DAM_ORACLE_CORPUS relocates the extraction corpus the same way, so a dev
+    corpus can point both halves at its own directories.
+
+    oracle_corpus is board-only and stays out of the harness mirror, so this skips
+    there rather than importing a module the mirror does not ship, the same shape
+    as the subdirectory-scripts test above."""
+    if not (DAM / "oracle_corpus.py").exists():
+        pytest.skip("oracle_corpus is board-only, not shipped to the harness mirror")
+    r = _reimport_oracle({"DAM_DATA_ROOT": str(tmp_path),
+                          "DAM_ORACLE_CORPUS": "raw-traces-dev"})
+    assert r.returncode == 0, r.stderr
+    assert Path(r.stdout.strip()) == tmp_path.resolve() / "raw-traces-dev"

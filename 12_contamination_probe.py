@@ -37,8 +37,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import bench  # noqa: E402
-from paths import DATA
-SYNTH     = DATA / "text2sqlbench-synthetic"
+from paths import SYNTH_DIR
+SYNTH     = SYNTH_DIR
 OUT       = SYNTH / "contamination_probe.jsonl"
 SEED      = 42
 
@@ -123,30 +123,38 @@ def _complete(model_key: str, prompt: str, max_tokens: int = 300) -> str:
         raise KeyError(model_key)
     # Budget and token-kwarg are separate concerns. Kimi (K2 Thinking / K2.6) emits
     # reasoning before visible text and needs the larger budget or the completion
-    # truncates inside the thinking block (observed: empty generations at 300 tokens);
-    # but only o*/gpt-5* take OpenAI's max_completion_tokens — Kimi is served over
-    # Fireworks/Mantle, which use max_tokens (matching run_candidate_openai_compat).
-    _openai_reasoning = model_id.startswith(("o", "gpt-5"))
-    # Shared with the eval so the probe cannot under-budget a model the eval
-    # budgets correctly. The local three-term version missed every Gemini, which
-    # gave gemini-3.1-pro 100 output tokens against the eval's 8192.
-    _big = bench.emits_inline_reasoning(model_id)
-    _token_kwarg = "max_completion_tokens" if _openai_reasoning else "max_tokens"
-    kwargs = {_token_kwarg: max(max_tokens, 2048) if _big else max_tokens}
-    if _openai_reasoning:
+    # truncates inside the thinking block (observed: empty generations at 300 tokens).
+    # o*/gpt-5* and any registry-flagged reasoning model take OpenAI's
+    # max_completion_tokens; Kimi is served over Fireworks/Mantle, which use
+    # max_tokens. The predicate matches run_candidate_openai_compat.
+    _completion_tokens = model_id.startswith(("o", "gpt-5")) or model_id in bench.BEDROCK_REASONING
+    # The probe measures recall, not deliberation, so a reasoning model has to be
+    # funded to finish thinking and still answer; a reply truncated inside the
+    # thinking block reads as non-recall. Reasoning models take the eval's
+    # 8192-token ceiling. bench.emits_inline_reasoning drives the eval; the probe
+    # additionally treats glm and gemini-2.5-flash as reasoning, which that list
+    # does not carry.
+    _big = (bench.emits_inline_reasoning(model_id)
+            or "glm" in model_id
+            or model_id.startswith("google/gemini-2.5-flash"))
+    _token_kwarg = "max_completion_tokens" if _completion_tokens else "max_tokens"
+    kwargs = {_token_kwarg: max(max_tokens, 8192) if _big else max_tokens}
+    if _completion_tokens:
         # Same design intent as the Gemma 4, Anthropic and qwen3p8-max branches
         # above: the probe measures completion, not deliberation. Without this,
         # gpt-5.5 spent all 2048 tokens reasoning and returned an empty string on
         # every entity call (finish_reason "length", reasoning_tokens 2048), so
         # its 25 zeros were the instrument, not the model. The o-series rejects
         # "none" and floors at "low", which leaves reasoning on but bounded: o4-mini
-        # spent 448 tokens and still answered.
+        # spent 448 tokens and still answered. gpt-5.x and gpt-6-astra take "none"
+        # (verified on the gateway), so a reasoning-flagged id cannot starve the floor.
         kwargs["reasoning_effort"] = "low" if model_id.startswith("o") else "none"
-    if "qwen3p8-max" in model_id:
-        # Its separate-channel reasoning is unbounded on completion-style prompts
-        # (starved 90%+ of cells even at 8192); the probe measures bare
-        # completion, so reasoning is disabled — same design intent as the
-        # Anthropic branch's thinking:disabled above.
+    if any(s in model_id for s in ("qwen3p8-max", "glm-5p2", "kimi-k2p6",
+                                   "kimi-k2-thinking")):
+        # Their separate-channel reasoning is unbounded on completion-style prompts
+        # and truncates the visible answer even at the 8192 ceiling. The probe
+        # measures bare completion, so reasoning is disabled here, the same intent
+        # as the Anthropic branch's thinking:disabled above.
         kwargs["reasoning_effort"] = "none"
     if not _big:
         kwargs["temperature"] = 0

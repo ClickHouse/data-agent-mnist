@@ -144,3 +144,21 @@ annotators:
   - gpt-4.1
   - claude-sonnet
   - kimi
+
+# Result-set numeric comparison. Scoring is on the final result set, and two
+# numbers agree when they are within the absolute OR the relative tolerance, after
+# rounding to round_decimals places (null keeps full precision). Optional: omitted,
+# it defaults to the currency values below.
+scoring:
+  # Currency default: round to cents, allow 5% relative drift, no absolute floor.
+  # Right for money (catches 59K vs 70K, ignores sub-cent noise). Wrong for a
+  # warehouse of concentrations, p-values or counts, where a factor-of-two error
+  # fits inside 5% and two small values both round to 0.00.
+  round_decimals: 2
+  rel_tol: 0.05
+  abs_tol: 0.0
+  # A non-currency warehouse keeps full precision and compares on a small absolute
+  # tolerance instead:
+  #   round_decimals: null
+  #   rel_tol: 0.0
+  #   abs_tol: 1.0e-9

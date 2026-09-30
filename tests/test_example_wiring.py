@@ -358,6 +358,46 @@ def test_the_linker_pins_temperature_zero(monkeypatch):
     assert seen["temperature"] == 0, "linker no longer pins temperature"
 
 
+def test_the_linker_identity_maps_a_subset_without_a_model_call(monkeypatch):
+    """When one column set contains the other, map the shared columns by identity
+    with no model call. A wide result set otherwise goes to the linker, whose reply
+    can truncate to valid-but-empty JSON, and an empty mapping scores as a mismatch,
+    so an equivalent answer that returned extra columns fails."""
+    monkeypatch.setattr(bench, "_COL_LINK_CACHE", {})
+
+    def boom(*a, **k):
+        raise AssertionError("a subset must not call the linker model")
+
+    monkeypatch.setattr(bench, "_judge_complete", boom)
+    identity = {"region": "region", "spend": "spend"}
+    assert bench._link_columns(["region", "spend", "rank"], ["region", "spend"]) == identity
+    assert bench._link_columns(["region", "spend"], ["region", "spend", "rank"]) == identity
+
+
+def test_results_match_credits_a_wide_subset_answer(monkeypatch):
+    """The paying case: same values, candidate returns an extra column. Scores as a
+    match, on the ground truth's columns alone, with no linker call."""
+    monkeypatch.setattr(bench, "_COL_LINK_CACHE", {})
+
+    def boom(*a, **k):
+        raise AssertionError("a subset must not call the linker model")
+
+    monkeypatch.setattr(bench, "_judge_complete", boom)
+    gt        = '{"region": "us", "spend": 100}'
+    candidate = '{"region": "us", "spend": 100, "rank": 1}'
+    assert bench._results_match(candidate, gt) is True
+
+
+def test_the_linker_logs_a_parsed_empty_mapping(monkeypatch, capsys):
+    """A valid-but-empty reply still scores as a mismatch, but must not be silent:
+    on wide non-subset sets it can be truncation, not a real 'nothing matches'."""
+    monkeypatch.setattr(bench, "_COL_LINK_EMPTY_WARNED", False)
+    monkeypatch.setattr(bench, "_COL_LINK_CACHE", {})
+    monkeypatch.setattr(bench, "_judge_complete", lambda *a, **k: '{"mapping": {}}')
+    assert bench._link_columns(["spend_usd"], ["total_spend"]) == {}
+    assert "empty mapping" in capsys.readouterr().err
+
+
 def test_temperature_is_withheld_from_reasoning_judges(monkeypatch):
     """They reject anything but their default, so an explicit 0 is a 400."""
     seen = {}
@@ -374,3 +414,43 @@ def test_temperature_is_withheld_from_reasoning_judges(monkeypatch):
     with pytest.raises(Exception):
         bench._judge_complete(reasoning[0], "hi", 256, temperature=0)
     assert "temperature" not in seen, "would 400 on a reasoning model"
+
+
+# ── the numeric comparator ───────────────────────────────────────────────────────
+# The comparator was currency-shaped: round every number to cents, then allow 5%
+# relative drift. Right for money, wrong for a warehouse of concentrations,
+# p-values or counts, where the harness ships public and an adopter points it at
+# their own data. Same column names on both sides, so the linker short-circuits
+# and none of these hit a model.
+
+def test_currency_default_reproduces_the_board_behaviour():
+    """The default policy must not move: it is what the frozen board was scored on."""
+    assert bench._results_match('{"total":100}', '{"total":104}'), "4% is inside 5%"
+    assert not bench._results_match('{"total":59000}', '{"total":70000}'), "19% is outside 5%"
+
+
+def test_default_flattens_small_magnitude_values():
+    """The bug, pinned. Under the currency default a p-value wrong by 2x passes,
+    because both operands round to 0.00 before the tolerance test even runs."""
+    assert bench._results_match('{"p_value":0.0001}', '{"p_value":0.0002}')
+
+
+def test_precise_policy_separates_small_magnitude_values():
+    """Full precision + a small absolute tolerance is what a non-currency operator
+    configures, and it scores the same pair correctly."""
+    precise = bench.ComparisonPolicy(round_decimals=None, rel_tol=0.0, abs_tol=1e-9)
+    assert not bench._results_match('{"p_value":0.0001}', '{"p_value":0.0002}', precise)
+    assert bench._results_match('{"p_value":0.0001}', '{"p_value":0.0001}', precise)
+
+
+def test_absolute_tolerance_catches_a_relative_false_positive():
+    """100 vs 104 is a pass at 5% relative and a fail at a 0.5 absolute tolerance,
+    so the two knobs are independently reachable."""
+    counts = bench.ComparisonPolicy(round_decimals=0, rel_tol=0.0, abs_tol=0.5)
+    assert not bench._results_match('{"n":100}', '{"n":104}', counts)
+    assert bench._results_match('{"n":100}', '{"n":100}', counts)
+
+
+def test_parse_result_rounding_is_configurable():
+    assert bench._parse_result('{"x":0.0001}', decimals=2) == [{"x": 0.0}]
+    assert bench._parse_result('{"x":0.0001}', decimals=None) == [{"x": 0.0001}]

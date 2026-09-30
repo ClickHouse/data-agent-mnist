@@ -40,6 +40,9 @@ def main():
     ap.add_argument("--annot", type=Path, default=ANNOT_PATH)
     ap.add_argument("--limit", type=int, default=None,
                     help="cap NEW questions per DB partition (debug/smoke)")
+    ap.add_argument("--session-timezone", default=None,
+                    help="chDB session timezone, forwarded to each 06_eval.py partition. "
+                         "Board runs must pass the manifest's recorded zone or the guard refuses")
     args = ap.parse_args()
 
     if not MANIFEST_PATH.exists():
@@ -90,6 +93,8 @@ def main():
             ]
             if args.limit is not None:
                 cmd += ["--limit", str(args.limit)]
+            if args.session_timezone is not None:
+                cmd += ["--session-timezone", args.session_timezone]
             print(f"\n=== partition '{db}' ({len(by_db[db])} questions) ===\n{' '.join(cmd)}")
             r = subprocess.run(cmd, cwd=HERE)
             if r.returncode != 0:

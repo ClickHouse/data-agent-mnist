@@ -16,8 +16,8 @@ from collections import defaultdict
 from pathlib import Path
 
 from bench import RETIRED_CANDIDATES  # noqa: E402
-from paths import DATA
-RESULTS   = DATA / "text2sqlbench-synthetic/results.jsonl"
+from paths import SYNTH_DIR
+RESULTS   = SYNTH_DIR / "results.jsonl"
 
 JUDGE_PROV = {"opus48": "Anthropic", "sonnet46": "Anthropic",
               "gpt-5.5": "OpenAI", "gpt-5.4": "OpenAI",

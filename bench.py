@@ -4,17 +4,22 @@ Candidate runners and blind judge for the synthetic text2sql benchmark.
 ch_query and system_prompt are passed as arguments to keep DB/schema
 concerns in the notebook and infrastructure concerns here.
 """
+import hashlib
 import json
+import math
 import os
 import random
 import re
 import sys
 import threading
 import time
+import uuid
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from typing import Callable, Iterable
+from typing import Callable, Iterable, NamedTuple
+from urllib.parse import quote
 
 import boto3
 import botocore.auth
@@ -39,16 +44,18 @@ AWS_REGION = os.environ.get("AWS_DEFAULT_REGION", "us-east-2")
 from registry import (  # noqa: E402
     ADAPTIVE_THINKING_ONLY, ALL_CANDIDATES, ANNOTATORS, ANTHROPIC_CANDIDATES,
     BEDROCK_REASONING, CANDIDATES, EFFORT_CAPABLE, ENDPOINTS, FIREWORKS_CANDIDATES,
-    GATEWAY_CANDIDATES, GEMINI_CANDIDATES, GEMINI_GLOBAL, JUDGE_MODEL, LINKER,
+    GATEWAY_CANDIDATES, GEMINI_CANDIDATES, GEMINI_GLOBAL, JUDGE_MODEL,
+    LIBRECHAT_CANDIDATES, LINKER,
     MODELS,
     JUDGE_MODEL_IDS, JUDGE_PROVIDER, JUDGE_SEATS, MANTLE_CANDIDATES,
     MANTLE_RESPONSES_CANDIDATES, OPENAI_CANDIDATES, OPENAI_RESPONSES_ONLY,
     RETIRED_CANDIDATES,
+    SCORE_ABS_TOL, SCORE_REL_TOL, SCORE_ROUND_DECIMALS,
 )
 
 # Overridable for sensitivity sweeps: the budget is never announced to
 # the model, so runs at different budgets share a distribution over early turns.
-MAX_TURNS   = int(os.environ.get("DAM_MAX_TURNS", "10"))
+MAX_TURNS   = int(os.environ.get("DAM_MAX_TURNS", "60"))
 EVAL_SEED   = 42
 
 # Error marker for a turn truncated by the output-token cap (Messages API
@@ -57,12 +64,37 @@ EVAL_SEED   = 42
 # sweep treats an empty-answer truncation like a max-turns exhaustion.
 ERR_MAX_OUTPUT_TOKENS = "max output tokens"
 
+# The LibreChat runner could not read the agent's trace (ingestion lag, a sessionId
+# mismatch, or no reader configured). The run is an infrastructure unknown, not a
+# model failure, so the eval loop routes it to an 'error' outcome rather than letting
+# an empty result set score as a fail. See 06_eval.score_pair.
+ERR_LIBRECHAT_NO_TRACE = "librechat trace unavailable"
 
 
 
 
-# Result-set agreement tolerance: catches 59K vs 70K, ignores rounding.
-AGREEMENT_TOL = 0.05
+
+# Result-set numeric agreement policy. Two numbers agree when they are within
+# the absolute OR the relative tolerance (math.isclose). Values are first rounded
+# to `round_decimals` places, or kept at full precision when it is None.
+#
+# The board is a currency warehouse, so the default rounds to cents and allows 5%
+# relative drift: it catches 59K vs 70K and ignores rounding. That default is
+# wrong for a warehouse of concentrations, p-values or dose-response, where a
+# wrong answer by a factor of two sits inside 5% and two small values both round
+# to 0.00. A non-currency operator overrides these in the `scoring` section of
+# the model config (see config/models.example.yaml); the values come from
+# registry.py so annotate-time and eval-time share one policy.
+class ComparisonPolicy(NamedTuple):
+    round_decimals: int | None
+    rel_tol: float
+    abs_tol: float
+
+
+SCORING = ComparisonPolicy(SCORE_ROUND_DECIMALS, SCORE_REL_TOL, SCORE_ABS_TOL)
+
+# Back-compat alias: the sensitivity scripts read bench.AGREEMENT_TOL.
+AGREEMENT_TOL = SCORING.rel_tol
 
 # ── Tool schemas ──────────────────────────────────────────────────────────────
 
@@ -491,6 +523,32 @@ class TokenUsage:
             self.calls += 1
             self.missing += 1
 
+    def add_langfuse(self, usage_details, *, prompt_is_inclusive: bool = False):
+        """One Langfuse observation's usageDetails -> one turn.
+
+        The LibreChat runner does not hold a provider response; it reads usage back
+        off the agent's trace, in whatever keys LibreChat's integration wrote. So
+        the disjointness the other add_* methods inherit from a provider's own
+        accounting has to be re-established here from key names, and anything not
+        recognised is left at zero rather than guessed.
+
+        `input`'s convention is the one thing a dict cannot settle: OpenAI-style
+        counts cache reads inside it, Anthropic-style reports them beside it. We do
+        not guess. Pass prompt_is_inclusive=True once a real trace shows the inclusive
+        form, and the cache figures come out of the prompt so the buckets stay
+        disjoint; left False, prompt is recorded as given and a nonzero cache_read is
+        the signal that the assumption still needs checking against a trace.
+        """
+        ud = usage_details or {}
+        prompt     = self._int(ud, "input", "prompt_tokens", "input_tokens")
+        completion = self._int(ud, "output", "completion_tokens", "output_tokens")
+        c_read = self._int(ud, "cache_read_input_tokens", "cacheReadInputTokens", "cached_tokens")
+        c_write = self._int(ud, "cache_creation_input_tokens", "cacheWriteInputTokens",
+                            "cache_write_tokens")
+        if prompt_is_inclusive:
+            prompt = max(prompt - c_read - c_write, 0)
+        self._record(ud or None, prompt, completion, 0, c_read, c_write)
+
     def as_dict(self) -> dict:
         # The three input components are disjoint by construction (see
         # add_openai / add_responses), so they are safe to sum. Cache reads and
@@ -526,6 +584,7 @@ def run_candidate_bedrock(
     model_id: str,
     ch_query: Callable[[str], str],
     system_prompt: str,
+    gate: Callable[[str, str], str | None] | None = None,
 ) -> dict:
     start    = time.time()
     # PROMPT CACHING, the same two static breakpoints as the native
@@ -583,10 +642,12 @@ def run_candidate_bedrock(
                 q      = tc["input"].get("query", "")
                 sqls.append(q)
                 result = ch_query(q)
-                sql_results.append(result)
+                sql_results.append(result)                 # store the clean result the judge grades
+                note = gate(q, result) if gate is not None else None
+                shown = f"{note}\n\n{result}" if note is not None else result
                 tool_results.append({
                     "toolResult": {"toolUseId": tc["toolUseId"],
-                                   "content":   [{"text": result}]}
+                                   "content":   [{"text": shown}]}
                 })
             messages.append({"role": "user", "content": tool_results})
         else:
@@ -626,14 +687,17 @@ def run_candidate_openai_compat(
     client: OpenAI,
     ch_query: Callable[[str], str],
     system_prompt: str,
+    gate: Callable[[str, str], str | None] | None = None,
 ) -> dict:
     start        = time.time()
-    # o-series and gpt-5.x are reasoning models -> max_completion_tokens; gemini 2.5-pro
-    # and gemini 3.x, deepseek-v4, and Kimi (K2 Thinking / K2.6) are thinking models that
-    # emit reasoning inline -> need a larger budget so reasoning tokens don't starve the
-    # answer (at 2048 Kimi K2.6 truncated mid-reasoning on 18% of questions before it could
-    # even issue a query).
-    _is_reasoning = model_id.startswith("o") or model_id.startswith("gpt-5")
+    # o-series, gpt-5.x, and anything the registry flags `reasoning` take
+    # max_completion_tokens rather than max_tokens. gemini 2.5-pro and gemini 3.x,
+    # deepseek-v4, and Kimi (K2 Thinking / K2.6) are thinking models that emit
+    # reasoning inline -> need a larger budget so reasoning tokens don't starve the
+    # answer (at 2048 Kimi K2.6 truncated mid-reasoning on 18% of questions before it
+    # could even issue a query).
+    _is_reasoning = (model_id.startswith("o") or model_id.startswith("gpt-5")
+                     or model_id in BEDROCK_REASONING)
     _token_kwarg  = "max_completion_tokens" if _is_reasoning else "max_tokens"
     # qwen3p8-max emits no inline thinking but is verbose enough to hit a 2048 cap
     # on plain prose (observed finish_reason=length in the pre-trust probe).
@@ -686,10 +750,16 @@ def run_candidate_openai_compat(
                     q = ""
                 sqls.append(q)
                 result = ch_query(q)
-                sql_results.append(result)
+                sql_results.append(result)                 # store the clean result the judge grades
+                # An optional gate may inspect the query and its result and prepend a
+                # short note to the tool message the model reads next, steering the next
+                # turn without withholding the data or mutating the stored result;
+                # None leaves the message unchanged.
+                note = gate(q, result) if gate is not None else None
+                shown = f"{note}\n\n{result}" if note is not None else result
             else:
-                result = "Error: unknown tool."
-            messages.append({"role": "tool", "tool_call_id": tc.id, "content": result})
+                shown = "Error: unknown tool."
+            messages.append({"role": "tool", "tool_call_id": tc.id, "content": shown})
 
     return {"sqls": sqls, "sql_results": sql_results,
             "final_answer": "", "turns": MAX_TURNS, "served_model": served,
@@ -703,6 +773,7 @@ def run_candidate_responses_api(
     client: OpenAI,
     ch_query: Callable[[str], str],
     system_prompt: str,
+    gate: Callable[[str, str], str | None] | None = None,
 ) -> dict:
     """Agentic loop over the OpenAI Responses API (/v1/responses).
 
@@ -752,11 +823,13 @@ def run_candidate_responses_api(
                     q = ""
                 sqls.append(q)
                 result = ch_query(q)
-                sql_results.append(result)
+                sql_results.append(result)                 # store the clean result the judge grades
+                note = gate(q, result) if gate is not None else None
+                shown = f"{note}\n\n{result}" if note is not None else result
             else:
-                result = "Error: unknown tool."
+                shown = "Error: unknown tool."
             pending.append({"type": "function_call_output",
-                            "call_id": fc.call_id, "output": result})
+                            "call_id": fc.call_id, "output": shown})
 
     return {"sqls": sqls, "sql_results": sql_results,
             "final_answer": "", "turns": MAX_TURNS, "served_model": served,
@@ -769,6 +842,7 @@ def run_candidate_messages_api(
     model_id: str,
     ch_query: Callable[[str], str],
     system_prompt: str,
+    gate: Callable[[str, str], str | None] | None = None,
     *,
     thinking: str = "off",
     effort: str = "high",
@@ -866,11 +940,13 @@ def run_candidate_messages_api(
                     q = (block.input or {}).get("query", "")
                     sqls.append(q)
                     result = ch_query(q)
-                    sql_results.append(result)
+                    sql_results.append(result)             # store the clean result the judge grades
+                    note = gate(q, result) if gate is not None else None
+                    shown = f"{note}\n\n{result}" if note is not None else result
                 else:
-                    result = f"Error: unknown tool {block.name!r}"
+                    shown = f"Error: unknown tool {block.name!r}"
                 tool_results.append({"type": "tool_result",
-                                     "tool_use_id": block.id, "content": result})
+                                     "tool_use_id": block.id, "content": shown})
             messages.append({"role": "user", "content": tool_results})
         else:
             final = "".join(b.text for b in resp.content if b.type == "text")
@@ -892,31 +968,505 @@ def run_candidate_messages_api(
             "usage": usage.as_dict()}
 
 
+# ── LibreChat product-surface runner ────────────────────────────────────────────
+# The runners above reimplement the agent; this one drives the product. A LibreChat
+# agent answers the SAME question through its own prompt, its own loop and its own
+# run_select_query tool, and the trajectory is read back off its Langfuse trace so
+# every scoring component downstream stays byte-identical. Only where the run comes
+# from changes. The agent's SQL tool must point at the frozen chDB the direct
+# runners use (see librechat/mcp_warehouse.py) or ground truth stops applying.
+
+_LIBRECHAT_UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+                 "(KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36")
+_LIBRECHAT_NO_PARENT = "00000000-0000-0000-0000-000000000000"
+# LibreChat suffixes the MCP tool name (e.g. run_select_query_mcp_<server>), so
+# match on the substring, as 01_extract does for the source traces.
+_SQL_TOOL_SUBSTR = "run_select_query"
+# The agent-run trace name, used to pick the right trace out of a conversation. A
+# LibreChat conversation also produces a title-generation trace under the same
+# sessionId, so matching on the session alone can select the wrong observation set.
+# 01_extract keys on the same name; override for a benchmark agent named otherwise.
+_LIBRECHAT_TRACE_NAME = os.environ.get("LIBRECHAT_TRACE_NAME", "AgentRun")
+# The login JWT expires (~15 min), so a long run must re-login. Refresh well before
+# that, and re-login once on any 401. Without this a full-board run 401s after ~15 min.
+_LIBRECHAT_TOKEN_TTL = 600
+
+
+def _parse_sse_event(raw: str):
+    """One SSE record (its "event:" / "data:" lines) -> {event, data}, or None."""
+    event, data = "message", ""
+    for line in re.split(r"\r?\n", raw):
+        if line.startswith("event:"):
+            event = line[len("event:"):].strip()
+        elif line.startswith("data:"):
+            data += line[len("data:"):].strip()
+    if not data:
+        return None
+    return {"event": event, "data": json.loads(data)}
+
+
+def _final_answer_text(rmsg: dict) -> str:
+    """The assistant's concluding answer from an agents responseMessage.
+
+    On the agents endpoint `text` is empty; the body is in `content`, an ordered list
+    of {type: "text"|"tool_call"} blocks spanning the whole agent turn. The answer is
+    the text after the last tool call (the concluding step); with no tool call, it is
+    all the text. This is the product's own final message, taken off the stream so it
+    does not depend on trace ingestion.
+    """
+    txt = (rmsg.get("text") or "").strip()
+    if txt:
+        return txt
+    content = rmsg.get("content")
+    if not isinstance(content, list):
+        return ""
+    last_tool = max((i for i, b in enumerate(content)
+                     if isinstance(b, dict) and b.get("type") == "tool_call"), default=-1)
+    parts = [b.get("text", "") for b in content[last_tool + 1:]
+             if isinstance(b, dict) and b.get("type") == "text"]
+    if not parts:
+        parts = [b.get("text", "") for b in content
+                 if isinstance(b, dict) and b.get("type") == "text"]
+    return "\n".join(p for p in parts if p).strip()
+
+
+class _LibreChatSession:
+    """One authenticated LibreChat tenant, driving agent chats over the HTTP API.
+
+    Built at import but NOT logged in: importing bench must not require a running
+    LibreChat, the same reason the Vertex credentials resolve on first use. login is
+    cached and happens on the first run. The flow (login -> POST chat -> GET the SSE
+    stream to its final event) mirrors the drive-librechat-agent-chat skill.
+    """
+
+    def __init__(self, base_url, tenant_id, email, password,
+                 *, provider="gateway", mcp_tool="run_select_query_mcp_ClickHouse",
+                 timeout=600.0):
+        self.base_url  = (base_url or "").rstrip("/")
+        self.tenant_id = tenant_id
+        self.email     = email
+        self.password  = password
+        self.provider  = provider       # the LibreChat endpoint the benchmark agent runs on
+        self.mcp_tool  = mcp_tool        # the ClickHouse MCP tool key to attach to the agent
+        self._token    = None
+        self._token_at = 0.0             # when the token was issued, for TTL refresh
+        self._agents   = {}              # (model, instructions) -> created agent id, reused per run
+        self._client   = httpx.Client(timeout=timeout)
+        self._lock     = threading.Lock()
+
+    @classmethod
+    def from_env(cls):
+        return cls(
+            base_url=os.environ.get("LIBRECHAT_BASE_URL") or ENDPOINTS.get("librechat", ""),
+            tenant_id=os.environ.get("LIBRECHAT_TENANT_ID", ""),
+            email=os.environ.get("LIBRECHAT_EMAIL", ""),
+            password=os.environ.get("LIBRECHAT_PASSWORD", "ValidationPassword123!"),
+            provider=os.environ.get("LIBRECHAT_PROVIDER", "gateway"),
+            mcp_tool=os.environ.get("LIBRECHAT_MCP_TOOL", "run_select_query_mcp_ClickHouse"))
+
+    def _headers(self, *, json_body=True):
+        # X-Tenant-Id only when a tenant is configured: a single-tenant instance
+        # rejects an empty tenant header, and the header is meaningless there.
+        h = {"User-Agent": _LIBRECHAT_UA}
+        if self.tenant_id:
+            h["X-Tenant-Id"] = self.tenant_id
+        if self._token:
+            h["Authorization"] = f"Bearer {self._token}"
+        if json_body:
+            h["Content-Type"] = "application/json"
+        return h
+
+    def _ensure_login(self, force: bool = False):
+        with self._lock:
+            fresh = self._token and (time.time() - self._token_at) < _LIBRECHAT_TOKEN_TTL
+            if fresh and not force:
+                return
+            if not (self.base_url and self.email):
+                raise RuntimeError(
+                    "the LibreChat runner needs LIBRECHAT_BASE_URL and LIBRECHAT_EMAIL set and a "
+                    "seeded instance reachable (see librechat/README.md); LIBRECHAT_TENANT_ID is "
+                    "only needed for a multi-tenant instance. A provider: librechat model cannot "
+                    "run without a reachable instance.")
+            r = self._client.post(f"{self.base_url}/api/auth/login",
+                                  headers={"User-Agent": _LIBRECHAT_UA, "Content-Type": "application/json",
+                                           **({"X-Tenant-Id": self.tenant_id} if self.tenant_id else {})},
+                                  json={"email": self.email, "password": self.password})
+            r.raise_for_status()
+            self._token = r.json()["token"]
+            self._token_at = time.time()
+
+    def ensure_agent(self, model: str, instructions: str) -> str:
+        """Create (once, then reuse) a benchmark agent and return its id.
+
+        The agent runs `model` on the configured provider, carries the ClickHouse
+        MCP tool, and takes `instructions` as its system prompt. The runner passes
+        the board's own system prompt here, so the LibreChat candidate answers under
+        the SAME prompt the direct runners used on the board: the only variable
+        between the two numbers is the agent loop, not the prompt. Created as the
+        logged-in user, so it is owned and drivable without a separate grant. Cached
+        per (model, instructions) because the prompt is constant across a run.
+        """
+        self._ensure_login()
+        key = (model, hashlib.sha256((instructions or "").encode()).hexdigest())
+        with self._lock:
+            hit = self._agents.get(key)
+        if hit:
+            return hit
+        body = {"name": f"dam-bench {model}", "instructions": instructions or "",
+                "provider": self.provider, "model": model, "model_parameters": {},
+                "tools": [self.mcp_tool]}
+        r = self._client.post(f"{self.base_url}/api/agents", headers=self._headers(), json=body)
+        if r.status_code == 401:                       # token expired mid-run; re-login and retry
+            self._ensure_login(force=True)
+            r = self._client.post(f"{self.base_url}/api/agents", headers=self._headers(), json=body)
+        r.raise_for_status()
+        agent_id = r.json()["id"]
+        with self._lock:
+            self._agents[key] = agent_id
+        return agent_id
+
+    def chat(self, text: str, agent_id: str) -> dict:
+        """Drive one isolated conversation with the agent to its final message.
+
+        conversationId is null, so every question is its own thread — the
+        per-question isolation the direct runners get for free by construction.
+        """
+        self._ensure_login()
+        message_id = str(uuid.uuid4())
+        now        = datetime.now(timezone.utc)
+        payload = {
+            "text": text, "sender": "User", "clientTimestamp": now.isoformat(),
+            "isCreatedByUser": True, "parentMessageId": _LIBRECHAT_NO_PARENT,
+            "conversationId": None, "messageId": message_id, "error": False,
+            "endpoint": "agents", "model": agent_id, "agent_id": agent_id,
+            "key": (now + timedelta(hours=1)).isoformat(), "timezone": "UTC",
+        }
+        start = self._client.post(f"{self.base_url}/api/agents/chat",
+                                  headers=self._headers(), json=payload)
+        if start.status_code == 401:                   # token expired mid-run; re-login and retry
+            self._ensure_login(force=True)
+            start = self._client.post(f"{self.base_url}/api/agents/chat",
+                                      headers=self._headers(), json=payload)
+        start.raise_for_status()
+        started = start.json()
+        final   = self._read_stream(started["streamId"])
+        rmsg    = final.get("responseMessage") or {}
+        conv    = (rmsg.get("conversationId")
+                   or (final.get("conversation") or {}).get("conversationId")
+                   or started.get("conversationId") or started.get("streamId"))
+        return {"conversationId": conv,
+                "assistantMessageId": rmsg.get("messageId"),
+                "final_answer": _final_answer_text(rmsg),
+                "served_model": rmsg.get("model") or agent_id}
+
+    def _read_stream(self, stream_id: str) -> dict:
+        url = f"{self.base_url}/api/agents/chat/stream/{quote(stream_id, safe='')}"
+        with self._client.stream("GET", url, headers=self._headers(json_body=False)) as r:
+            r.raise_for_status()
+            buffer = ""
+            for chunk in r.iter_text():
+                buffer += chunk
+                records = re.split(r"\r?\n\r?\n", buffer)
+                buffer  = records.pop()           # trailing partial record, completed next read
+                for raw in records:
+                    msg = _parse_sse_event(raw)
+                    if not msg:
+                        continue
+                    if msg["data"].get("final") or msg["event"] == "done":
+                        return msg["data"]
+                    if msg["data"].get("error"):
+                        raise RuntimeError(f"LibreChat stream error: {msg['data']}")
+        raise RuntimeError("LibreChat stream ended without a final event")
+
+
+class _LangfuseReader:
+    """Read-only Langfuse REST client for pulling a finished agent run's trace.
+
+    The LibreChat run's trajectory and usage live in the trace LibreChat wrote, not
+    in a provider response we hold, so the runner reads them back the way 01_extract
+    does (raw /api/public REST rather than the SDK).
+    """
+
+    def __init__(self, host, public_key, secret_key, *, timeout=120.0):
+        self._client = httpx.Client(base_url=f"{host.rstrip('/')}/api/public",
+                                    auth=(public_key, secret_key), timeout=timeout)
+
+    @classmethod
+    def from_env(cls):
+        host = os.environ.get("LANGFUSE_HOST")
+        pk = os.environ.get("LANGFUSE_RESEARCH_PUBLIC_KEY") or os.environ.get("LANGFUSE_PUBLIC_KEY")
+        sk = os.environ.get("LANGFUSE_RESEARCH_SECRET_KEY") or os.environ.get("LANGFUSE_SECRET_KEY")
+        if not (host and pk and sk):
+            return None
+        return cls(host, pk, sk)
+
+    def trace_for_conversation(self, conversation_id, *, trace_name=_LIBRECHAT_TRACE_NAME,
+                               attempts=24, delay=5.0):
+        """Poll for one conversation's agent-run trace, and WAIT FOR INGESTION TO SETTLE
+        before returning it. Langfuse ingests a trace incrementally, so a read taken as
+        soon as any observation appears catches a PARTIAL trace: turns, sqls and results
+        come back undercounted (in the worst case zero generations), which then scores a
+        completed, correct run as a fail. So return the trace only once its GENERATION
+        count is >0 and unchanged across two consecutive polls and the trace has a
+        terminal output, i.e. the last generation has landed. Fall back to the fullest
+        trace seen if the budget is spent (better than None), or None if nothing ingested.
+
+        The trace is matched on the sessionId LibreChat sets to the conversationId AND the
+        agent-run trace name: a conversation also emits a title-generation trace under the
+        same session, and without the name filter that trace, which has generations but no
+        run_select_query, could be reconstructed instead.
+        """
+        params = {"sessionId": conversation_id, "limit": 10}
+        if trace_name:
+            params["name"] = trace_name
+        prev_gen, best = -1, None
+        for _ in range(attempts):
+            full = None
+            for stub in self._client.get("/traces", params=params).json().get("data", []):
+                f = self._client.get(f"/traces/{stub['id']}").json()
+                if f.get("observations"):
+                    full = f
+                    break
+            if full is not None:
+                best = full
+                g = sum(1 for o in full.get("observations", []) if o.get("type") == "GENERATION")
+                settled = g > 0 and g == prev_gen
+                terminal = isinstance(full.get("output"), str) and full["output"].strip()
+                if settled and terminal:
+                    return full
+                prev_gen = g
+            time.sleep(delay)
+        return best
+
+
+# Trace-parsing helpers. These mirror 01_extract's, kept separate because that
+# module reads Langfuse keys at import and so is not import-safe from bench.
+def _lf_kwargs(msg):
+    return msg.get("kwargs", {}) if isinstance(msg, dict) else {}
+
+
+def _lf_text(content) -> str:
+    if isinstance(content, str):
+        return content
+    if isinstance(content, list):
+        parts = []
+        for b in content:
+            if isinstance(b, dict) and b.get("type") == "text":
+                parts.append(b.get("text", ""))
+            elif isinstance(b, str):
+                parts.append(b)
+        return "\n".join(p for p in parts if p)
+    return ""
+
+
+def _lf_content(msg) -> str:
+    if not isinstance(msg, dict):
+        return ""
+    c = msg.get("content")
+    if c is None:
+        c = _lf_kwargs(msg).get("content")
+    return _lf_text(c)
+
+
+def _lf_tool_calls(msg):
+    """Normalized [{name, args, id}] across the LangChain (args is a dict) and
+    OpenAI-style (function.arguments is a JSON string) serializations."""
+    k = _lf_kwargs(msg)
+    raw = (k.get("tool_calls") or msg.get("tool_calls")
+           or k.get("additional_kwargs", {}).get("tool_calls")
+           or msg.get("additional_kwargs", {}).get("tool_calls") or [])
+    out = []
+    for tc in raw:
+        name = tc.get("name") or tc.get("function", {}).get("name", "")
+        args = tc.get("args")
+        if args is None:
+            a = tc.get("function", {}).get("arguments")
+            try:
+                args = json.loads(a) if isinstance(a, str) else (a or {})
+            except Exception:
+                args = {}
+        out.append({"name": name, "args": args or {}, "id": tc.get("id")})
+    return out
+
+
+def _lf_messages(obs):
+    inp = obs.get("input")
+    if isinstance(inp, dict) and isinstance(inp.get("messages"), list):
+        return inp["messages"]
+    if isinstance(inp, list):
+        return inp
+    return []
+
+
+def _reconstruct_librechat_run(trace) -> dict:
+    """Rebuild the standard runner fields from a LibreChat agent's Langfuse trace.
+
+    One conversation is one question, so every run_select_query call in the trace
+    belongs to this run. `turns` is the count of model generations, the nearest analog
+    to the model-call count the other runners report. The final answer is the
+    trace-level output (the streamed answer, when present, is the same text).
+
+    Two tool serializations are handled. The LangGraph agent emits a `tool-dispatch`
+    step whose input is the batch of {name, args} calls and whose output.messages hold
+    the results in the same order (the role names the tool and there is no tool_call_id
+    to key on, so pair positionally). The older tool_batch shape keys results by
+    tool_call_id and is kept as a fallback so a differently wired instance still
+    reconstructs.
+    """
+    obs = (trace or {}).get("observations", []) or []
+    sqls, sql_results = [], []
+
+    # LangGraph tool-dispatch: results aligned positionally with the call batch.
+    for o in obs:
+        if o.get("name") != "tool-dispatch":
+            continue
+        calls = o.get("input") if isinstance(o.get("input"), list) else []
+        out   = o.get("output") if isinstance(o.get("output"), dict) else {}
+        msgs  = out.get("messages") if isinstance(out.get("messages"), list) else []
+        for i, c in enumerate(calls):
+            if not isinstance(c, dict) or _SQL_TOOL_SUBSTR not in (c.get("name") or ""):
+                continue
+            q = (c.get("args") or {}).get("query", "")
+            if not q:
+                continue
+            sqls.append(q)
+            sql_results.append(_lf_content(msgs[i]) if i < len(msgs) else "")
+
+    # Fallback: the tool_batch shape, results keyed by tool_call_id.
+    if not sqls:
+        tool_batches  = [o for o in obs if o.get("type") == "TOOL" and o.get("name") == "tool_batch"]
+        results_by_id = {}
+        for o in tool_batches:
+            out = o.get("output")
+            for tm in (out.get("messages", []) if isinstance(out, dict) else []):
+                tcid = _lf_kwargs(tm).get("tool_call_id")
+                if tcid and not results_by_id.get(tcid):
+                    results_by_id[tcid] = _lf_content(tm)
+            for m in _lf_messages(o):
+                tcid = _lf_kwargs(m).get("tool_call_id")
+                if tcid and not results_by_id.get(tcid):
+                    results_by_id[tcid] = _lf_content(m)
+        scan_msgs = list(max((_lf_messages(o) for o in tool_batches), key=len, default=[]))
+        for o in obs:
+            if o.get("type") == "GENERATION" and isinstance(o.get("output"), dict):
+                scan_msgs.append(o["output"])
+        seen = set()
+        for m in scan_msgs:
+            for tc in _lf_tool_calls(m):
+                if _SQL_TOOL_SUBSTR not in (tc["name"] or ""):
+                    continue
+                q, tcid = tc["args"].get("query", ""), tc.get("id")
+                if not q or (tcid and tcid in seen):
+                    continue
+                if tcid:
+                    seen.add(tcid)
+                sqls.append(q)
+                sql_results.append(results_by_id.get(tcid, ""))
+
+    gens = sorted((o for o in obs if o.get("type") == "GENERATION"),
+                  key=lambda o: o.get("startTime") or "")
+    usage = TokenUsage()
+    for g in gens:
+        usage.add_langfuse(g.get("usageDetails") or g.get("usage"))
+
+    # Final answer: the trace-level output (the assistant's last message). Fall back
+    # to the last generation's text for a shape that carries no trace output.
+    fa = trace.get("output") if isinstance(trace, dict) else None
+    if isinstance(fa, str) and fa.strip():
+        final_answer = fa.strip()
+    elif gens:
+        out = gens[-1].get("output")
+        final_answer = (_lf_content(out) if isinstance(out, dict) else _lf_text(out)).strip()
+    else:
+        final_answer = ""
+
+    return {"sqls": sqls, "sql_results": sql_results, "final_answer": final_answer,
+            "turns": len(gens), "usage": usage}
+
+
+# Built at import, never logged in / never a network call here; see the classes above.
+_librechat_session = _LibreChatSession.from_env()
+_langfuse_reader   = _LangfuseReader.from_env()
+
+
+def run_candidate_librechat(
+    nl_question: str,
+    model_id: str,
+    ch_query: Callable[[str], str] | None = None,
+    system_prompt: str | None = None,
+    *,
+    session=None,
+    reader=None,
+) -> dict:
+    """Drive a LibreChat agent as the candidate and read the run off its trace.
+
+    `model_id` is the model the LibreChat agent runs (served by the configured
+    provider); `system_prompt` is the board's own prompt, applied as the agent's
+    instructions so the LibreChat candidate answers under the SAME prompt the direct
+    runners used on the board. The only variable between the two numbers is the agent
+    loop, not the prompt. `ch_query` is unused: the agent reaches the warehouse through
+    its own run_select_query MCP tool, which must point at the same frozen chDB (see
+    librechat/mcp_warehouse.py).
+
+    The returned dict is the standard runner shape, so scoring is unchanged. sqls,
+    sql_results, turns and usage come from the Langfuse trace because they are the
+    product's numbers, read back rather than measured by us. How `turns` (model
+    generations) relates to pass@B is the open question the spike measures.
+    """
+    sess   = session or _librechat_session
+    reader = reader if reader is not None else _langfuse_reader
+    start  = time.time()
+
+    agent_id = sess.ensure_agent(model_id, system_prompt or "")
+    conv     = sess.chat(nl_question, agent_id)
+    trace   = reader.trace_for_conversation(conv["conversationId"]) if reader else None
+    recon   = _reconstruct_librechat_run(trace)
+    # The streamed answer does not depend on trace ingestion having completed, and it
+    # is the same text as the reconstructed one, so prefer it.
+    final_answer = conv.get("final_answer") or recon["final_answer"]
+    return {
+        "sqls": recon["sqls"], "sql_results": recon["sql_results"],
+        "final_answer": final_answer, "turns": recon["turns"],
+        "served_model": conv.get("served_model") or model_id,
+        "latency": round(time.time() - start, 2),
+        # An absent trace means ingestion lag or a session-id mismatch, not a model
+        # failure: flagged so the eval loop scores it 'error' (unknown), not a fail.
+        "error": None if trace is not None else ERR_LIBRECHAT_NO_TRACE,
+        "usage": recon["usage"].as_dict(),
+        "conversation_id": conv.get("conversationId"),
+    }
+
+
 def run_candidate(
     nl_question: str,
     model_name: str,
     model_id: str,
     ch_query: Callable[[str], str],
     system_prompt: str,
+    gate: Callable[[str, str], str | None] | None = None,
 ) -> dict:
     if model_name in GEMINI_CANDIDATES:
         client = gemini_global_client if model_name in GEMINI_GLOBAL else gemini_client
-        return run_candidate_openai_compat(nl_question, model_id, client, ch_query, system_prompt)
+        return run_candidate_openai_compat(nl_question, model_id, client, ch_query, system_prompt, gate)
     if model_name in OPENAI_CANDIDATES:
         if model_name in OPENAI_RESPONSES_ONLY:
-            return run_candidate_responses_api(nl_question, model_id, openai_client, ch_query, system_prompt)
-        return run_candidate_openai_compat(nl_question, model_id, openai_client, ch_query, system_prompt)
+            return run_candidate_responses_api(nl_question, model_id, openai_client, ch_query, system_prompt, gate)
+        return run_candidate_openai_compat(nl_question, model_id, openai_client, ch_query, system_prompt, gate)
     if model_name in MANTLE_RESPONSES_CANDIDATES:
-        return run_candidate_responses_api(nl_question, model_id, mantle_openai_client, ch_query, system_prompt)
+        return run_candidate_responses_api(nl_question, model_id, mantle_openai_client, ch_query, system_prompt, gate)
     if model_name in MANTLE_CANDIDATES:
-        return run_candidate_openai_compat(nl_question, model_id, mantle_client, ch_query, system_prompt)
+        return run_candidate_openai_compat(nl_question, model_id, mantle_client, ch_query, system_prompt, gate)
     if model_name in FIREWORKS_CANDIDATES:
-        return run_candidate_openai_compat(nl_question, model_id, fireworks_client, ch_query, system_prompt)
+        return run_candidate_openai_compat(nl_question, model_id, fireworks_client, ch_query, system_prompt, gate)
     if model_name in GATEWAY_CANDIDATES:
-        return run_candidate_openai_compat(nl_question, model_id, gateway_client, ch_query, system_prompt)
+        return run_candidate_openai_compat(nl_question, model_id, gateway_client, ch_query, system_prompt, gate)
     if model_name in ANTHROPIC_CANDIDATES:
-        return run_candidate_messages_api(nl_question, model_id, ch_query, system_prompt)
-    return run_candidate_bedrock(nl_question, model_id, ch_query, system_prompt)
+        return run_candidate_messages_api(nl_question, model_id, ch_query, system_prompt, gate)
+    if model_name in LIBRECHAT_CANDIDATES:
+        # The product drives its own loop over HTTP, so there is no hook to apply the
+        # in-loop gate; LibreChat candidates run ungated.
+        return run_candidate_librechat(nl_question, model_id, ch_query, system_prompt)
+    return run_candidate_bedrock(nl_question, model_id, ch_query, system_prompt, gate)
 
 # ── Cross-model judge ─────────────────────────────────────────────────────────
 
@@ -1184,8 +1734,13 @@ def is_exploratory(sql: str) -> bool:
 
 # ── Majority-vote ground truth ───────────────────────────────────────
 
-def _parse_result(result_str):
-    """Parse a result-set string into normalized, sorted rows (numbers rounded)."""
+def _parse_result(result_str, decimals: int | None = SCORING.round_decimals):
+    """Parse a result-set string into normalized, sorted rows.
+
+    Numbers are rounded to `decimals` places when it is not None (the board rounds
+    to cents); None keeps full precision so small-magnitude values are not
+    flattened before comparison. Non-numeric cells are kept as strings.
+    """
     if not result_str or result_str.startswith("Error:") or result_str == "(empty result)":
         return []
     rows = []
@@ -1193,7 +1748,7 @@ def _parse_result(result_str):
         try:
             _row, _norm = json.loads(_ln), {}
             for k, v in _row.items():
-                try:    _norm[k.lower().strip()] = round(float(v), 2)
+                try:    _norm[k.lower().strip()] = round(float(v), decimals) if decimals is not None else float(v)
                 except: _norm[k.lower().strip()] = str(v)
             rows.append(_norm)
         except Exception:
@@ -1204,13 +1759,15 @@ def _parse_result(result_str):
 _COL_LINK_CACHE: dict = {}   # (tuple(keys_a), tuple(keys_b)) -> {a_col: b_col}
 _COL_LINK_LOCK  = threading.Lock()
 _COL_LINK_WARNED = False
+_COL_LINK_EMPTY_WARNED = False   # parsed-but-empty mapping seen (not a linker error)
 
 
 def _link_columns(keys_a: list, keys_b: list) -> dict:
     """Map each column in A to the column in B that means the same quantity, so
     aliasing (e.g. total_dollar_usage <-> monthly_spend) doesn't hide a real value
-    comparison. Identity when the column sets match (no model call); otherwise a
-    cached Haiku call (temp 0 -> reproducible). Falls back to shared names on error.
+    comparison. Identity when one column set contains the other (no model call);
+    otherwise a cached Haiku call (temp 0 -> reproducible). Falls back to shared
+    names on error; logs a parsed-but-empty mapping instead of scoring it blind.
 
     The eval loop calls this from many worker threads. The Haiku call runs OUTSIDE
     the lock so column-linking stays concurrent, but the cache read and write are
@@ -1219,8 +1776,14 @@ def _link_columns(keys_a: list, keys_b: list) -> dict:
     byte-guaranteed across calls, so last-writer-wins could otherwise hand different
     threads different mappings for the same key)."""
     ka, kb = tuple(keys_a), tuple(keys_b)
-    if set(ka) == set(kb):
-        return {k: k for k in ka}
+    sa, sb = set(ka), set(kb)
+    # Identity when one column set contains the other (no model call): the smaller
+    # set's columns all exist on the other side, so mapping each to itself scores the
+    # SELECT-subset case (candidate returns the ground truth's columns plus extras)
+    # on the ground truth's columns alone, instead of sending a wide list to the
+    # model and reading its truncated, valid-but-empty reply as "no columns match".
+    if sa <= sb or sb <= sa:
+        return {k: k for k in (ka if sa <= sb else kb)}
     with _COL_LINK_LOCK:
         if (ka, kb) in _COL_LINK_CACHE:
             return _COL_LINK_CACHE[(ka, kb)]
@@ -1232,10 +1795,20 @@ def _link_columns(keys_a: list, keys_b: list) -> dict:
         'Respond ONLY with JSON: {"mapping": {"<a_col>": "<b_col or null>"}}'
     )
     try:
-        text = _judge_complete(LINKER, prompt, max_tokens=256, temperature=0)
+        # Generous budget: a truncated reply parses as valid-but-empty JSON.
+        text = _judge_complete(LINKER, prompt, max_tokens=1024, temperature=0)
         m   = re.search(r"\{.*\}", text, re.DOTALL)
         raw = json.loads(m.group()).get("mapping", {}) if m else {}
-        mapping = {a: b for a, b in raw.items() if a in set(ka) and b in set(kb)}
+        mapping = {a: b for a, b in raw.items() if a in sa and b in sb}
+        if not mapping:
+            # Still a mismatch (no shared meaning), but say so once: on very wide
+            # non-subset sets an empty mapping can be a truncation artifact.
+            global _COL_LINK_EMPTY_WARNED
+            if not _COL_LINK_EMPTY_WARNED:
+                _COL_LINK_EMPTY_WARNED = True
+                print(f"WARNING: column linker ({LINKER}) returned an empty mapping "
+                      f"for {len(ka)}x{len(kb)} columns; scoring as a mismatch.",
+                      file=sys.stderr)
     except Exception as e:
         # Loudly. The fallback matches identical names only, so aliased columns
         # stop linking and equivalent answers score WRONG. That is a silent change
@@ -1255,11 +1828,12 @@ def _link_columns(keys_a: list, keys_b: list) -> dict:
         return _COL_LINK_CACHE.setdefault((ka, kb), mapping)
 
 
-def _results_match(res_a: str, res_b: str, tol: float = AGREEMENT_TOL) -> bool:
-    """Whether two result-set strings are equivalent within `tol` (rounding-safe).
+def _results_match(res_a: str, res_b: str, policy: ComparisonPolicy = SCORING) -> bool:
+    """Whether two result-set strings are equivalent under `policy` (rounding-safe).
     Columns are entity-linked first so differently-aliased value columns are still
-    compared by value, not silently skipped."""
-    a, b = _parse_result(res_a), _parse_result(res_b)
+    compared by value, not silently skipped. Two numbers agree when they are within
+    the policy's absolute OR relative tolerance; the currency default is 5% relative."""
+    a, b = _parse_result(res_a, policy.round_decimals), _parse_result(res_b, policy.round_decimals)
     if not a and not b:
         return True
     if not a or not b or len(a) != len(b):
@@ -1282,7 +1856,7 @@ def _results_match(res_a: str, res_b: str, tol: float = AGREEMENT_TOL) -> bool:
             x, y = ra[k], rb[k]
             try:
                 fx, fy = float(x), float(y)
-                if abs(fx - fy) / max(abs(fx), abs(fy), 1e-9) > tol:
+                if not math.isclose(fx, fy, rel_tol=policy.rel_tol, abs_tol=policy.abs_tol):
                     return False
             except (ValueError, TypeError):
                 if str(x) != str(y):

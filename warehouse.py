@@ -15,13 +15,13 @@ import threading
 from pathlib import Path
 
 from chdb import session as chdb_session
-from paths import DATA
+from paths import SYNTH_DIR
 # BOARD DEFAULTS. Every one of these names our benchmark, and the harness does not
 # ship any of them: they resolve under DAM_DATA_ROOT, which an adopter points at
-# their own datasets. They stay as defaults so our own runs need no flags, and
-# every path built from them fails with the flag to pass instead of a bare
-# missing-file error.
-DATA_DIR       = DATA / "text2sqlbench-synthetic"
+# their own datasets, and DAM_CORPUS selects which corpus under it (the board by
+# default). They stay as defaults so our own runs need no flags, and every path
+# built from them fails with the flag to pass instead of a bare missing-file error.
+DATA_DIR       = SYNTH_DIR
 DB_PATH        = DATA_DIR / "chdb"
 QUERY_TIMEOUT_S = 30          # per-query wall-clock ceiling; every
                               # worker blocks on the shared lock while
