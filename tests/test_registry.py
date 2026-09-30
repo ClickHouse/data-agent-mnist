@@ -32,7 +32,8 @@ sys.path.insert(0, str(DAM))
 import registry  # noqa: E402
 
 EXAMPLE = DAM / "config/models.example.yaml"
-PROVIDERS = {"bedrock", "mantle", "openai", "gemini", "fireworks", "anthropic", "gateway"}
+PROVIDERS = {"bedrock", "mantle", "openai", "gemini", "fireworks", "anthropic", "gateway",
+             "librechat"}
 
 
 # ── structural ────────────────────────────────────────────────────────────────
@@ -46,6 +47,7 @@ def test_providers_partition_the_live_models():
         "openai": registry.OPENAI_CANDIDATES, "gemini": registry.GEMINI_CANDIDATES,
         "fireworks": registry.FIREWORKS_CANDIDATES,
         "anthropic": registry.ANTHROPIC_CANDIDATES, "gateway": registry.GATEWAY_CANDIDATES,
+        "librechat": registry.LIBRECHAT_CANDIDATES,
     }
     seen: dict[str, str] = {}
     for view, d in views.items():

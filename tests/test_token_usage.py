@@ -111,6 +111,36 @@ def test_cache_fields_are_per_turn_too():
     assert [t[4] for t in out["per_turn"]] == [4000, 0], "the write happens on turn 1"
 
 
+# ── add_langfuse: usage read back off a trace ────────────────────────────────────
+
+def test_langfuse_usage_reads_the_disjoint_buckets_by_name():
+    u = bench.TokenUsage()
+    u.add_langfuse({"input": 1200, "output": 300,
+                    "cache_read_input_tokens": 800, "cache_creation_input_tokens": 50})
+    out = u.as_dict()
+    assert (out["prompt_tokens"], out["completion_tokens"]) == (1200, 300)
+    assert (out["cache_read_tokens"], out["cache_write_tokens"]) == (800, 50)
+
+
+def test_langfuse_usage_can_subtract_an_inclusive_prompt():
+    """OpenAI-style usage counts cache reads inside `input`. We do not guess the
+    convention; when a trace confirms the inclusive form the caller opts in and the
+    buckets stay disjoint."""
+    u = bench.TokenUsage()
+    u.add_langfuse({"input": 1000, "output": 200, "cached_tokens": 400},
+                   prompt_is_inclusive=True)
+    out = u.as_dict()
+    assert out["prompt_tokens"] == 600, "cache read subtracted out of the inclusive prompt"
+    assert out["cache_read_tokens"] == 400
+
+
+def test_langfuse_usage_with_nothing_recognised_counts_as_missing():
+    u = bench.TokenUsage()
+    u.add_langfuse({"some_future_key": 5})
+    u.add_langfuse(None)
+    out = u.as_dict()
+    assert out["per_turn"] == [], "no bucket read, so nothing recorded"
+    assert out["calls_missing_usage"] == 2 and out["api_calls"] == 2
 # THE ADAPTERS READ THE RIGHT FIELD. The tests above drive _record with keyword
 # args, so they cannot catch an adapter that reads the wrong field name or passes
 # it in the wrong position. These feed the raw provider usage shapes through the

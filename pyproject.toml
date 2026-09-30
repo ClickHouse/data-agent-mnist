@@ -31,6 +31,12 @@ notebook = [
     "jupyterlab>=4.0.0",
     "ipywidgets>=8.0.0",
 ]
+# Only the LibreChat warehouse MCP server (librechat/mcp_warehouse.py) needs this;
+# the board runners and scoring do not, so it stays out of the default install.
+# Pinned to v1: the shim uses the FastMCP API, which mcp 2.x renamed.
+librechat = [
+    "mcp>=1.2,<2",
+]
 
 [dependency-groups]
 dev = [

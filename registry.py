@@ -27,7 +27,7 @@ Schema, one entry per model:
     models:
       <key>:
         id: <provider's model id>
-        provider: bedrock | mantle | openai | gemini | fireworks | anthropic | gateway
+        provider: bedrock | mantle | openai | gemini | fireworks | anthropic | gateway | librechat
         api: responses                 # optional; OpenAI + mantle Responses API
         vertex_location: global        # optional; Gemini 3.x is global-only
         reasoning: true                # optional; larger output budget on Bedrock
@@ -103,6 +103,12 @@ GEMINI_CANDIDATES: dict[str, str] = _by(provider="gemini", retired=None)
 FIREWORKS_CANDIDATES: dict[str, str] = _by(provider="fireworks", retired=None)
 ANTHROPIC_CANDIDATES: dict[str, str] = _by(provider="anthropic", retired=None)
 GATEWAY_CANDIDATES: dict[str, str] = _by(provider="gateway", retired=None)
+# A LibreChat agent driven over its HTTP API, so the same questions and the same
+# scoring measure the product surface rather than our own agentic loop. The `id` is
+# the LibreChat model or agent spec to drive; the instance URL, tenant and login
+# come from the environment (see run_candidate_librechat), not the registry,
+# because they are per-deployment and not catalog data.
+LIBRECHAT_CANDIDATES: dict[str, str] = _by(provider="librechat", retired=None)
 RETIRED_CANDIDATES: dict[str, str] = {k: e["id"] for k, e in MODELS.items()
                                       if e.get("retired")}
 

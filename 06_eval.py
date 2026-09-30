@@ -261,6 +261,12 @@ def main():
                         and not replay.get("final_answer", "").strip()):
                     score = {"outcome": "fail",
                              "reasoning": f"max turns ({bench.MAX_TURNS}) reached with no final answer"}
+                elif replay.get("error") == bench.ERR_LIBRECHAT_NO_TRACE:
+                    # Infrastructure unknown, not a model failure: the LibreChat run
+                    # happened but its trace could not be read, so the empty result
+                    # set must not score as a fail and count in the pass rate.
+                    score = {"outcome": "error",
+                             "reasoning": "LibreChat trace unavailable; run not scored"}
                 else:
                     score = bench.judge_panel(
                         question, q.get("gt_results", []), q.get("gt_answer", ""),
