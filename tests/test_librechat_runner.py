@@ -238,8 +238,10 @@ def test_sse_record_without_data_is_ignored():
 
 def _mcp_module():
     import importlib.util
-    spec = importlib.util.spec_from_file_location(
-        "mcp_warehouse", DAM / "librechat" / "mcp_warehouse.py")
+    shim = DAM / "librechat" / "mcp_warehouse.py"
+    if not shim.exists():
+        pytest.skip("librechat/ is board-only, not shipped to the harness mirror")
+    spec = importlib.util.spec_from_file_location("mcp_warehouse", shim)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
