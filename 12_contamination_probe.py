@@ -17,7 +17,7 @@ Two instruments, plus a positive control that validates them:
      our items is evidence of absence, not of a weak probe.
 
 Data governance: probes run ONLY against the provider endpoints already
-configured in bench.py — the same endpoints every question transited during the
+configured in bench/clients.py — the same endpoints every question transited during the
 eval — so the probe adds no incremental disclosure. The Spider control is public
 data. No other service is contacted.
 

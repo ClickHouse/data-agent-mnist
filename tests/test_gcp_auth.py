@@ -56,7 +56,7 @@ class _FakeCreds:
 @pytest.fixture
 def auth(monkeypatch):
     creds = _FakeCreds()
-    monkeypatch.setattr(bench.google.auth, "default", lambda **_: (creds, "proj"))
+    monkeypatch.setattr(bench.clients.google.auth, "default", lambda **_: (creds, "proj"))
     a = bench._GCPAuth()
     return a, creds
 

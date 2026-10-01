@@ -255,28 +255,30 @@ def test_example_judges_need_no_cloud_account():
 
 
 def test_bench_imports_every_registry_name_it_uses():
-    """bench.py imports specific names from registry, so using one it did not
-    import is a NameError raised at call time, not at import. That is how a judge
-    routing fix shipped broken through 16 passing tests: they exercised the
-    registry, never bench's use of it. Checked statically so it needs no
-    credentials, which importing bench would.
+    """Each module of the bench package imports specific names from registry, so
+    using one it did not import is a NameError raised at call time, not at import.
+    That is how a judge routing fix shipped broken through 16 passing tests: they
+    exercised the registry, never bench's use of it. Checked statically, per
+    module, so it needs no credentials, which importing bench would.
     """
     import ast
-    src = (DAM / "bench.py").read_text()
-    tree = ast.parse(src)
-    imported = {a.asname or a.name
-                for n in ast.walk(tree) if isinstance(n, ast.ImportFrom)
-                and n.module == "registry" for a in n.names}
-    assigned = {t.id for n in ast.walk(tree)
-                for t in ([n.targets[0]] if isinstance(n, ast.Assign)
-                          and isinstance(n.targets[0], ast.Name)
-                          else [n.target] if isinstance(n, ast.AnnAssign)
-                          and isinstance(n.target, ast.Name) else [])}
     exported = {n for n in dir(registry) if n.isupper()}
-    used = {n.id for n in ast.walk(tree) if isinstance(n, ast.Name)}
-    missing = sorted((used & exported) - imported - assigned)
-    assert not missing, (
-        f"bench.py uses registry name(s) it does not import: {missing}")
+    problems = []
+    for path in sorted((DAM / "bench").glob("*.py")):
+        tree = ast.parse(path.read_text())
+        imported = {a.asname or a.name
+                    for n in ast.walk(tree) if isinstance(n, ast.ImportFrom)
+                    and n.module == "registry" for a in n.names}
+        assigned = {t.id for n in ast.walk(tree)
+                    for t in ([n.targets[0]] if isinstance(n, ast.Assign)
+                              and isinstance(n.targets[0], ast.Name)
+                              else [n.target] if isinstance(n, ast.AnnAssign)
+                              and isinstance(n.target, ast.Name) else [])}
+        used = {n.id for n in ast.walk(tree) if isinstance(n, ast.Name)}
+        missing = sorted((used & exported) - imported - assigned)
+        if missing:
+            problems.append(f"bench/{path.name} uses registry name(s) it does not import: {missing}")
+    assert not problems, "\n".join(problems)
 
 
 def test_a_mistyped_linker_is_rejected(tmp_path, monkeypatch):

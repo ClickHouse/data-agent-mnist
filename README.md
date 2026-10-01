@@ -159,7 +159,9 @@ warehouse and it runs.
 | `08_results_stats.py` | the board: pass rate, standard errors, paired difference tests. |
 | `09` to `18` | analyses. Failure modes, judge bias, the flat-mart versus dimensional-layer split, a contamination probe, turn-budget ceilings. |
 
-`bench.py` holds the agentic loop and the judge. `warehouse.py` wraps the
+`bench/` holds the agentic loops (`runners.py`, `librechat.py`), the judge
+(`judge.py`, `completion.py`), the result-set scoring (`scoring.py`) and the
+provider clients (`clients.py`). `warehouse.py` wraps the
 warehouse and the schema prompt. `registry.py` reads the model catalog from
 configuration.
 

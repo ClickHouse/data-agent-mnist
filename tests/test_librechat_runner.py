@@ -216,7 +216,7 @@ def test_run_candidate_routes_librechat_membership_to_this_runner(monkeypatch):
         return {"ok": True}
 
     monkeypatch.setitem(bench.LIBRECHAT_CANDIDATES, "lc-x", "DAM Bench Agent")
-    monkeypatch.setattr(bench, "run_candidate_librechat", stub)
+    monkeypatch.setattr(bench.librechat, "run_candidate_librechat", stub)
     out = bench.run_candidate("q", "lc-x", "DAM Bench Agent",
                               ch_query=lambda s: "[]", system_prompt="s")
     assert out == {"ok": True} and "hit" in calls, "librechat entry did not route to the runner"

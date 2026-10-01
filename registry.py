@@ -1,9 +1,9 @@
 """Model registry, provider endpoints and judge seats, loaded from configuration.
 
-Why this is not a dict in bench.py. Three reasons, in order of how much
+Why this is not a dict in the bench package. Three reasons, in order of how much
 they bite:
 
-1. Publishing bench.py publishes the catalog. The registry names every board model
+1. Publishing bench publishes the catalog. The registry names every board model
    with its provider id, plus our internal hosts and Bedrock inference-profile ids.
    Gate 4 of the partner export exists specifically to keep that out of a bundle;
    shipping the module would hand the same information to everyone.
@@ -91,7 +91,7 @@ def _flagged(flag: str) -> set[str]:
     return {k for k, e in MODELS.items() if e.get(flag)}
 
 
-# ── the shapes bench.py consumes ──────────────────────────────────────────────
+# ── the shapes bench consumes ─────────────────────────────────────────────────
 # Provider dicts exclude retired models, matching the previous literals: retired
 # entries lived in their own dict and were never merged into ALL_CANDIDATES.
 CANDIDATES: dict[str, str] = _by(provider="bedrock", retired=None)
@@ -175,7 +175,7 @@ ANNOTATORS: dict[str, str] = {k: MODELS[k]["id"] for k in _CFG.get("annotators",
 # board's currency behaviour (round to cents, 5% relative, no absolute floor), so
 # existing configs and the frozen board are unchanged. A non-currency warehouse
 # sets `round_decimals` (null keeps full precision), `rel_tol` and `abs_tol` here;
-# bench.py builds one ComparisonPolicy from them and uses it at both annotate and
+# bench/scoring.py builds one ComparisonPolicy from them and uses it at both annotate and
 # eval time. Two numbers agree when within the absolute OR the relative tolerance.
 _S = _CFG.get("scoring") or {}
 SCORE_ROUND_DECIMALS: int | None = _S.get("round_decimals", 2)

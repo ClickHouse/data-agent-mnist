@@ -44,7 +44,7 @@ import pytest
 DAM = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(DAM))
 
-# bench.py constructs its provider clients at import, and the OpenAI client
+# bench/clients.py constructs the provider clients at import, and the OpenAI client
 # raises without a key, so importing it at all needs one. Placeholders: no test
 # here reaches a provider (the Anthropic client is stubbed and the rest are
 # unused), and a real key in the environment is left alone.
@@ -63,7 +63,7 @@ EXAMPLE = DAM / "examples" / "saas"
 def test_bench_imports_on_the_three_documented_api_keys():
     """No cloud credentials to import the harness. Only to call a cloud provider.
 
-    bench.py builds every provider client at module scope, so anything resolved
+    bench/clients.py builds every provider client at module scope, so anything resolved
     eagerly becomes a hard import requirement for everyone. Vertex ADC was: it
     made `import bench` fail for an adopter following the example, who never calls
     Gemini. It passed locally regardless, because a developer machine has ADC, and
@@ -148,7 +148,7 @@ def captured_request(monkeypatch):
         seen.update(kwargs)
         return _Resp()
 
-    monkeypatch.setattr(bench, "anthropic_native",
+    monkeypatch.setattr(bench.clients, "anthropic_native",
                         types.SimpleNamespace(messages=types.SimpleNamespace(create=create)))
     return seen
 
@@ -315,23 +315,23 @@ def test_the_linker_resolves_from_the_registry():
             or registry.LINKER in registry.JUDGE_MODEL_IDS), (
         f"linker {registry.LINKER!r} resolves to nothing, so it would silently "
         f"become the default judge")
-    src = (DAM / "bench.py").read_text()
+    src = (DAM / "bench" / "scoring.py").read_text()
     i = src.index("def _link_columns")
     body = src[i:i + 2500]
     assert "bedrock.converse" not in body, "linker still calls Bedrock directly"
-    assert "_judge_complete(LINKER" in body, "linker does not route through the registry"
+    assert "completion._judge_complete(LINKER" in body, "linker does not route through the registry"
 
 
 def test_the_linker_fallback_is_loud(monkeypatch, capsys):
     """Silent degradation is the actual defect: the fallback changes the scoring
     rule mid-run, so it has to announce itself."""
-    monkeypatch.setattr(bench, "_COL_LINK_WARNED", False)
-    monkeypatch.setattr(bench, "_COL_LINK_CACHE", {})
+    monkeypatch.setattr(bench.scoring, "_COL_LINK_WARNED", False)
+    monkeypatch.setattr(bench.scoring, "_COL_LINK_CACHE", {})
 
     def boom(*a, **k):
         raise RuntimeError("no credentials")
 
-    monkeypatch.setattr(bench, "_judge_complete", boom)
+    monkeypatch.setattr(bench.completion, "_judge_complete", boom)
     assert bench._link_columns(["spend_usd"], ["total_spend"]) == {}
     err = capsys.readouterr().err
     assert "column linker" in err and "score as failures" in err, (
@@ -346,14 +346,14 @@ def test_the_linker_pins_temperature_zero(monkeypatch):
     result sets could map differently between runs while the docstring still
     promised determinism.
     """
-    monkeypatch.setattr(bench, "_COL_LINK_CACHE", {})
+    monkeypatch.setattr(bench.scoring, "_COL_LINK_CACHE", {})
     seen = {}
 
     def fake(name, prompt, max_tokens=512, temperature=None):
         seen["temperature"] = temperature
         return '{"mapping": {}}'
 
-    monkeypatch.setattr(bench, "_judge_complete", fake)
+    monkeypatch.setattr(bench.completion, "_judge_complete", fake)
     bench._link_columns(["spend_usd"], ["total_spend"])
     assert seen["temperature"] == 0, "linker no longer pins temperature"
 
@@ -363,12 +363,12 @@ def test_the_linker_identity_maps_a_subset_without_a_model_call(monkeypatch):
     with no model call. A wide result set otherwise goes to the linker, whose reply
     can truncate to valid-but-empty JSON, and an empty mapping scores as a mismatch,
     so an equivalent answer that returned extra columns fails."""
-    monkeypatch.setattr(bench, "_COL_LINK_CACHE", {})
+    monkeypatch.setattr(bench.scoring, "_COL_LINK_CACHE", {})
 
     def boom(*a, **k):
         raise AssertionError("a subset must not call the linker model")
 
-    monkeypatch.setattr(bench, "_judge_complete", boom)
+    monkeypatch.setattr(bench.completion, "_judge_complete", boom)
     identity = {"region": "region", "spend": "spend"}
     assert bench._link_columns(["region", "spend", "rank"], ["region", "spend"]) == identity
     assert bench._link_columns(["region", "spend"], ["region", "spend", "rank"]) == identity
@@ -377,12 +377,12 @@ def test_the_linker_identity_maps_a_subset_without_a_model_call(monkeypatch):
 def test_results_match_credits_a_wide_subset_answer(monkeypatch):
     """The paying case: same values, candidate returns an extra column. Scores as a
     match, on the ground truth's columns alone, with no linker call."""
-    monkeypatch.setattr(bench, "_COL_LINK_CACHE", {})
+    monkeypatch.setattr(bench.scoring, "_COL_LINK_CACHE", {})
 
     def boom(*a, **k):
         raise AssertionError("a subset must not call the linker model")
 
-    monkeypatch.setattr(bench, "_judge_complete", boom)
+    monkeypatch.setattr(bench.completion, "_judge_complete", boom)
     gt        = '{"region": "us", "spend": 100}'
     candidate = '{"region": "us", "spend": 100, "rank": 1}'
     assert bench._results_match(candidate, gt) is True
@@ -391,9 +391,9 @@ def test_results_match_credits_a_wide_subset_answer(monkeypatch):
 def test_the_linker_logs_a_parsed_empty_mapping(monkeypatch, capsys):
     """A valid-but-empty reply still scores as a mismatch, but must not be silent:
     on wide non-subset sets it can be truncation, not a real 'nothing matches'."""
-    monkeypatch.setattr(bench, "_COL_LINK_EMPTY_WARNED", False)
-    monkeypatch.setattr(bench, "_COL_LINK_CACHE", {})
-    monkeypatch.setattr(bench, "_judge_complete", lambda *a, **k: '{"mapping": {}}')
+    monkeypatch.setattr(bench.scoring, "_COL_LINK_EMPTY_WARNED", False)
+    monkeypatch.setattr(bench.scoring, "_COL_LINK_CACHE", {})
+    monkeypatch.setattr(bench.completion, "_judge_complete", lambda *a, **k: '{"mapping": {}}')
     assert bench._link_columns(["spend_usd"], ["total_spend"]) == {}
     assert "empty mapping" in capsys.readouterr().err
 
@@ -406,7 +406,7 @@ def test_temperature_is_withheld_from_reasoning_judges(monkeypatch):
         seen.update(kw)
         raise RuntimeError("stop")
 
-    monkeypatch.setattr(bench, "openai_client", types.SimpleNamespace(
+    monkeypatch.setattr(bench.clients, "openai_client", types.SimpleNamespace(
         chat=types.SimpleNamespace(completions=types.SimpleNamespace(create=create))))
     reasoning = [n for n in ("o4-mini", "o3-mini") if n in registry.MODELS]
     if not reasoning:
