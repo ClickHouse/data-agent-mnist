@@ -2,7 +2,7 @@
 Synthetic ClickHouse warehouse + schema context for the data-agent-mnist bench.
 
 DB/schema concerns live here, separate from the model/judge infrastructure in
-bench.py. The chDB warehouse is seeded by notebooks/03_seed_synthetic_db.ipynb;
+the bench package. The chDB warehouse is seeded by notebooks/03_seed_synthetic_db.ipynb;
 this module opens it read-only and exposes the `run_select_query` tool body
 (`Warehouse.query`) and the agent system prompt the agents see (prompts/system.md).
 
