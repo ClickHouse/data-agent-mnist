@@ -165,6 +165,31 @@ provider clients (`clients.py`). `warehouse.py` wraps the
 warehouse and the schema prompt. `registry.py` reads the model catalog from
 configuration.
 
+## Optional: ranking and labeling with Jev
+
+Two tools use [Jev](https://docs.typesafe.ai), TypeSafe's System One classifier, as a
+cheap typed-judgment component rather than a text generator. They are optional: install
+the extra and set a TypeSafe key.
+
+```bash
+uv sync --extra jev            # or run any script with: uv run --with typesafe-sdk ...
+export TYPESAFE_API_KEY=...
+```
+
+- `schema_retrieval.py` ranks the warehouse's tables by how likely each is needed for a
+  question (one yes/no judgment per table), scored against the gold SQL's tables
+  (nDCG@10, recall@k). `schema_retrieval_agent.py` feeds that ranking back to the agent,
+  up front or in-loop when it diverges onto a low-ranked table, and measures whether it
+  helps. Pass `--table-namespaces` for your schema's prefixes (the examples use
+  `marts,crm`).
+- `label_failure_modes.py` reads a graded run and labels each failed cell with a failure
+  sub-mode, which stated rule would have prevented it, and whether the grader itself
+  erred. The rule set is configuration (`config/rules.example.yaml`; copy it for your
+  warehouse).
+
+Both read the schema from your warehouse or examples and name no fixed table, and
+`TYPESAFE_BASE_URL` points them at a gateway instead of the public API.
+
 ## Pointing it at your own warehouse
 
 By configuration, not by editing code.
