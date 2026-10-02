@@ -1,0 +1,42 @@
+# Example schema-prompt rule set for the Jev failure-mode labeler, targeting the
+# examples/saas warehouse. This is the shipped default (DAM_RULES_CONFIG), so the
+# labeler runs out of the box; point DAM_RULES_CONFIG at your own file to describe
+# your warehouse's rules. Nothing here names a private warehouse.
+#
+# Two groups:
+#   semantic_rules   judgment-call rules offered to Jev as candidate causes of a
+#                    failure (the "prevented_by_rule" choice). Keyed, with a one-line
+#                    description.
+#   decidable_rules  facts about the SQL that code decides, so no model question is
+#                    spent and the verdict is a free oracle to validate Jev against.
+#                    Each is one of two kinds:
+#                      forbidden_when: VIOLATION if `forbidden_regex` appears; OK if
+#                        `ok_regex` appears (when given); else n/a.
+#                      required_when: applies when `applies_regex` appears; then OK if
+#                        `required_regex` appears, else VIOLATION; n/a when it does not
+#                        apply. scope: per_statement (default) decides each statement on
+#                        its own; scope: global is satisfied by any statement.
+# A key may not appear in both groups.
+
+semantic_rules:
+  point_in_time_filter: "for current values, filter to the most recent day, e.g. day = (SELECT max(day) ...)"
+  time_series_window: "for trends, use the snapshot date as the end of the range and count the window backwards"
+  crm_join: "join the CRM dimension to the usage mart on tenant_id, rather than reading the mart alone"
+  spend_guidance: "sum daily_spend over the period for spend; read plan and region off the mart directly"
+
+decidable_rules:
+  reference_date:
+    description: "use toDate('{snapshot_date}') as the reference date, not now() or today()"
+    kind: forbidden_when
+    forbidden_regex: '\b(?:now|today|yesterday)\s*\('
+    ok_regex: '\btoDate(?:Time)?\s*\('
+  default_to_usage_mart:
+    description: "prefer marts.usage_daily and filter by day and/or tenant_id"
+    kind: required_when
+    applies_regex: '\busage_daily\b'
+    required_regex: '\b(?:day|tenant_id)\b'
+    scope: per_statement
+  output_column_naming:
+    description: "preserve original column names and use descriptive snake_case aliases"
+    kind: forbidden_when
+    forbidden_regex: '\btenant_name\s+AS\s+[A-Za-z_]\w*'

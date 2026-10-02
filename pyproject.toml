@@ -37,6 +37,12 @@ notebook = [
 librechat = [
     "mcp>=1.2,<2",
 ]
+# Only the Jev tools (label_failure_modes.py, schema_retrieval*.py) need the TypeSafe
+# SDK; the board runners and scoring do not, so it stays out of the default install.
+# These modules import it lazily, so they still import without this extra.
+jev = [
+    "typesafe-sdk",
+]
 
 [dependency-groups]
 dev = [
