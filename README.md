@@ -51,13 +51,17 @@ becomes ground truth; where all disagree, the question is dropped as not reliabl
 answerable. Provider diversity is the point: two labs' models agreeing
 independently is much harder to explain away as shared training bias.
 
-**3. Scoring by a panel, not a judge.** One seat per provider, and the panel
-excludes the candidate's own model family, so nothing scores itself and no
-provider holds a majority. A deterministic equivalence check runs first and its
+**3. Scoring by a panel, not a judge.** One seat per provider, so no provider
+holds a majority, and a seat never goes to the candidate itself, so no model
+scores its own answers. A judge from the candidate's provider does vote, and
+`10_judge_bias.py` and `13_judge_bt.py` measure how much that matters. A
+deterministic equivalence check runs first and its
 verdict reaches the panel as an authoritative data signal, because two correct
 answers can disagree on form: one names a column `total_dollar_usage`, the other
-`monthly_spend`. In our own run, 84.9% of scored result sets matched only through
-that linked mapping.
+`monthly_spend`. When one answer's columns contain the other's, the shared
+columns map by identity and no model is consulted; a column-linker model is asked
+only when the two column sets genuinely differ. In our own run, 84.9% of scored
+result sets matched only through that linked mapping.
 
 ![How a candidate answer is scored](docs/judge-panel.png)
 
@@ -140,6 +144,36 @@ commands, and both are this repository's acceptance test: if they cannot run fro
 this tree alone, the boundary between harness and benchmark is drawn in the wrong
 place.
 
+## What a run checks before it spends money
+
+A board run calls models for hours. Two guards run at the start of `06_eval.py`
+so that a run which cannot be trusted stops before the first paid call, instead
+of producing a number that looks like a result.
+
+**The warehouse still reproduces the board.** `verify_board.py --emit` writes a
+manifest that pins every question to the warehouse it was scored against,
+records the hashes of the ground truth and the results, and records the chDB
+engine release and the session timezone the board was built with. Before
+scoring, the eval re-runs the cached candidates' own SQL against the mounted
+warehouse and refuses to continue if the stored results no longer reproduce,
+because that means the warehouse moved underneath the ground truth. It also
+refuses when the engine version or the session timezone differs from the
+manifest: that is the wrong environment, not drift to measure. Pin `chdb-core`
+in the environment you score with (the `chdb` package does not pin the engine),
+and pass `--session-timezone` whenever the warehouse has a `DateTime` grain,
+since values render in the session zone and the snapshot date moves with the
+reader's locale. `--no-verify-db` skips the guard, which the example commands do
+because an example warehouse has no manifest yet.
+
+**Every credential works.** `preflight.py` resolves every provider the selected
+candidates, the judge seats and the column linker will touch: an identity call
+for AWS, a token mint for Vertex application-default credentials, and key
+presence for the API-key providers. A missing or unusable credential aborts the
+run. The judge seats and the linker matter most here: they sit on different
+providers from the candidate, and a dead one does not stop the expensive half
+of the run, it degrades the scoring one question at a time. `--no-preflight`
+skips the check.
+
 ## The scripts
 
 One per stage, each runnable on its own.
@@ -156,14 +190,56 @@ warehouse and it runs.
 |---|---|
 | `05_annotate.py` | stage 2 above: builds ground truth by agreement. |
 | `06_eval.py` | stage 3: runs each candidate through the agentic loop and scores it against that ground truth. |
+| `06b_split_eval.py` | the same, for a board whose questions were scored against more than one warehouse epoch: routes each question to the warehouse its ground truth was computed on. |
+| `verify_board.py` | the integrity guard described above; `--emit` writes the manifest, the default mode checks the whole board against it. |
+| `preflight.py` | the credential check described above; imported by `06_eval.py`, not run on its own. |
 | `08_results_stats.py` | the board: pass rate, standard errors, paired difference tests. |
-| `09` to `18` | analyses. Failure modes, judge bias, the flat-mart versus dimensional-layer split, a contamination probe, turn-budget ceilings. |
+| `07_failure_modes.py`, `11_fm_heatmap.py` | label every failure as one of five modes (no attempt, wrong plan, wrong data selection, wrong implementation, runtime error) and plot the per-model shares. |
+| `07_thinking_effort_sweep.py` | the same loop over a grid of thinking and reasoning-effort settings for one model, so a budget-shaped knob is measured rather than assumed. |
+| `09_dds_analysis.py` | splits the board by whether the ground-truth SQL reaches the dimensional layer, and reports how often each model found it at all. |
+| `10_judge_bias.py` | judge leniency and in-group residual per seat, from the recorded votes. |
+| `13_judge_bt.py` | a many-facet Rasch model over the same votes: candidate ability, judge severity and an own-family coefficient, with bootstrap intervals. `--selftest` recovers planted gaps with no board data and no credentials. |
+| `12_contamination_probe.py` | asks whether the questions are in a model's training data: a completion probe, an entity-recovery probe, and a public benchmark as positive control. |
+| `18_ceiling_summary.py` | pass rate at every turn budget from one deep run per model: the budget is never announced to the model, so a run at a smaller budget is the deep run stopped early. |
 
 `bench/` holds the agentic loops (`runners.py`, `librechat.py`), the judge
 (`judge.py`, `completion.py`), the result-set scoring (`scoring.py`) and the
 provider clients (`clients.py`). `warehouse.py` wraps the
 warehouse and the schema prompt. `registry.py` reads the model catalog from
-configuration.
+configuration. The board and the analyses in `08`, `09`,
+`10`, `11`, `13` and `18` are offline: they read `results.jsonl` and call no
+model. The failure-mode labeler, the effort sweep and the contamination probe
+do call models.
+
+## Where candidates run
+
+A candidate is one entry in the model registry with a `provider`. The runners
+cover OpenAI, Anthropic's Messages API, Fireworks, AWS Bedrock, Vertex AI, and
+any OpenAI-compatible endpoint under `provider: gateway`, which is how a vLLM,
+Ollama or self-hosted model joins the board. Reasoning models are flagged in the
+registry, and the runners send the token argument and the reasoning settings
+each API expects.
+
+Two hooks sit in the loop itself.
+
+**A gate on every query.** Every runner accepts an optional `gate(sql, result)`
+callback. It sees each executed query and its result, and may return a note that
+is prepended to the tool message the model reads next. The result the judge
+grades is stored unchanged, so a gated run and its baseline compare at an equal
+turn budget. This is the hook for experiments that steer the agent mid-run, for
+instance a schema-retrieval hint when a query reads a table the question does
+not need.
+
+**The product instead of the loop.** `provider: librechat` drives a LibreChat
+agent over its HTTP API as the candidate, under the board's own system prompt,
+and reads the trajectory back from the agent's Langfuse trace, so the same
+questions and the same panel score the product surface rather than the harness's
+own loop. The difference between the two numbers is the result. The instance
+URL and login come from `LIBRECHAT_BASE_URL`, `LIBRECHAT_EMAIL` and
+`LIBRECHAT_PASSWORD`, with `LIBRECHAT_TENANT_ID` for a multi-tenant deployment.
+The agent's SQL tool must query the same warehouse the direct runners use, or
+the ground truth stops applying; wiring that tool is part of your deployment,
+not of this repository.
 
 ## Optional: ranking and labeling with Jev
 
@@ -197,17 +273,41 @@ By configuration, not by editing code.
 ```
 DAM_MODELS_CONFIG   the model registry; copy config/models.example.yaml
 DAM_DATA_ROOT       where your datasets live
+DAM_CORPUS          the dataset directory under that root (default text2sqlbench-synthetic)
 DAM_QUESTIONS       your question set (or pass --questions)
 ```
 
 and per run: `--db-path`, `--system-prompt`, `--probe-table`,
-`--snapshot-column`. Those four describe a warehouse: where it is, how to explain
-its schema to a model, and which fact table carries the row count and the
-snapshot date.
+`--snapshot-column`, and `--session-timezone` for a `DateTime` grain. The first
+four describe a warehouse: where it is, how to explain its schema to a model,
+and which fact table carries the row count and the snapshot date.
+
+`DAM_CORPUS` exists so that a second corpus is one variable rather than a forked
+pipeline: a development set that people iterate against can live beside a board
+that stays frozen, and every stage follows the variable.
 
 The schema prompt is the part worth spending time on. It is the model's only
 description of your warehouse, and much of what the harness measures is how well
 models navigate what it tells them.
+
+**Numeric comparison is a policy in the registry.** The default is built for
+money: round to two decimal places, allow 5% relative drift, no absolute floor.
+That catches 59K against 70K and ignores sub-cent noise, and it is wrong for a
+warehouse of concentrations, probabilities or counts, where a factor-of-two
+error fits inside 5% and two small values both round to zero. A `scoring`
+section in the model config sets the policy, and both the annotate and the eval
+stage apply it:
+
+```yaml
+scoring:
+  round_decimals: null   # keep full precision
+  rel_tol: 0.0
+  abs_tol: 1.0e-9
+```
+
+Two numbers agree when they are within the absolute or the relative tolerance.
+`config/models.example.yaml` carries the currency default with the alternative
+shown beside it.
 
 Defaults name the dataset the harness was developed against, which is not
 included here. Each one fails with the flag to supply rather than a missing-file
@@ -217,16 +317,19 @@ error.
 
 Worth reading before trusting a number.
 
-- **Result comparison assumes money.** Numerics are rounded to two decimal places
-  and compared within 5%, which is right for spend and wrong for small
-  magnitudes: `0.0001` and `0.0002` compare equal. A domain with concentrations,
-  probabilities or rates needs the tolerance made configurable first.
 - **The warehouse is a local chDB store.** Pointing at a live cluster means
   exporting a snapshot or replacing the `Warehouse` class. Deliberate, since a
   benchmark wants a warehouse that does not move underneath it.
 - **Judges are models.** Two runs of the same questions can disagree, by more
   than you would like on a small question set. The example shows this happening
   on purpose.
+- **The guard protects a board, not a first run.** Until `verify_board.py --emit`
+  has written a manifest for your warehouse, `06_eval.py` needs `--no-verify-db`,
+  and nothing checks that the warehouse matches the ground truth you built.
+  Emit the manifest as soon as the first eval has written results.
+- **The product-surface runner needs a trace store.** It reads the agent's turns,
+  SQL and token usage from Langfuse, so a LibreChat deployment without tracing
+  cannot be scored this way.
 
 ## License
 
