@@ -24,6 +24,15 @@ Modes
                         06_eval.py startup guard for the subset it is about to run).
   --require-single      (check) fail if the board spans more than one DB epoch;
                         use once v2.3 is unified onto a single seeded DB.
+  --skip-unstable-queries
+                        (emit) leave out candidate queries whose result can change
+                        while the data does not: catalog queries (system.*,
+                        information_schema, SHOW), which list the tables and so
+                        change when tables are added around the board (the
+                        schema-retrieval ladder estates), and LIMIT without ORDER
+                        BY, which may return any of the matching rows. The
+                        manifest records the choice, and check and the eval guard
+                        follow it.
 
 The board's answers also depend on the chDB engine release and the session
 timezone, so the manifest records both (`engine.version`, `engine.session_timezone`)
@@ -40,6 +49,7 @@ version() 26.3.9.1) built by scripts/board_env.sh, and pass the recorded zone.
 import argparse
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -54,6 +64,31 @@ MANIFEST_PATH = DATA_DIR / "board_manifest.json"
 # DBs the board may be reproduced against, in preference order (first = default).
 CANDIDATE_DBS = ["chdb", "chdb-disp"]
 DEFAULT_THRESHOLD = 0.85
+# Queries whose result is the catalog, not the data.
+_CATALOG = re.compile(r"\b(system|information_schema)\s*\.|^\s*(SHOW|EXISTS)\b", re.I)
+_LIMIT = re.compile(r"\bLIMIT\b", re.I)
+_ORDER_BY = re.compile(r"\bORDER\s+BY\b", re.I)
+
+
+def unstable(q: str) -> bool:
+    """A query whose result can change while the data does not."""
+    return bool(_CATALOG.search(q) or (_LIMIT.search(q) and not _ORDER_BY.search(q)))
+
+
+# Significant digits a float keeps in the comparison. A parallel sum() over Float64
+# adds in a different order on each run and changes the last digits, so the same
+# query on the same DB would not reproduce if floats were compared exactly.
+FLOAT_DIGITS = 12
+
+
+def _round_floats(v):
+    if isinstance(v, float):
+        return float(f"{v:.{FLOAT_DIGITS}g}")
+    if isinstance(v, dict):
+        return {k: _round_floats(x) for k, x in v.items()}
+    if isinstance(v, list):
+        return [_round_floats(x) for x in v]
+    return v
 
 
 def _rowset(text: str) -> frozenset:
@@ -64,16 +99,19 @@ def _rowset(text: str) -> frozenset:
         if not ln:
             continue
         try:
-            out.add(json.dumps(json.loads(ln), sort_keys=True))
+            out.add(json.dumps(_round_floats(json.loads(ln)), sort_keys=True))
         except Exception:
             out.add(ln)
     return frozenset(out)
 
 
-def _comparable(sqls, stored):
-    """Yield (sql, stored_rowset) pairs worth checking (skip empty/error/None)."""
+def _comparable(sqls, stored, skip_unstable: bool = False):
+    """Yield (sql, stored_rowset) pairs worth checking (skip empty/error/None, and
+    unstable queries when skip_unstable)."""
     for q, st in zip(sqls or [], stored or []):
         if not q or st in (None, "(empty result)") or str(st).startswith("Error"):
+            continue
+        if skip_unstable and unstable(q):
             continue
         yield q, _rowset(st)
 
@@ -87,7 +125,7 @@ def load_rows(path: Path):
 
 
 def repro_on_db(rows, db_path: Path, only: set | None = None,
-                session_timezone: str | None = None):
+                session_timezone: str | None = None, skip_unstable: bool = False):
     """-> {trace_id: (matched, comparable)} reproduction counts on one DB."""
     sess = chs.Session(str(db_path))
     try:
@@ -104,7 +142,8 @@ def repro_on_db(rows, db_path: Path, only: set | None = None,
             m = n = 0
             for cand in r["candidates"].values():
                 cand = cand or {}
-                for q, want in _comparable(cand.get("sqls"), cand.get("sql_results")):
+                for q, want in _comparable(cand.get("sqls"), cand.get("sql_results"),
+                                           skip_unstable):
                     try:
                         got = _rowset("\n".join(
                             str(sess.query(q, "JSONEachRow")).splitlines()))
@@ -134,12 +173,14 @@ def engine_version(db_path: Path) -> str:
         sess.close()
 
 
-def emit(threshold: float, session_timezone: str | None = None):
+def emit(threshold: float, session_timezone: str | None = None,
+         skip_unstable: bool = False):
     rows = load_rows(RESULTS_PATH)
     dbs = [d for d in CANDIDATE_DBS if (DATA_DIR / d).exists()]
     if not dbs:
         sys.exit(f"no candidate DBs present under {DATA_DIR} ({CANDIDATE_DBS})")
-    per_db = {d: repro_on_db(rows, DATA_DIR / d, session_timezone=session_timezone)
+    per_db = {d: repro_on_db(rows, DATA_DIR / d, session_timezone=session_timezone,
+                             skip_unstable=skip_unstable)
               for d in dbs}
 
     partition, summary = {}, {d: 0 for d in dbs}
@@ -179,6 +220,7 @@ def emit(threshold: float, session_timezone: str | None = None):
             "version": engine_version(DATA_DIR / dbs[0]),
             "session_timezone": session_timezone,
         },
+        "skip_unstable_queries": skip_unstable,
         "inputs": {
             "results_sha256":   _sha256(RESULTS_PATH),
             "annotated_sha256": _sha256(ANNOT_PATH),
@@ -269,7 +311,8 @@ def check(require_single: bool, tolerance: float, session_timezone: str | None =
             by_db.setdefault(p["db"], set()).add(tid)
         for d, traces in by_db.items():
             counts = repro_on_db(rows, DATA_DIR / d, only=traces,
-                                 session_timezone=session_timezone)
+                                 session_timezone=session_timezone,
+                                 skip_unstable=man.get("skip_unstable_queries", False))
             for tid in traces:
                 base = man["partition"][tid].get("baseline_repro")
                 if base is None:
@@ -320,7 +363,8 @@ def verify_subset(traces: set[str], db_name: str, tolerance: float = 0.05,
               f"DB than '{db_name}' in the manifest: {', '.join(t[:8] for t in misassigned[:10])}")
         sys.exit(1)
     rows = load_rows(RESULTS_PATH)
-    counts = repro_on_db(rows, db_path, only=traces, session_timezone=session_timezone)
+    counts = repro_on_db(rows, db_path, only=traces, session_timezone=session_timezone,
+                         skip_unstable=man.get("skip_unstable_queries", False))
     bad, empty = [], []
     for tid in traces:
         base = man["partition"].get(tid, {}).get("baseline_repro")
@@ -357,6 +401,9 @@ def main():
                     help="min per-question reproduction rate (default %(default)s)")
     ap.add_argument("--tolerance", type=float, default=0.05,
                     help="(check) max allowed drop below baseline before failing (default %(default)s)")
+    ap.add_argument("--skip-unstable-queries", action="store_true",
+                    help="(emit) leave out catalog queries and LIMIT without ORDER BY; "
+                         "recorded in the manifest, which check and the eval guard follow")
     ap.add_argument("--require-single", action="store_true",
                     help="(check) fail if the board spans >1 DB epoch")
     ap.add_argument("--check-db", type=str, default=None,
@@ -369,7 +416,7 @@ def main():
     args = ap.parse_args()
 
     if args.emit:
-        emit(args.threshold, args.session_timezone)
+        emit(args.threshold, args.session_timezone, args.skip_unstable_queries)
     elif args.check_db:
         if not args.traces_file:
             sys.exit("--check-db requires --traces-file")
