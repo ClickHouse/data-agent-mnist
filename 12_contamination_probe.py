@@ -15,14 +15,24 @@ Two instruments, plus a positive control that validates them:
   3. Positive control: the identical completion probe over Spider training
      questions (public since 2018, demonstrably memorised) — so a null result on
      our items is evidence of absence, not of a weak probe.
+  4. Positive control for the entity probe: the same prompt shape against
+     Wikidata items, whose Q-ids are arbitrary strings with no derivation from
+     skill. Two arms: items with the most Wikipedia sitelinks (recall expected)
+     and random items with at most one sitelink (recall not expected). A
+     non-zero score on the first arm shows the prompt can elicit a memorised id;
+     a near-zero score on the second shows the zero on our entities is the same
+     reading the instrument gives any unmemorised id, not a floor it cannot
+     leave. Off by default (`--entity-control 0`); the items are fetched from the
+     Wikipedia and Wikidata APIs once and cached beside the output file.
 
 Data governance: probes run ONLY against the provider endpoints already
 configured in bench/clients.py — the same endpoints every question transited during the
 eval — so the probe adds no incremental disclosure. The Spider control is public
-data. No other service is contacted.
+data. The entity control reads public item labels and ids from the Wikipedia and
+Wikidata APIs and sends them nothing. No other service is contacted.
 
     uv run --with datasets 12_contamination_probe.py [--models a,b] [--sample 50]
-        [--entities 25] [--no-control] [--out PATH]
+        [--entities 25] [--entity-control 25] [--no-control] [--out PATH]
 
 Resume-safe: (probe, item_id, model) triples already in the output are skipped.
 """
@@ -30,8 +40,13 @@ import argparse
 import difflib
 import json
 import random
+import re
 import sys
+import urllib.parse
+import urllib.request
 import uuid
+
+import openai
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -63,6 +78,92 @@ ENTITY_PROMPT = (
     '<<TABLE>> contains a record named "<<NAME>>". '
     "What is that record's <<IDCOL>> in the benchmark's warehouse? "
     "Reply with ONLY the id.")
+
+# Entity-recovery positive control. Same sentence shape as ENTITY_PROMPT with the
+# warehouse nouns swapped for Wikidata's, so the only thing that changes between
+# the probe and its control is whether the id could have been memorised.
+CONTROL_PROMPT = (
+    'In the "Wikidata" knowledge base, the item table contains a record named '
+    '"<<NAME>>". What is that record\'s QID in Wikidata? Reply with ONLY the id.')
+CONTROL_KNOWN   = "entity_control_known"
+CONTROL_OBSCURE = "entity_control_obscure"
+# Resolved to Q-ids through the English Wikipedia article title, which is
+# unambiguous where a label search is not ("Douglas Adams" returns an engineer
+# first). The n with the most sitelinks are kept, so the arm is the entities the
+# most Wikipedias found worth an article.
+CONTROL_TITLES = [
+    "Albert Einstein", "Barack Obama", "Paris", "Leonardo da Vinci",
+    "William Shakespeare", "The Beatles", "Mount Everest", "Isaac Newton",
+    "Napoleon", "Tokyo", "Marie Curie", "Charles Darwin", "Elon Musk",
+    "Amazon River", "Pablo Picasso", "Wolfgang Amadeus Mozart", "Nelson Mandela",
+    "Mahatma Gandhi", "Cleopatra", "Microsoft", "Google", "Taylor Swift",
+    "Lionel Messi", "Harry Potter", "Star Wars", "Python (programming language)",
+    "Linux", "Bitcoin", "Mars", "Jupiter", "Earth", "United Nations", "Coca-Cola",
+    "Toyota", "Angela Merkel", "Vladimir Putin", "Frida Kahlo", "Beyoncé",
+    "Cristiano Ronaldo", "Madonna",
+]
+_WIKI_UA = {"User-Agent": "data-agent-mnist contamination probe (entity-control arm)"}
+
+
+def _wiki_get(url: str) -> dict:
+    req = urllib.request.Request(url, headers=_WIKI_UA)
+    with urllib.request.urlopen(req, timeout=60) as r:
+        return json.load(r)
+
+
+def load_entity_controls(n: int, cache: Path | None):
+    """Known and obscure Wikidata items for the entity probe's positive control.
+
+    The obscure arm is a random draw from Wikidata, so the items are written to
+    `cache` on the first run and read back afterwards: a resumed or repeated run
+    probes the same items, and the probe records say which items they were.
+    """
+    if n <= 0:
+        return []
+    if cache and cache.exists():
+        return json.loads(cache.read_text())
+
+    def item(probe, qid, name):
+        return {"probe": probe, "id": qid, "name": name, "answer": qid}
+
+    wp = "https://en.wikipedia.org/w/api.php?" + urllib.parse.urlencode(
+        {"action": "query", "prop": "pageprops", "ppprop": "wikibase_item",
+         "titles": "|".join(CONTROL_TITLES), "format": "json", "redirects": 1})
+    pages = _wiki_get(wp)["query"]["pages"].values()
+    qid_of = {pg["title"]: pg["pageprops"]["wikibase_item"]
+              for pg in pages if "pageprops" in pg}
+    wd = "https://www.wikidata.org/w/api.php?" + urllib.parse.urlencode(
+        {"action": "wbgetentities", "ids": "|".join(qid_of.values()),
+         "props": "sitelinks", "format": "json"})
+    links = {q: len(e.get("sitelinks", {}))
+             for q, e in _wiki_get(wd)["entities"].items()}
+    known = sorted(qid_of.items(), key=lambda kv: -links.get(kv[1], 0))[:n]
+    items = [dict(item(CONTROL_KNOWN, q, t), sitelinks=links.get(q, 0)) for t, q in known]
+
+    obscure = []
+    while len(obscure) < n:
+        rnd = _wiki_get("https://www.wikidata.org/w/api.php?action=query&list=random"
+                        "&rnnamespace=0&rnlimit=50&format=json")["query"]["random"]
+        wd = "https://www.wikidata.org/w/api.php?" + urllib.parse.urlencode(
+            {"action": "wbgetentities", "ids": "|".join(r["title"] for r in rnd),
+             "props": "labels|sitelinks|descriptions", "languages": "en",
+             "format": "json"})
+        for q, e in _wiki_get(wd)["entities"].items():
+            label = e.get("labels", {}).get("en", {}).get("value")
+            desc = e.get("descriptions", {}).get("en", {}).get("value", "")
+            # Wikimedia-internal pages (disambiguation, category, template) are
+            # not records in the sense the prompt means.
+            if (not label or desc.startswith("Wikimedia")
+                    or len(e.get("sitelinks", {})) > 1):
+                continue
+            obscure.append(dict(item(CONTROL_OBSCURE, q, label),
+                                sitelinks=len(e.get("sitelinks", {}))))
+            if len(obscure) == n:
+                break
+    items += obscure
+    if cache:
+        cache.write_text(json.dumps(items, indent=1, ensure_ascii=False) + "\n")
+    return items
 
 
 def _complete(model_key: str, prompt: str, max_tokens: int = 300) -> str:
@@ -158,9 +259,20 @@ def _complete(model_key: str, prompt: str, max_tokens: int = 300) -> str:
         kwargs["reasoning_effort"] = "none"
     if not _big:
         kwargs["temperature"] = 0
-    resp = bench.retry(lambda: client.chat.completions.create(
-        model=model_id, messages=[{"role": "user", "content": prompt}], **kwargs),
-        what=f"probe.completions[{model_key}]")
+    def _create():
+        try:
+            return client.chat.completions.create(
+                model=model_id, messages=[{"role": "user", "content": prompt}], **kwargs)
+        except openai.BadRequestError as e:
+            # Newer Anthropic models reject the sampling parameter outright
+            # ("`temperature` is deprecated for this model"). The probe does not
+            # depend on it, so drop it and ask once more.
+            if "temperature" in kwargs and "temperature" in str(e):
+                kwargs.pop("temperature")
+                return client.chat.completions.create(
+                    model=model_id, messages=[{"role": "user", "content": prompt}], **kwargs)
+            raise
+    resp = bench.retry(_create, what=f"probe.completions[{model_key}]")
     # A null message (e.g. a Vertex safety-filtered response) is an empty generation,
     # not an infra error: the model produced nothing, which for both probe types
     # scores as zero memorisation rather than a retry-forever cell. But empty WITH
@@ -216,6 +328,22 @@ def build_id_profile(answers) -> dict:
 SHAPES = ["hit", "id_shaped", "degenerate", "prose", "empty"]
 
 
+def id_hit(answer: str, gen: str) -> bool:
+    """Does the generation contain the identifier as a whole token?
+
+    A plain substring test is enough for the warehouse's 18-character keys and
+    wrong for short ids such as Wikidata's Q90, where a guess of Q9000 would
+    score as recall. The id may be wrapped in punctuation or backticks, so the
+    boundary is "not preceded by an alphanumeric and not followed by a digit"
+    rather than a word boundary.
+    """
+    ans = str(answer or "")
+    if not ans:
+        return False
+    return re.search(r"(?<![A-Za-z0-9])" + re.escape(ans) + r"(?![0-9])",
+                     gen or "", re.IGNORECASE) is not None
+
+
 def entity_shape(gen: str, answer: str, profile: dict) -> str:
     """Bucket one entity-recovery generation by what kind of output it is.
 
@@ -240,7 +368,7 @@ def entity_shape(gen: str, answer: str, profile: dict) -> str:
     ans = str(answer or "")
     if not g:
         return "empty"
-    if ans and ans.lower() in g.lower():
+    if id_hit(ans, g):
         return "hit"
     if len(g.split()) > 1:
         return "prose"
@@ -382,6 +510,9 @@ def main():
     ap.add_argument("--session-timezone", default=None,
                     help="pin the chDB session timezone, for a DateTime grain")
     ap.add_argument("--no-control", action="store_true")
+    ap.add_argument("--entity-control", type=int, default=0,
+                    help="items per arm of the entity probe's Wikidata positive control; "
+                         "0 (default) skips it")
     ap.add_argument("--out", type=Path, default=OUT)
     args = ap.parse_args()
     models = [m.strip() for m in args.models.split(",") if m.strip()]
@@ -392,10 +523,15 @@ def main():
     if not args.no_control:
         items += (load_spider(args.sample, "train") + load_spider(args.sample, "validation")
                   + load_spider(args.sample, "test"))
+    items += load_entity_controls(
+        args.entity_control,
+        args.out.with_name(args.out.stem + ".entity_control_items.json"))
 
     # One length threshold for the whole run, not one per row: see entity_shape.
     id_profile = build_id_profile(it["answer"] for it in items
                                   if it["probe"] == "entity_recovery")
+    control_profile = build_id_profile(it["answer"] for it in items
+                                       if it["probe"] in (CONTROL_KNOWN, CONTROL_OBSCURE))
 
     done = set()
     if args.out.exists():
@@ -418,8 +554,14 @@ def main():
                                        .replace("<<IDCOL>>", it["id_col"])
                                        .replace("<<NAME>>", it["name"]))
                 gen = _complete(m, prompt, max_tokens=100)
-                score = 1.0 if str(it["answer"]).lower() in gen.lower() else 0.0
+                score = 1.0 if id_hit(it["answer"], gen) else 0.0
                 shape = entity_shape(gen, it["answer"], id_profile)
+                chars = len(gen.strip())
+            elif it["probe"] in (CONTROL_KNOWN, CONTROL_OBSCURE):
+                gen = _complete(m, CONTROL_PROMPT.replace("<<NAME>>", it["name"]),
+                                max_tokens=100)
+                score = 1.0 if id_hit(it["answer"], gen) else 0.0
+                shape = entity_shape(gen, it["answer"], control_profile)
                 chars = len(gen.strip())
             else:
                 gen = _complete(m, COMPLETION_PROMPT.replace("<<DATASET>>", it["dataset"])
@@ -460,6 +602,8 @@ def main():
                     shapes[r["model"]][r["shape"]] += 1
     probes = ["ours_completion", "entity_recovery", "spider_control",
               "spider_dev_control", "spider_test_control"]
+    if any(p in (CONTROL_KNOWN, CONTROL_OBSCURE) for _, p in by):
+        probes += [CONTROL_KNOWN, CONTROL_OBSCURE]
     print(f"\n{'model':24}" + "".join(f"{p:>18}" for p in probes))
     for m in models:
         cells = []
