@@ -526,17 +526,17 @@ wheels = [
 
 [[package]]
 name = "chdb-core"
-version = "26.7.0"
+version = "26.11.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pandas" },
     { name = "pyarrow" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/71/00/307d0ed8bbf14f3e42b018c589b84d2b4bb99222c2ce54ba26c7a71b057a/chdb_core-26.7.0-cp39-abi3-macosx_10_15_x86_64.whl", hash = "sha256:7134aa30087a54b1bc45b7893d34d1719b976f22dc7624f783ffec926d40db1d", size = 120845633, upload-time = "2026-08-13T04:22:50.054Z" },
-    { url = "https://files.pythonhosted.org/packages/41/4e/06524356d7bda9257a12a11860a4713f706d388330249d74a8e542e53953/chdb_core-26.7.0-cp39-abi3-macosx_11_0_arm64.whl", hash = "sha256:191124104076e21581de6a4d1335eb0c87c41e2521243f84600fa9205fbc94d1", size = 103982428, upload-time = "2026-08-12T23:34:33.474Z" },
-    { url = "https://files.pythonhosted.org/packages/54/ee/1f3bfcf04b8d5ec265236412f95d3a27a7c586a12363775e7cc34ff962da/chdb_core-26.7.0-cp39-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:3afa4b054ab815197149378d947e0409b0e4017baf87a5dc8d9b7c6571f99893", size = 136524494, upload-time = "2026-08-12T23:16:10.072Z" },
-    { url = "https://files.pythonhosted.org/packages/dd/79/8dbea41ea83f486e5824d081232892c69cfd8522539f578a620e082a7810/chdb_core-26.7.0-cp39-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", hash = "sha256:659c36f2f2fe910c3f2b0bcc230c84242cb97d9588aed1359bf7e84566d01f32", size = 175224786, upload-time = "2026-08-12T22:28:28.183Z" },
+    { url = "https://files.pythonhosted.org/packages/ea/5e/1ff21eb28fd0099089cd0ee21d350548bb2d7930856a6158798862c4340b/chdb_core-26.11.1-cp39-abi3-macosx_10_15_x86_64.whl", hash = "sha256:d1da1f019a3f2785c688daea321b7c11ceb1160760b1566c0a36bce5ef41fe75", size = 134594360, upload-time = "2026-11-16T14:50:07.305Z" },
+    { url = "https://files.pythonhosted.org/packages/56/e4/8293769ecdd30488fe75a8fe7da8b10c26b8cf0a94f7745548540a6f2ba5/chdb_core-26.11.1-cp39-abi3-macosx_11_0_arm64.whl", hash = "sha256:ba0a0575bc303b948e5b90a1ec1f1ae826cc1a96ea3c69f1a1f49882863816f6", size = 117069223, upload-time = "2026-11-16T12:11:31.669Z" },
+    { url = "https://files.pythonhosted.org/packages/af/ba/2a1b902265c8725d530b0ba32be7640486b3fb0c01c0b58b03ac1ee8e789/chdb_core-26.11.1-cp39-abi3-manylinux1_x86_64.manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_5_x86_64.whl", hash = "sha256:e24887b441f980f31b62d72b9894901ec756335af5ff7191ab17de368e57ff16", size = 184891473, upload-time = "2026-11-16T10:56:05.032Z" },
+    { url = "https://files.pythonhosted.org/packages/ef/8d/1bc6fb64e4b9e853ff4c5b87a1e640f5415f551ae5e09063d72593ecd05e/chdb_core-26.11.1-cp39-abi3-manylinux2014_aarch64.manylinux_2_17_aarch64.whl", hash = "sha256:f7392dffe9ac1ffabd8aa5451cbbafa9fd426872340b588bfd71a78605a9c7f9", size = 164920514, upload-time = "2026-11-16T11:43:04.615Z" },
 ]
 
 [[package]]
