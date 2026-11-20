@@ -114,6 +114,8 @@ def plot(rate, leniency, bias, out: Path):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--plot", type=Path, default=None)
+    ap.add_argument("--emit", type=Path, default=None,
+                    help="write the rate matrix, leniency and in-group bias as JSON (paper figure input)")
     args = ap.parse_args()
     rate, leniency, bias = compute()
     def _cell(x):
@@ -126,6 +128,12 @@ def main():
           ", ".join(f"{j} {bias[j]:+.1f}" for j in JUDGES if j in bias) or "(insufficient votes)")
     if args.plot:
         plot(rate, leniency, bias, args.plot)
+    if args.emit:
+        args.emit.write_text(json.dumps({
+            "judges": JUDGES, "providers": COLS,
+            "rate": {f"{j}|{c}": rate.get((j, c)) for j in JUDGES for c in COLS},
+            "leniency": leniency, "bias": bias}, indent=1) + "\n")
+        print(f"wrote {args.emit}")
 
 
 if __name__ == "__main__":

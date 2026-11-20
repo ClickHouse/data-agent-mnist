@@ -13,6 +13,7 @@ Only the pure classifier is exercised: nothing here makes a provider call.
 from __future__ import annotations
 
 import importlib.util
+import re
 import sys
 import uuid
 from pathlib import Path
@@ -34,7 +35,7 @@ def _load_probe_bits():
     src = (DAM / "12_contamination_probe.py").read_text()
     start = src.index("def _id_signature(")
     end = src.index("def similarity(")
-    ns: dict = {"uuid": uuid}
+    ns: dict = {"uuid": uuid, "re": re}
     exec(compile(src[start:end], "12_contamination_probe.py", "exec"), ns)  # noqa: S102
     return ns["entity_shape"], ns["build_id_profile"], ns["SHAPES"]
 

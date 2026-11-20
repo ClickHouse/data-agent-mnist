@@ -81,6 +81,15 @@ def main():
     ap.add_argument("--mlflow-model-label", type=str, default=DEFAULT_MLFLOW_LABEL,
                     help="anonymized model label for MLflow (never a vendor-internal name)")
     ap.add_argument("--no-mlflow", action="store_true", help="skip MLflow logging")
+    ap.add_argument("--db", type=str, default=None,
+                    help="board epoch to sweep on (a `dbs` entry of board_manifest.json, e.g. "
+                         "chdb). Opens DATA_DIR/<db> and keeps only the questions the manifest "
+                         "assigns to it, so every cell is graded against the warehouse its "
+                         "ground truth was computed on. Default: the default DB, all questions.")
+    ap.add_argument("--session-timezone", default=None,
+                    help="pin the chDB session timezone (board runs: Europe/Berlin). The "
+                         "DateTime grain renders in the session zone, so an unpinned sweep "
+                         "shifts timestamps against the ground truth.")
     args = ap.parse_args()
 
     cand_name = args.candidate
@@ -90,7 +99,18 @@ def main():
     invalid = [c for c in cells if c not in CELLS]
     if invalid:                                          # validate like --candidate
         ap.error(f"invalid --cells {invalid}; choose from {CELLS}")
-    wh    = Warehouse()
+    epoch_tids: set[str] | None = None
+    if args.db:
+        manifest_path = DATA_DIR / "board_manifest.json"
+        if not manifest_path.exists():
+            ap.error(f"{manifest_path} missing — run `uv run verify_board.py --emit` first")
+        manifest = json.loads(manifest_path.read_text())
+        if args.db not in manifest["dbs"]:
+            ap.error(f"--db {args.db!r} is not a manifest epoch; choose from {list(manifest['dbs'])}")
+        epoch_tids = {tid for tid, e in manifest["partition"].items() if e["db"] == args.db}
+        wh = Warehouse(db_path=DATA_DIR / args.db, session_timezone=args.session_timezone)
+    else:
+        wh = Warehouse(session_timezone=args.session_timezone)
     db_lock = threading.Lock()
     out_lock = threading.Lock()
 
@@ -101,6 +121,10 @@ def main():
     system_prompt = wh.system_prompt()
     gt = load_ground_truth()
     tids = list(gt)
+    if epoch_tids is not None:
+        tids = [t for t in tids if t in epoch_tids]
+        print(f"epoch {args.db}: {len(tids)} manifest-routed questions "
+              f"({len(gt) - len(tids)} annotated questions on other epochs or excluded)")
     if args.limit is not None:
         tids = tids[: args.limit]
     print(f"DB ready: {wh.n_rows:,} rows. cells={len(cells)} questions={len(tids)} "
